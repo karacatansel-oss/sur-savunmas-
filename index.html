@@ -3,3369 +3,1464 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Sur Savunması V9</title>
+<title>Sur Savunması V10</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{
-  margin:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  background:#17241d;
-  color:#fff;
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ margin:0;width:100%;height:100%;overflow:hidden;background:#15231d;
+ font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#fff
+}
+#game{
+ position:relative;width:min(100vw,520px);height:100dvh;margin:auto;overflow:hidden;
+ touch-action:none;
+ background:linear-gradient(#79b8dd 0 20%,#a7cb77 20% 53%,#b69360 53% 100%)
 }
 
-#g{
-  position:relative;
-  width:min(100vw,520px);
-  height:100dvh;
-  margin:auto;
-  overflow:hidden;
-  touch-action:manipulation;
-  background:
-    linear-gradient(
-      #82bddd 0 20%,
-      #a8cc79 20% 54%,
-      #b79764 54% 100%
-    );
-}
-
-/* =========================================================
-   ARKA PLAN
-========================================================= */
+/* ===== DÜNYA ===== */
 
 .sun{
-  position:absolute;
-  z-index:0;
-  right:10%;
-  top:8%;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:#ffe08a;
-  box-shadow:0 0 25px #ffe8a9;
+ position:absolute;right:9%;top:8%;width:45px;height:45px;border-radius:50%;
+ background:#ffe294;box-shadow:0 0 28px #ffe8ad
 }
+.cloud{position:absolute;z-index:1;width:72px;height:19px;border-radius:20px;background:#fff9}
+.cloud:before,.cloud:after{content:"";position:absolute;border-radius:50%;background:#fff9}
+.cloud:before{width:29px;height:29px;left:13px;top:-12px}
+.cloud:after{width:37px;height:37px;right:8px;top:-18px}
+.c1{left:8%;top:10%;transform:scale(.72)}
+.c2{right:23%;top:16%;transform:scale(.52)}
 
-.mountains{
-  position:absolute;
-  z-index:0;
-  top:10%;
-  left:0;
-  right:0;
-  height:23%;
-  overflow:hidden;
-}
-
+.mountains{position:absolute;top:11%;left:0;right:0;height:23%;overflow:hidden}
 .mountain{
-  position:absolute;
-  bottom:-65px;
-  width:210px;
-  height:190px;
-  transform:rotate(45deg);
-  border-radius:22px;
-  background:linear-gradient(135deg,#839e76,#58735e);
+ position:absolute;bottom:-70px;width:220px;height:200px;transform:rotate(45deg);
+ border-radius:25px;background:linear-gradient(135deg,#819a74,#536e59)
 }
-
 .mountain:after{
-  content:"";
-  position:absolute;
-  left:2px;
-  top:2px;
-  width:58px;
-  height:58px;
-  background:#e6e9d7;
-  clip-path:polygon(0 0,100% 0,0 100%);
+ content:"";position:absolute;left:2px;top:2px;width:60px;height:60px;
+ background:#e7ead9;clip-path:polygon(0 0,100% 0,0 100%)
 }
-
-.m1{left:-80px}
-.m2{
-  left:105px;
-  width:240px;
-  height:210px;
-  background:linear-gradient(135deg,#95aa79,#687f64);
-}
+.m1{left:-85px}
+.m2{left:105px;width:245px;height:220px;background:linear-gradient(135deg,#92a879,#637c61)}
 .m3{right:-90px}
 
 .road{
-  position:absolute;
-  z-index:1;
-  top:25%;
-  left:34%;
-  width:32%;
-  height:34%;
-  clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
-  background:
-    linear-gradient(
-      90deg,
-      #a88b60,
-      #d4b982 48%,
-      #ad8e61
-    );
+ position:absolute;z-index:1;top:25%;left:34%;width:32%;height:30%;
+ background:linear-gradient(90deg,#a6885c,#d5bb84 48%,#a6885c);
+ clip-path:polygon(43% 0,57% 0,100% 100%,0 100%)
 }
-
 .grass{
-  position:absolute;
-  z-index:1;
-  top:20%;
-  left:0;
-  right:0;
-  height:35%;
-  opacity:.7;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at 7% 25%,#527843 0 3px,transparent 4px),
-    radial-gradient(ellipse at 16% 66%,#527843 0 3px,transparent 4px),
-    radial-gradient(ellipse at 27% 40%,#668b4c 0 2px,transparent 3px),
-    radial-gradient(ellipse at 74% 32%,#668b4c 0 2px,transparent 3px),
-    radial-gradient(ellipse at 85% 70%,#527843 0 3px,transparent 4px),
-    radial-gradient(ellipse at 94% 30%,#527843 0 3px,transparent 4px);
+ position:absolute;z-index:1;top:20%;left:0;right:0;height:34%;
+ background:
+ radial-gradient(ellipse at 7% 20%,#507942 0 3px,transparent 4px),
+ radial-gradient(ellipse at 15% 68%,#507942 0 3px,transparent 4px),
+ radial-gradient(ellipse at 27% 44%,#668d4f 0 2px,transparent 3px),
+ radial-gradient(ellipse at 73% 44%,#668d4f 0 2px,transparent 3px),
+ radial-gradient(ellipse at 86% 68%,#507942 0 3px,transparent 4px),
+ radial-gradient(ellipse at 94% 25%,#507942 0 3px,transparent 4px)
 }
 
-.trees{
-  position:absolute;
-  z-index:2;
-  top:25%;
-  left:0;
-  right:0;
-  height:27%;
-  pointer-events:none;
-}
-
-.tree{
-  position:absolute;
-  width:34px;
-  height:52px;
-}
-
+.tree{position:absolute;z-index:2;width:34px;height:52px}
 .tree:before{
-  content:"";
-  position:absolute;
-  left:14px;
-  bottom:0;
-  width:7px;
-  height:20px;
-  background:#67472c;
-  border-radius:3px;
+ content:"";position:absolute;left:14px;bottom:0;width:7px;height:20px;background:#65462d
 }
-
 .tree:after{
-  content:"";
-  position:absolute;
-  left:1px;
-  top:0;
-  width:32px;
-  height:39px;
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 35% 30%,#72a65c 0 23%,transparent 24%),
-    radial-gradient(circle at 67% 30%,#5c934c 0 26%,transparent 27%),
-    radial-gradient(circle at 50% 62%,#3f743a 0 44%,transparent 45%);
-  filter:drop-shadow(0 4px 2px #0003);
+ content:"";position:absolute;left:1px;top:0;width:32px;height:39px;border-radius:50%;
+ background:
+ radial-gradient(circle at 35% 28%,#73a85c 0 24%,transparent 25%),
+ radial-gradient(circle at 68% 30%,#559047 0 27%,transparent 28%),
+ radial-gradient(circle at 50% 62%,#3d7439 0 45%,transparent 46%);
+ filter:drop-shadow(0 4px 2px #0003)
 }
+.t1{left:3%;top:29%}.t2{left:12%;top:42%;transform:scale(.8)}
+.t3{right:3%;top:29%}.t4{right:12%;top:43%;transform:scale(.82)}
 
-.tree1{left:2%;top:3%}
-.tree2{left:10%;top:48%;transform:scale(.8)}
-.tree3{right:2%;top:8%}
-.tree4{right:10%;top:50%;transform:scale(.85)}
-
-/* =========================================================
-   SUR
-========================================================= */
+/* ===== SUR ===== */
 
 .wall{
-  position:absolute;
-  z-index:8;
-  top:53%;
-  left:-2%;
-  width:104%;
-  height:78px;
-  border-top:5px solid #696962;
-  border-bottom:7px solid #5e5e58;
-  background:
-    linear-gradient(#999a91 0 8px,transparent 8px),
-    repeating-linear-gradient(
-      90deg,
-      #b8b7ab 0 38px,
-      #8d8d84 38px 42px,
-      #aaa99e 42px 76px
-    );
-  box-shadow:
-    0 8px 0 #0002,
-    inset 0 7px 0 #d5d3c7;
+ position:absolute;z-index:9;top:52%;left:-2%;width:104%;height:82px;
+ border-top:5px solid #62635e;border-bottom:7px solid #595a55;
+ background:
+ linear-gradient(#999a91 0 8px,transparent 8px),
+ repeating-linear-gradient(90deg,#bbb9ad 0 38px,#8c8c83 38px 42px,#aaa99e 42px 76px);
+ box-shadow:0 8px 0 #0002,inset 0 7px #d7d4c7
 }
-
 .wall:before{
-  content:"";
-  position:absolute;
-  top:-18px;
-  left:0;
-  right:0;
-  height:21px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #aaa99d 0 27px,
-      transparent 27px 39px
-    );
+ content:"";position:absolute;top:-18px;left:0;right:0;height:21px;
+ background:repeating-linear-gradient(90deg,#aaa99d 0 27px,transparent 27px 39px)
 }
-
 .gate{
-  position:absolute;
-  left:50%;
-  bottom:-1px;
-  transform:translateX(-50%);
-  width:28%;
-  height:73px;
-  border:6px solid #575149;
-  border-bottom:0;
-  border-radius:45px 45px 0 0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #875b3b 0 11px,
-      #5e3e2a 11px 14px
-    );
-  box-shadow:inset 0 0 0 3px #aa7b50;
+ position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);
+ width:27%;height:77px;border:6px solid #554e46;border-bottom:0;
+ border-radius:48px 48px 0 0;
+ background:repeating-linear-gradient(90deg,#875b3b 0 11px,#5e3e2a 11px 14px)
 }
-
-.gate:after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:0;
-  bottom:0;
-  width:4px;
-  background:#503426;
-  transform:translateX(-50%);
-}
-
+.gate:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:4px;background:#4d3325}
 .wallTower{
-  position:absolute;
-  z-index:2;
-  bottom:-7px;
-  width:52px;
-  height:96px;
-  background:#aaa99e;
-  border:5px solid #62625d;
+ position:absolute;bottom:-7px;width:53px;height:100px;background:#aaa99e;
+ border:5px solid #60605b
 }
-
-.wallTower.left{left:3%}
-.wallTower.right{right:3%}
-
+.wallTower.left{left:3%}.wallTower.right{right:3%}
 .wallTower:before{
-  content:"";
-  position:absolute;
-  top:-14px;
-  left:-5px;
-  width:52px;
-  height:18px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #aaa99e 0 12px,
-      transparent 12px 19px
-    );
+ content:"";position:absolute;top:-14px;left:-5px;width:53px;height:18px;
+ background:repeating-linear-gradient(90deg,#aaa99e 0 12px,transparent 12px 19px)
 }
 
-/* =========================================================
-   İÇ AVLU / KALE
-========================================================= */
+/* ===== AVLU VE KALE ===== */
 
 .courtyard{
-  position:absolute;
-  z-index:0;
-  top:61%;
-  left:0;
-  right:0;
-  bottom:0;
-  background:
-    radial-gradient(circle at 14% 25%,#d6bd88 0 3px,transparent 4px),
-    radial-gradient(circle at 86% 28%,#d6bd88 0 3px,transparent 4px),
-    radial-gradient(circle at 40% 75%,#9e8155 0 2px,transparent 3px),
-    radial-gradient(circle at 64% 68%,#9e8155 0 2px,transparent 3px),
-    linear-gradient(#c4a771,#aa8a58);
+ position:absolute;top:61%;left:0;right:0;bottom:0;
+ background:
+ radial-gradient(circle at 12% 28%,#d5bd88 0 3px,transparent 4px),
+ radial-gradient(circle at 88% 30%,#d5bd88 0 3px,transparent 4px),
+ linear-gradient(#c6a971,#a98655)
 }
-
 .castle{
-  position:absolute;
-  z-index:2;
-  left:50%;
-  bottom:8%;
-  width:112px;
-  height:83px;
-  transform:translateX(-50%);
-  pointer-events:none;
-  filter:drop-shadow(0 6px 3px #0004);
+ position:absolute;z-index:2;left:50%;bottom:8%;width:112px;height:84px;
+ transform:translateX(-50%);filter:drop-shadow(0 7px 3px #0004)
 }
-
 .keep{
-  position:absolute;
-  left:23px;
-  bottom:0;
-  width:66px;
-  height:62px;
-  border:4px solid #62625d;
-  background:#aaa99f;
+ position:absolute;left:23px;bottom:0;width:66px;height:63px;
+ border:4px solid #60615d;background:#aaa99f
 }
-
 .keep:before{
-  content:"";
-  position:absolute;
-  top:-15px;
-  left:-4px;
-  width:66px;
-  height:19px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #aaa99f 0 14px,
-      transparent 14px 22px
-    );
+ content:"";position:absolute;top:-15px;left:-4px;width:66px;height:19px;
+ background:repeating-linear-gradient(90deg,#aaa99f 0 14px,transparent 14px 22px)
 }
-
 .keepDoor{
-  position:absolute;
-  left:50%;
-  bottom:-4px;
-  width:22px;
-  height:29px;
-  transform:translateX(-50%);
-  border:3px solid #4b3528;
-  border-radius:13px 13px 0 0;
-  background:#694832;
+ position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);
+ width:22px;height:30px;border:3px solid #4a3427;border-radius:13px 13px 0 0;background:#694832
 }
-
 .castleTower{
-  position:absolute;
-  bottom:0;
-  width:31px;
-  height:73px;
-  border:4px solid #595a56;
-  background:#96968e;
+ position:absolute;bottom:0;width:31px;height:74px;border:4px solid #585955;background:#96968e
 }
+.castleTower.left{left:0}.castleTower.right{right:0}
 
-.castleTower.left{left:0}
-.castleTower.right{right:0}
-
-.castleTower:before{
-  content:"";
-  position:absolute;
-  top:-13px;
-  left:-4px;
-  width:31px;
-  height:17px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #96968e 0 8px,
-      transparent 8px 13px
-    );
-}
-
-/* =========================================================
-   HUD
-========================================================= */
+/* ===== HUD ===== */
 
 .hud{
-  position:absolute;
-  z-index:60;
-  top:max(8px,env(safe-area-inset-top));
-  left:8px;
-  right:8px;
-  display:flex;
-  justify-content:space-between;
-  gap:5px;
+ position:absolute;z-index:80;top:max(8px,env(safe-area-inset-top));
+ left:8px;right:8px;display:flex;justify-content:space-between;gap:5px
 }
-
 .pill{
-  min-width:86px;
-  padding:8px 9px;
-  border:2px solid #ffffff80;
-  border-radius:18px;
-  text-align:center;
-  font-size:14px;
-  font-weight:900;
-  background:linear-gradient(#344b40ee,#1d3229ee);
-  box-shadow:0 4px 8px #0003;
+ min-width:86px;padding:8px 9px;text-align:center;border:2px solid #ffffff80;
+ border-radius:18px;background:linear-gradient(#344b40ee,#1d3229ee);
+ font-size:14px;font-weight:900;box-shadow:0 4px 8px #0003
 }
 
-/* =========================================================
-   YAPI ALANLARI
-========================================================= */
+/* ===== YAPI ALANLARI ===== */
 
 .slot{
-  position:absolute;
-  z-index:15;
-  width:62px;
-  height:62px;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  border:3px dashed #725b3c;
-  border-radius:50%;
-  color:#4a3a28;
-  background:#f4dda66f;
-  font-size:11px;
-  font-weight:900;
-  box-shadow:0 3px 5px #0002;
+ position:absolute;z-index:17;width:64px;height:64px;transform:translate(-50%,-50%);
+ display:grid;place-items:center;text-align:center;border:3px dashed #70593b;
+ border-radius:50%;background:#f6dda86f;color:#493a29;font-size:11px;font-weight:900;
+ box-shadow:0 4px 7px #0002;user-select:none
 }
-
-.slot:not(.building):after{
-  content:"";
-  position:absolute;
-  inset:6px;
-  border:1px solid #fff8;
-  border-radius:50%;
-}
-
-.building{
-  border:0!important;
-  background:transparent!important;
-  box-shadow:none!important;
-  overflow:visible!important;
-}
-
-.building.selected .mini{
-  transform:scale(1.1);
-  filter:
-    drop-shadow(0 0 5px #ffe45f)
-    drop-shadow(0 0 10px #ffe45f);
+.slot.empty:after{content:"";position:absolute;inset:7px;border:1px solid #fff8;border-radius:50%}
+.slot.building{border:0;background:transparent;box-shadow:none}
+.slot.dragSource{opacity:.25}
+.slot.dropTarget .mini{
+ transform:scale(1.15);
+ filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 12px #ffe45b)
 }
 
 .mini{
-  position:relative;
-  display:block;
-  width:62px;
-  height:58px;
-  filter:drop-shadow(0 4px 2px #0004);
+ position:relative;width:64px;height:60px;display:block;transition:.15s;
+ filter:drop-shadow(0 5px 2px #0004)
 }
-
 .mini .base{
-  position:absolute;
-  left:8px;
-  right:8px;
-  bottom:2px;
-  height:34px;
-  border:3px solid #5d4835;
-  border-radius:5px;
-  background:linear-gradient(#dfc18a,#b88d5c);
+ position:absolute;left:8px;right:8px;bottom:2px;height:36px;
+ border:3px solid #594535;border-radius:5px;background:linear-gradient(#dec18a,#b78d5b)
 }
-
 .mini .roof{
-  position:absolute;
-  left:3px;
-  right:3px;
-  top:1px;
-  height:29px;
-  border:3px solid #604333;
-  clip-path:polygon(50% 0,100% 100%,0 100%);
-  background:#a54c3e;
+ position:absolute;left:3px;right:3px;top:0;height:30px;border:3px solid #5c4031;
+ background:#9e483b;clip-path:polygon(50% 0,100% 100%,0 100%)
 }
-
-.mini.archer .roof{background:#397695}
-.mini.mage .roof{background:#714a9b}
-.mini.tower .roof{background:#506d7d}
-.mini.catapult .roof{background:#80583d}
-
+.mini.archer .roof{background:#416f49}
+.mini.cavalry .roof{background:#365c80}
+.mini.artillery .roof{background:#594a40}
+.mini.lv3 .base{box-shadow:inset 0 0 0 2px #899093}
+.mini.lv4 .base{box-shadow:inset 0 0 0 3px #65737a}
+.mini.lv5 .base{box-shadow:inset 0 0 0 3px #d0a63e,0 0 8px #ffd45b}
 .mini .door{
-  position:absolute;
-  left:25px;
-  bottom:4px;
-  width:13px;
-  height:17px;
-  border:2px solid #513728;
-  border-radius:7px 7px 0 0;
-  background:#704c34;
+ position:absolute;left:26px;bottom:4px;width:13px;height:18px;
+ border:2px solid #4d3527;border-radius:7px 7px 0 0;background:#6d4932
 }
-
-.mini .sign{
-  position:absolute;
-  z-index:4;
-  right:-1px;
-  top:19px;
-  width:25px;
-  height:25px;
-  display:grid;
-  place-items:center;
-  border:2px solid #604833;
-  border-radius:50%;
-  background:#fff0c9;
-  font-size:14px;
+.buildIcon{
+ position:absolute;z-index:5;right:-2px;top:18px;width:27px;height:27px;
+ display:grid;place-items:center;border:2px solid #594434;border-radius:50%;
+ background:#f7e6bc;color:#302820;font-size:16px
 }
-
-.mini.lv3 .base{
-  box-shadow:inset 0 0 0 2px #8d9090;
-}
-
-.mini.lv4 .base{
-  box-shadow:inset 0 0 0 3px #68747a;
-}
-
-.mini.lv5 .base{
-  box-shadow:
-    inset 0 0 0 3px #cda63f,
-    0 0 8px #ffd85c;
-}
-
 .lvl{
-  position:absolute;
-  z-index:8;
-  left:0;
-  bottom:0;
-  padding:2px 5px;
-  border-radius:7px;
-  background:#58398b;
-  color:#fff;
-  font-size:9px;
+ position:absolute;z-index:8;left:0;bottom:0;padding:2px 5px;border-radius:7px;
+ background:#523485;color:#fff;font-size:9px
 }
-
 .prod{
-  position:absolute;
-  left:7px;
-  right:7px;
-  bottom:-4px;
-  height:6px;
-  overflow:hidden;
-  border:1px solid #fff;
-  border-radius:6px;
-  background:#27382e;
+ position:absolute;left:7px;right:7px;bottom:-5px;height:6px;overflow:hidden;
+ border:1px solid #fff;border-radius:7px;background:#26372e
+}
+.prod i{display:block;width:0;height:100%;background:#f0c64f}
+
+.dragGhost{
+ position:absolute;z-index:250;width:70px;height:70px;pointer-events:none;
+ transform:translate(-50%,-50%) scale(1.12);opacity:.9
 }
 
-.prod i{
-  display:block;
-  width:0;
-  height:100%;
-  background:#f4c953;
-}
-
-/* =========================================================
-   İNSAN ASKERLER
-========================================================= */
+/* ===== ASKERLER ===== */
 
 .unit{
-  position:absolute;
-  z-index:14;
-  width:34px;
-  height:48px;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
+ position:absolute;z-index:15;width:38px;height:52px;
+ transform:translate(-50%,-50%);pointer-events:none
 }
-
 .soldier{
-  position:absolute;
-  left:2px;
-  top:1px;
-  width:30px;
-  height:44px;
-  transform-origin:50% 90%;
-  animation:soldierBob .34s ease-in-out infinite alternate;
-  filter:drop-shadow(0 3px 2px #0005);
+ position:absolute;left:4px;top:2px;width:30px;height:45px;
+ filter:drop-shadow(0 3px 2px #0005)
 }
-
-.soldier:after{
-  content:"";
-  position:absolute;
-  z-index:-3;
-  left:3px;
-  bottom:-4px;
-  width:24px;
-  height:6px;
-  border-radius:50%;
-  background:#0004;
-}
-
 .head{
-  position:absolute;
-  z-index:6;
-  left:10px;
-  top:3px;
-  width:11px;
-  height:12px;
-  border:1px solid #704b34;
-  border-radius:50%;
-  background:#dca574;
+ position:absolute;z-index:7;left:10px;top:3px;width:11px;height:12px;
+ border:1px solid #704b34;border-radius:50%;background:#dca574
 }
-
 .hair{
-  position:absolute;
-  z-index:7;
-  left:9px;
-  top:2px;
-  width:13px;
-  height:6px;
-  border-radius:8px 8px 3px 3px;
-  background:#563b2b;
+ position:absolute;z-index:8;left:9px;top:2px;width:13px;height:6px;
+ border-radius:8px 8px 3px 3px;background:#553b2b
 }
-
 .helmet{
-  position:absolute;
-  z-index:8;
-  left:8px;
-  top:0;
-  width:15px;
-  height:10px;
-  border:1px solid #3e474c;
-  border-radius:9px 9px 3px 3px;
-  background:linear-gradient(#a4adb1,#616c72);
+ position:absolute;z-index:9;left:8px;top:0;width:15px;height:10px;
+ border:1px solid #3e474c;border-radius:9px 9px 3px 3px;
+ background:linear-gradient(#aeb7ba,#5e696f)
 }
-
 .torso{
-  position:absolute;
-  z-index:4;
-  left:7px;
-  top:14px;
-  width:17px;
-  height:17px;
-  border:1px solid #4b392c;
-  border-radius:5px 5px 3px 3px;
+ position:absolute;z-index:5;left:7px;top:14px;width:17px;height:18px;
+ border:1px solid #47372d;border-radius:5px
 }
-
-.torso:after{
-  content:"";
-  position:absolute;
-  left:-1px;
-  right:-1px;
-  bottom:1px;
-  height:3px;
-  background:#604229;
-}
-
 .arm{
-  position:absolute;
-  z-index:3;
-  top:15px;
-  width:5px;
-  height:17px;
-  border-radius:4px;
-  transform-origin:50% 2px;
+ position:absolute;z-index:4;top:16px;width:5px;height:17px;
+ border-radius:4px;transform-origin:50% 2px
 }
-
-.armL{
-  left:4px;
-  animation:armLeft .34s ease-in-out infinite alternate;
-}
-
-.armR{
-  right:3px;
-  animation:armRight .34s ease-in-out infinite alternate;
-}
-
+.armL{left:4px}.armR{right:3px}
 .leg{
-  position:absolute;
-  z-index:2;
-  top:29px;
-  width:6px;
-  height:14px;
-  border-radius:3px;
-  background:#4b4036;
-  transform-origin:50% 1px;
+ position:absolute;z-index:3;top:30px;width:6px;height:14px;
+ border-radius:3px;background:#463d35;transform-origin:50% 1px
 }
+.legL{left:7px}.legR{right:6px}
 
-.legL{
-  left:7px;
-  animation:legLeft .34s ease-in-out infinite alternate;
-}
+.unit.moving .soldier{animation:bob .3s ease-in-out infinite alternate}
+.unit.moving .legL{animation:leg1 .3s infinite alternate}
+.unit.moving .legR{animation:leg2 .3s infinite alternate}
+.unit.moving .armL{animation:arm1 .3s infinite alternate}
+.unit.moving .armR{animation:arm2 .3s infinite alternate}
 
-.legR{
-  right:6px;
-  animation:legRight .34s ease-in-out infinite alternate;
-}
+@keyframes bob{to{transform:translateY(-2px)}}
+@keyframes leg1{from{transform:rotate(23deg)}to{transform:rotate(-23deg)}}
+@keyframes leg2{from{transform:rotate(-23deg)}to{transform:rotate(23deg)}}
+@keyframes arm1{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
+@keyframes arm2{from{transform:rotate(18deg)}to{transform:rotate(-18deg)}}
 
-.leg:after{
-  content:"";
-  position:absolute;
-  left:-1px;
-  bottom:-2px;
-  width:8px;
-  height:4px;
-  border-radius:3px;
-  background:#292724;
-}
+/* ===== PİYADE ===== */
 
 .sword{
-  position:absolute;
-  z-index:10;
-  right:-5px;
-  top:8px;
-  width:4px;
-  height:25px;
-  border:1px solid #455058;
-  border-radius:3px;
-  background:linear-gradient(90deg,#79858c,#f3f6f3,#78848b);
-  transform:rotate(-30deg);
-  transform-origin:50% 90%;
+ position:absolute;z-index:12;right:-5px;top:8px;width:4px;height:26px;
+ border:1px solid #455058;border-radius:2px;
+ background:linear-gradient(90deg,#7d878c,#f4f6f4,#778187);
+ transform:rotate(-30deg);transform-origin:50% 90%
 }
-
 .sword:before{
-  content:"";
-  position:absolute;
-  left:-4px;
-  bottom:3px;
-  width:11px;
-  height:3px;
-  border-radius:2px;
-  background:#9c743d;
+ content:"";position:absolute;left:-4px;bottom:3px;width:11px;height:3px;background:#9a713b
 }
-
 .shield{
-  position:absolute;
-  z-index:9;
-  left:-4px;
-  top:15px;
-  width:15px;
-  height:19px;
-  border:2px solid #493626;
-  border-radius:7px 7px 10px 10px;
-  background:
-    linear-gradient(
-      90deg,
-      #a83f38 0 47%,
-      #d4a23e 48% 52%,
-      #8c302e 53%
-    );
-  transform:rotate(-9deg);
+ position:absolute;z-index:11;left:-5px;top:15px;width:15px;height:20px;
+ border:2px solid #493626;border-radius:7px 7px 10px 10px;
+ background:linear-gradient(90deg,#a13c35 0 47%,#d4a13c 48% 52%,#89302c 53%)
 }
-
-/* Kışla seviyeleri */
-
-.warriorHuman.lv1 .torso{
-  background:#876447;
+.warrior.lv1 .torso{background:#866447}.warrior.lv1 .arm{background:#866447}
+.warrior.lv2 .torso{background:#4d6c80}.warrior.lv2 .arm{background:#5d7788}
+.warrior.lv3 .torso{background:#8d999d}.warrior.lv3 .arm{background:#808c90}
+.warrior.lv4 .torso{background:linear-gradient(90deg,#48545b,#9da7aa,#424e55);border:2px solid #30393e}
+.warrior.lv5 .torso{
+ background:linear-gradient(90deg,#4b565d,#c2c9ca,#505c62);
+ border:2px solid #d0a73e;box-shadow:0 0 7px #ffd85c
 }
+.unit.meleeAttack .sword{animation:swordHit .18s 2 alternate}
+@keyframes swordHit{from{transform:rotate(-35deg)}to{transform:rotate(65deg)}}
 
-.warriorHuman.lv1 .arm{
-  background:linear-gradient(#8b684a 0 55%,#d69e6d 56%);
-}
-
-.warriorHuman.lv2 .torso{
-  background:linear-gradient(90deg,#3f5d72,#68849a,#344e60);
-}
-
-.warriorHuman.lv2 .arm{
-  background:linear-gradient(#506d82 0 60%,#d69e6d 61%);
-}
-
-.warriorHuman.lv3 .torso{
-  background:
-    repeating-linear-gradient(
-      0deg,
-      #7d898e 0 3px,
-      #aab3b5 3px 5px
-    );
-}
-
-.warriorHuman.lv3 .arm{
-  background:linear-gradient(#7c888d 0 70%,#d69e6d 71%);
-}
-
-.warriorHuman.lv4 .torso{
-  border:2px solid #343e43;
-  background:linear-gradient(90deg,#515e65,#9ba6aa,#46535a);
-}
-
-.warriorHuman.lv4 .shield{
-  width:17px;
-  height:21px;
-  background:#71808a;
-}
-
-.warriorHuman.lv5 .torso{
-  border:2px solid #d3aa43;
-  background:linear-gradient(90deg,#49555c,#bcc5c7,#56636a);
-  box-shadow:0 0 6px #ffd65c;
-}
-
-.warriorHuman.lv5 .helmet{
-  border-color:#d2a43b;
-}
-
-.warriorHuman.lv5 .shield{
-  width:18px;
-  height:22px;
-  border-color:#d1a63d;
-}
-
-/* OKÇU */
+/* ===== OKÇU ===== */
 
 .bow{
-  position:absolute;
-  z-index:9;
-  right:-8px;
-  top:9px;
-  width:17px;
-  height:28px;
-  border-right:3px solid #76502d;
-  border-radius:0 100% 100% 0;
-  transform:rotate(-8deg);
-  transform-origin:50% 50%;
+ position:absolute;z-index:11;right:-8px;top:8px;width:17px;height:29px;
+ border-right:3px solid #75502d;border-radius:0 100% 100% 0;transform:rotate(-8deg)
 }
-
 .bow:after{
-  content:"";
-  position:absolute;
-  right:11px;
-  top:1px;
-  width:1px;
-  height:25px;
-  background:#eee8d9;
-  transform:rotate(-10deg);
+ content:"";position:absolute;right:11px;top:1px;width:1px;height:26px;background:#eee8da
 }
-
 .quiver{
-  position:absolute;
-  z-index:1;
-  left:2px;
-  top:10px;
-  width:7px;
-  height:23px;
-  border:1px solid #50351f;
-  border-radius:3px 3px 6px 6px;
-  background:#7b512d;
-  transform:rotate(17deg);
+ position:absolute;z-index:2;left:2px;top:10px;width:7px;height:23px;
+ border:1px solid #50351f;border-radius:3px 3px 6px 6px;
+ background:#7a512d;transform:rotate(17deg)
 }
+.archer.lv1 .torso{background:#5a794d}.archer.lv1 .arm{background:#68825b}
+.archer.lv2 .torso{background:#71593d}.archer.lv2 .arm{background:#77634a}
+.archer.lv3 .torso{background:#526653}.archer.lv3 .arm{background:#687768}
+.archer.lv4 .torso{background:#304c38;border:2px solid #293b2e}
+.archer.lv5 .torso{background:#375440;border:2px solid #c6a03d;box-shadow:0 0 6px #d7ba5d}
 
-.quiver:before,
-.quiver:after{
-  content:"";
-  position:absolute;
-  top:-8px;
-  width:2px;
-  height:12px;
-  background:#ddd0a9;
+/* ===== SÜVARİ ===== */
+
+.cavalryUnit{width:62px;height:55px}
+.horse{
+ position:absolute;left:2px;top:17px;width:53px;height:31px;
+ filter:drop-shadow(0 4px 2px #0005)
 }
-
-.quiver:before{left:1px}
-.quiver:after{right:1px}
-
-.archerHuman.lv1 .torso{
-  background:#59784c;
+.horseBody{
+ position:absolute;left:7px;top:7px;width:35px;height:18px;
+ border:2px solid #493527;border-radius:15px;background:#875d3e
 }
-
-.archerHuman.lv1 .arm{
-  background:linear-gradient(#56794a 0 55%,#d69e6d 56%);
+.horseNeck{
+ position:absolute;right:5px;top:1px;width:12px;height:21px;
+ border:2px solid #493527;border-radius:8px;background:#875d3e;transform:rotate(-22deg)
 }
-
-.archerHuman.lv2 .torso{
-  background:linear-gradient(90deg,#5c4932,#876844,#4c3c2b);
+.horseHead{
+ position:absolute;right:-1px;top:-3px;width:15px;height:11px;
+ border:2px solid #493527;border-radius:8px;background:#875d3e
 }
-
-.archerHuman.lv2 .arm{
-  background:linear-gradient(#66523a 0 60%,#d69e6d 61%);
+.horseLeg{
+ position:absolute;top:21px;width:5px;height:16px;border-radius:3px;
+ background:#68452f;transform-origin:50% 1px
 }
+.h1{left:11px}.h2{left:20px}.h3{right:14px}.h4{right:6px}
+.cavalryUnit.moving .h1,.cavalryUnit.moving .h3{animation:horse1 .22s infinite alternate}
+.cavalryUnit.moving .h2,.cavalryUnit.moving .h4{animation:horse2 .22s infinite alternate}
+@keyframes horse1{from{transform:rotate(25deg)}to{transform:rotate(-25deg)}}
+@keyframes horse2{from{transform:rotate(-25deg)}to{transform:rotate(25deg)}}
 
-.archerHuman.lv3 .torso{
-  background:linear-gradient(90deg,#536653,#859381,#465847);
+.rider{position:absolute;z-index:8;left:18px;top:-3px;width:28px;height:32px}
+.rider .head{left:8px}.rider .torso{left:5px;top:14px;height:15px}
+.lance{
+ position:absolute;z-index:12;left:27px;top:4px;width:4px;height:45px;
+ background:#805932;transform:rotate(68deg);transform-origin:50% 80%
 }
-
-.archerHuman.lv3 .arm{
-  background:linear-gradient(#637463 0 72%,#d69e6d 73%);
+.lance:before{
+ content:"";position:absolute;left:-2px;top:-8px;width:8px;height:11px;
+ background:#c1c9cc;clip-path:polygon(50% 0,100% 100%,0 100%)
 }
+.cavalry.lv1 .rider .torso{background:#79583f}
+.cavalry.lv2 .rider .torso{background:#466681}
+.cavalry.lv3 .rider .torso{background:#7f8a8f;border:2px solid #4c565b}
+.cavalry.lv4 .horseBody{background:#575c5e;box-shadow:inset 0 0 0 3px #969fa1}
+.cavalry.lv5 .horseBody{background:#555c5f;box-shadow:inset 0 0 0 3px #d0a63d,0 0 7px #ffd55a}
 
-.archerHuman.lv4 .torso{
-  border:2px solid #283a2d;
-  background:linear-gradient(90deg,#334e3a,#71866a,#2c4534);
+/* ===== TOPÇU ===== */
+
+.artilleryUnit{width:70px;height:52px}
+.cannon{
+ position:absolute;left:3px;top:9px;width:62px;height:39px;
+ filter:drop-shadow(0 4px 2px #0005)
 }
-
-.archerHuman.lv4 .bow{
-  height:31px;
-  border-right-width:4px;
+.wheel{
+ position:absolute;z-index:3;bottom:0;width:20px;height:20px;
+ border:4px solid #513925;border-radius:50%;background:#8b633d
 }
-
-.archerHuman.lv5 .torso{
-  border:2px solid #c6a03d;
-  background:linear-gradient(90deg,#304c38,#83977d,#294331);
-  box-shadow:0 0 5px #d9bd62;
+.w1{left:8px}.w2{right:7px}
+.barrel{
+ position:absolute;z-index:5;left:20px;top:4px;width:43px;height:12px;
+ border:2px solid #333b3e;border-radius:6px;
+ background:linear-gradient(#899397,#4c575c);transform:rotate(-8deg)
 }
-
-.archerHuman.lv5 .bow{
-  height:33px;
-  border-right:4px solid #c59a42;
+.carriage{
+ position:absolute;left:14px;top:14px;width:33px;height:14px;
+ border:2px solid #503923;background:#805b39
 }
+.gunner{position:absolute;z-index:7;left:4px;top:-3px;width:28px;height:35px}
+.gunner .head{left:8px}.gunner .torso{left:5px;top:14px;height:15px;background:#665b4c}
+.artillery.lv3 .barrel{height:14px}
+.artillery.lv4 .barrel{width:50px;height:15px}
+.artillery.lv5 .barrel{width:52px;height:16px;border-color:#c79f3e;box-shadow:0 0 7px #ffd35c}
 
-@keyframes soldierBob{
-  from{transform:translateY(0)}
-  to{transform:translateY(-2px)}
-}
-
-@keyframes legLeft{
-  from{transform:rotate(25deg)}
-  to{transform:rotate(-25deg)}
-}
-
-@keyframes legRight{
-  from{transform:rotate(-25deg)}
-  to{transform:rotate(25deg)}
-}
-
-@keyframes armLeft{
-  from{transform:rotate(-20deg)}
-  to{transform:rotate(20deg)}
-}
-
-@keyframes armRight{
-  from{transform:rotate(20deg)}
-  to{transform:rotate(-20deg)}
-}
-
-.unit.meleeAttack .sword{
-  animation:swordAttack .18s ease-out 2 alternate;
-}
-
-@keyframes swordAttack{
-  from{transform:rotate(-35deg)}
-  to{transform:rotate(60deg)}
-}
-
-.unit.bowAttack .bow{
-  animation:bowAttack .2s ease-out 2 alternate;
-}
-
-@keyframes bowAttack{
-  from{transform:rotate(-8deg) scaleX(1)}
-  to{transform:rotate(-3deg) scaleX(.7)}
-}
-
-/* =========================================================
-   CANAVARLAR
-========================================================= */
+/* ===== CANAVAR ===== */
 
 .enemy{
-  position:absolute;
-  z-index:12;
-  width:48px;
-  height:55px;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
+ position:absolute;z-index:14;width:50px;height:58px;
+ transform:translate(-50%,-50%);pointer-events:none;filter:drop-shadow(0 4px 2px #0005)
 }
-
-.monster{
-  position:absolute;
-  left:50%;
-  bottom:2px;
-  width:38px;
-  height:47px;
-  transform:translateX(-50%);
-  filter:drop-shadow(0 4px 2px #0005);
-  animation:monsterBob .34s ease-in-out infinite alternate;
-}
-
-.monsterShadow{
-  position:absolute;
-  z-index:-5;
-  left:5px;
-  bottom:-2px;
-  width:29px;
-  height:7px;
-  border-radius:50%;
-  background:#0005;
-}
-
+.monster{position:absolute;left:50%;bottom:2px;width:40px;height:48px;transform:translateX(-50%)}
 .mBody{
-  position:absolute;
-  z-index:4;
-  left:8px;
-  top:18px;
-  width:22px;
-  height:21px;
-  border:2px solid #263426;
-  border-radius:8px;
-  background:#5c814b;
+ position:absolute;z-index:4;left:8px;top:18px;width:24px;height:22px;
+ border:2px solid #283528;border-radius:9px;background:#5d824b
 }
-
 .mHead{
-  position:absolute;
-  z-index:7;
-  left:9px;
-  top:4px;
-  width:20px;
-  height:19px;
-  border:2px solid #263426;
-  border-radius:48% 48% 42% 42%;
-  background:#72a05b;
+ position:absolute;z-index:7;left:9px;top:4px;width:22px;height:19px;
+ border:2px solid #283528;border-radius:48%;background:#72a05b
 }
-
 .mEye{
-  position:absolute;
-  z-index:10;
-  top:10px;
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:#ffe54e;
-  box-shadow:0 0 3px #fff16d;
+ position:absolute;z-index:10;top:10px;width:4px;height:4px;
+ border-radius:50%;background:#ffe34c
 }
-
-.mEye.e1{left:13px}
-.mEye.e2{right:10px}
-
+.mEye.e1{left:13px}.mEye.e2{right:10px}
 .mMouth{
-  position:absolute;
-  z-index:10;
-  left:14px;
-  top:17px;
-  width:11px;
-  height:5px;
-  border-radius:2px 2px 6px 6px;
-  background:#2a1616;
+ position:absolute;z-index:10;left:14px;top:17px;width:12px;height:5px;
+ border-radius:2px 2px 6px 6px;background:#291515
 }
-
-.mMouth:before,
-.mMouth:after{
-  content:"";
-  position:absolute;
-  top:0;
-  width:3px;
-  height:5px;
-  background:#eee6cf;
-  clip-path:polygon(0 0,100% 0,50% 100%);
-}
-
-.mMouth:before{left:1px}
-.mMouth:after{right:1px}
-
 .mArm{
-  position:absolute;
-  z-index:3;
-  top:20px;
-  width:7px;
-  height:19px;
-  border:1px solid #263426;
-  border-radius:5px;
-  background:#5c814b;
-  transform-origin:50% 2px;
+ position:absolute;z-index:3;top:20px;width:8px;height:20px;
+ border:1px solid #283528;border-radius:5px;background:#5d824b
 }
-
-.mArm.a1{
-  left:3px;
-  animation:monsterArm1 .34s ease-in-out infinite alternate;
-}
-
-.mArm.a2{
-  right:2px;
-  animation:monsterArm2 .34s ease-in-out infinite alternate;
-}
-
+.mArm.a1{left:2px}.mArm.a2{right:1px}
 .mLeg{
-  position:absolute;
-  z-index:2;
-  top:36px;
-  width:7px;
-  height:12px;
-  border:1px solid #29332a;
-  border-radius:4px;
-  background:#40563c;
-  transform-origin:50% 1px;
+ position:absolute;z-index:2;top:37px;width:7px;height:13px;
+ border-radius:4px;background:#40563c
 }
+.mLeg.l1{left:9px}.mLeg.l2{right:8px}
 
-.mLeg.l1{
-  left:9px;
-  animation:monsterLeg1 .34s ease-in-out infinite alternate;
-}
+.goblin{transform:translateX(-50%) scale(.78)}
+.goblin .mHead{background:#79a958}
+.goblin .mBody,.goblin .mArm{background:#638d4d}
 
-.mLeg.l2{
-  right:8px;
-  animation:monsterLeg2 .34s ease-in-out infinite alternate;
-}
+.orc .mHead{left:6px;width:28px;background:#507541}
+.orc .mBody{left:4px;width:32px;background:#46683c}
 
-/* Goblin */
+.wolf{transform:translateX(-50%) scale(.82)}
+.wolf .mHead,.wolf .mBody,.wolf .mArm{background:#66635e}
 
-.goblin{
-  transform:translateX(-50%) scale(.78);
-}
+.armored{transform:translateX(-50%) scale(1.08)}
+.armored .mBody{left:4px;width:32px;background:linear-gradient(90deg,#59636a,#949da1,#515a60)}
 
-.goblin .mHead{
-  background:#79a957;
-}
+.ogre{transform:translateX(-50%) scale(1.25)}
+.ogre .mHead{background:#777f45}
+.ogre .mBody,.ogre .mArm{background:#697340}
 
-.goblin .mBody,
-.goblin .mArm{
-  background:#628c4c;
-}
-
-.goblin .mHead:before,
-.goblin .mHead:after{
-  content:"";
-  position:absolute;
-  top:3px;
-  width:12px;
-  height:8px;
-  background:#67964b;
-}
-
-.goblin .mHead:before{
-  left:-10px;
-  clip-path:polygon(100% 0,100% 100%,0 50%);
-}
-
-.goblin .mHead:after{
-  right:-10px;
-  clip-path:polygon(0 0,100% 50%,0 100%);
-}
-
-/* ORK */
-
-.orc{
-  transform:translateX(-50%) scale(1);
-}
-
-.orc .mHead{
-  left:6px;
-  width:27px;
-  background:#527842;
-}
-
-.orc .mBody{
-  left:5px;
-  width:29px;
-  background:#476a3d;
-}
-
-.orc .mArm{
-  width:8px;
-  background:#476a3d;
-}
-
-.orc .mMouth{
-  left:14px;
-  width:13px;
-}
-
-.orc .mMouth:before,
-.orc .mMouth:after{
-  top:1px;
-  height:8px;
-  clip-path:polygon(50% 0,100% 100%,0 100%);
-}
-
-/* KURT - FARKLI DÖRT AYAKLI GÖVDE */
-
-.wolf{
-  width:46px;
-  height:34px;
-  bottom:3px;
-  animation:wolfRun .24s ease-in-out infinite alternate;
-}
-
-.wolf .mBody{
-  left:7px;
-  top:12px;
-  width:31px;
-  height:15px;
-  border-radius:12px 8px 9px 10px;
-  background:#66645f;
-}
-
-.wolf .mHead{
-  left:30px;
-  top:5px;
-  width:17px;
-  height:16px;
-  background:#6d6a65;
-  border-radius:40% 55% 50% 45%;
-}
-
-.wolf .mHead:before,
-.wolf .mHead:after{
-  content:"";
-  position:absolute;
-  top:-8px;
-  width:8px;
-  height:10px;
-  background:#55534f;
-  clip-path:polygon(50% 0,100% 100%,0 80%);
-}
-
-.wolf .mHead:before{left:0}
-.wolf .mHead:after{right:0;transform:scaleX(-1)}
-
-.wolf .mEye.e1{
-  left:36px;
-  top:10px;
-  background:#ffb62e;
-}
-
-.wolf .mEye.e2{
-  display:none;
-}
-
-.wolf .mMouth{
-  left:41px;
-  top:15px;
-  width:8px;
-}
-
-.wolf .mArm{
-  display:none;
-}
-
-.wolf .mLeg{
-  top:24px;
-  height:10px;
-  background:#4a4946;
-}
-
-.wolf .mLeg.l1{left:10px}
-.wolf .mLeg.l2{right:8px}
-
-/* ZIRHLI ORK */
-
-.armored{
-  transform:translateX(-50%) scale(1.08);
-}
-
-.armored .mHead{
-  background:#4e7041;
-}
-
-.armored .mBody{
-  left:5px;
-  width:29px;
-  border-color:#30383c;
-  background:linear-gradient(90deg,#59636a,#929ca1,#515a60);
-}
-
-.armored .mBody:before{
-  content:"";
-  position:absolute;
-  left:-6px;
-  right:-6px;
-  top:-5px;
-  height:9px;
-  border:2px solid #3f474c;
-  border-radius:5px;
-  background:#737e84;
-}
-
-.armored .mHead:after{
-  content:"";
-  position:absolute;
-  left:-3px;
-  right:-3px;
-  top:-6px;
-  height:10px;
-  border:2px solid #353d41;
-  border-radius:10px 10px 2px 2px;
-  background:#626c72;
-}
-
-.armored .mArm{
-  background:#68747a;
-}
-
-/* OGRE */
-
-.ogre{
-  width:45px;
-  height:53px;
-  transform:translateX(-50%) scale(1.25);
-}
-
-.ogre .mHead{
-  left:9px;
-  width:24px;
-  height:21px;
-  background:#777f45;
-}
-
-.ogre .mBody{
-  left:3px;
-  top:20px;
-  width:36px;
-  height:25px;
-  border-radius:12px 12px 8px 8px;
-  background:#697340;
-}
-
-.ogre .mArm{
-  top:22px;
-  width:10px;
-  height:23px;
-  background:#697340;
-}
-
-.ogre .mHead:before{
-  content:"";
-  position:absolute;
-  left:8px;
-  top:-10px;
-  width:8px;
-  height:12px;
-  background:#ddd3b5;
-  clip-path:polygon(50% 0,100% 100%,0 100%);
-}
-
-.ogre .club{
-  position:absolute;
-  z-index:12;
-  right:-9px;
-  top:15px;
-  width:7px;
-  height:30px;
-  border-radius:5px;
-  background:#64452d;
-  transform:rotate(-25deg);
-}
-
-.ogre .club:before{
-  content:"";
-  position:absolute;
-  left:-3px;
-  top:-5px;
-  width:13px;
-  height:13px;
-  border-radius:45%;
-  background:#493426;
-}
-
-/* BOSS */
-
-.demon{
-  width:48px;
-  height:55px;
-  transform:translateX(-50%) scale(1.35);
-}
-
-.demon .mHead{
-  left:11px;
-  width:25px;
-  height:22px;
-  background:#773939;
-  border-color:#351e1e;
-}
-
-.demon .mBody{
-  left:5px;
-  top:22px;
-  width:37px;
-  height:27px;
-  border-color:#351e1e;
-  background:linear-gradient(90deg,#562c2c,#853e3e,#4c2727);
-  box-shadow:0 0 8px #b62f1f;
-}
-
-.demon .mArm{
-  top:24px;
-  width:10px;
-  height:23px;
-  border-color:#351e1e;
-  background:#653131;
-}
-
-.demon .mLeg{
-  top:45px;
-  background:#3f2525;
-}
-
-.demon .mEye{
-  background:#ff3824;
-  box-shadow:0 0 7px #ff3824;
-}
-
-.demon .mHead:before,
-.demon .mHead:after{
-  content:"";
-  position:absolute;
-  top:-14px;
-  width:10px;
-  height:16px;
-  background:#302323;
-  clip-path:polygon(50% 0,100% 100%,0 80%);
-}
-
-.demon .mHead:before{
-  left:0;
-  transform:rotate(-20deg);
-}
-
-.demon .mHead:after{
-  right:0;
-  transform:rotate(20deg);
-}
-
-@keyframes monsterBob{
-  from{transform:translateX(-50%) translateY(0)}
-  to{transform:translateX(-50%) translateY(-2px)}
-}
-
-@keyframes monsterArm1{
-  from{transform:rotate(22deg)}
-  to{transform:rotate(-22deg)}
-}
-
-@keyframes monsterArm2{
-  from{transform:rotate(-22deg)}
-  to{transform:rotate(22deg)}
-}
-
-@keyframes monsterLeg1{
-  from{transform:rotate(22deg)}
-  to{transform:rotate(-22deg)}
-}
-
-@keyframes monsterLeg2{
-  from{transform:rotate(-22deg)}
-  to{transform:rotate(22deg)}
-}
-
-@keyframes wolfRun{
-  from{transform:translateX(-50%) translateY(0) rotate(-2deg)}
-  to{transform:translateX(-50%) translateY(-2px) rotate(2deg)}
-}
-
-/* =========================================================
-   CAN BARI / ATIŞ
-========================================================= */
+.demon{transform:translateX(-50%) scale(1.38)}
+.demon .mHead{background:#773939}
+.demon .mBody,.demon .mArm{background:#653131}
+.demon .mEye{background:#ff3824;box-shadow:0 0 7px #ff3824}
 
 .hp{
-  position:absolute;
-  z-index:30;
-  left:50%;
-  top:-7px;
-  width:36px;
-  height:5px;
-  overflow:hidden;
-  transform:translateX(-50%);
-  border:1px solid #fff8;
-  border-radius:5px;
-  background:#5b211e;
+ position:absolute;z-index:30;left:50%;top:-7px;transform:translateX(-50%);
+ width:37px;height:6px;overflow:hidden;border:1px solid #fff8;border-radius:5px;background:#5b211e
 }
+.hp i{display:block;width:100%;height:100%;background:#55d15e}
 
-.hp i{
-  display:block;
-  width:100%;
-  height:100%;
-  background:#55d15e;
+/* ===== MERMİ ===== */
+
+.proj{position:absolute;z-index:35;pointer-events:none;transform:translate(-50%,-50%)}
+.arrowProj{width:17px;height:2px;background:#68472d}
+.ballProj{width:11px;height:11px;border-radius:50%;background:#303538}
+.blast{
+ position:absolute;z-index:40;width:12px;height:12px;border-radius:50%;
+ transform:translate(-50%,-50%);background:#f0b64c;
+ box-shadow:0 0 15px #ff8a32;animation:blast .3s forwards
 }
+@keyframes blast{to{width:50px;height:50px;opacity:0}}
 
-.proj{
-  position:absolute;
-  z-index:35;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
-  font-size:18px;
-  text-shadow:0 0 5px #fff;
-}
-
-.proj.magic3{
-  font-size:21px;
-  text-shadow:0 0 8px #c57cff;
-}
-
-.proj.magic4{
-  font-size:23px;
-  text-shadow:0 0 11px #b654ff;
-}
-
-.proj.magic5{
-  font-size:25px;
-  text-shadow:0 0 15px #efb7ff;
-}
-
-/* =========================================================
-   KONTROLLER
-========================================================= */
+/* ===== MENÜ ===== */
 
 .controls{
-  position:absolute;
-  z-index:70;
-  left:6px;
-  right:6px;
-  bottom:max(7px,env(safe-area-inset-bottom));
-  display:flex;
-  justify-content:center;
-  gap:5px;
+ position:absolute;z-index:90;left:6px;right:6px;
+ bottom:max(7px,env(safe-area-inset-bottom));display:flex;gap:5px
 }
-
 button{
-  border:0;
-  border-radius:13px;
-  padding:10px 8px;
-  color:#26352d;
-  font-weight:900;
-  background:linear-gradient(#fff,#e9e6da);
-  box-shadow:0 4px 0 #0004;
-  cursor:pointer;
+ border:0;border-radius:13px;padding:10px 8px;font-weight:900;color:#26352d;
+ background:linear-gradient(#fff,#e8e5d9);box-shadow:0 4px 0 #0004
 }
-
-.controls button{
-  flex:1;
-  max-width:180px;
-  font-size:11px;
-}
-
-button:active{
-  transform:translateY(2px);
-  box-shadow:0 2px 0 #0004;
-}
-
-button:disabled{
-  opacity:.4;
-  transform:none;
-}
-
-/* =========================================================
-   PANELLER
-========================================================= */
+.controls button{flex:1;font-size:11px}
+button:disabled{opacity:.4}
 
 .panel{
-  display:none;
-  position:absolute;
-  z-index:100;
-  left:6%;
-  right:6%;
-  top:15%;
-  padding:16px;
-  text-align:center;
-  border:2px solid #ffffff80;
-  border-radius:22px;
-  background:linear-gradient(#294439f8,#172c24f8);
-  box-shadow:0 15px 40px #0008;
+ display:none;position:absolute;z-index:120;left:6%;right:6%;top:15%;
+ padding:16px;text-align:center;border:2px solid #ffffff80;border-radius:22px;
+ background:linear-gradient(#294439f8,#172c24f8);box-shadow:0 15px 40px #0008
 }
+.panel h3{margin:0 0 12px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.choices button{min-height:61px}
+.note{margin:10px 0;font-size:12px;opacity:.8}
 
-.panel h3{
-  margin:0 0 12px;
-  font-size:21px;
+.notice{
+ position:absolute;z-index:110;top:68px;left:50%;transform:translate(-50%,-20px);
+ padding:8px 15px;border:2px solid #ffffff80;border-radius:18px;
+ background:#21352dee;font-size:12px;font-weight:900;opacity:0;transition:.2s;
+ white-space:nowrap
 }
-
-.choices{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-}
-
-.choices button{
-  min-height:58px;
-}
-
-.note{
-  margin:10px 0;
-  font-size:12px;
-  opacity:.82;
-}
-
-/* Yeni düşman bildirimi */
-
-.enemyNotice{
-  position:absolute;
-  z-index:80;
-  top:70px;
-  left:50%;
-  min-width:180px;
-  padding:8px 15px;
-  transform:translate(-50%,-20px);
-  text-align:center;
-  border:2px solid #ffffff80;
-  border-radius:20px;
-  background:#23362eee;
-  font-size:12px;
-  font-weight:900;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-}
-
-.enemyNotice.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
-
-@media(max-height:650px){
-  .slot{
-    width:58px;
-    height:58px;
-  }
-
-  .castle{
-    bottom:9%;
-    transform:translateX(-50%) scale(.84);
-  }
-
-  .wall{
-    height:68px;
-  }
-}
+.notice.show{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
 
 <body>
+<div id="game">
 
-<div id="g">
+<div class="sun"></div>
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
 
-  <div class="sun"></div>
+<div class="mountains">
+ <div class="mountain m1"></div>
+ <div class="mountain m2"></div>
+ <div class="mountain m3"></div>
+</div>
 
-  <div class="mountains">
-    <div class="mountain m1"></div>
-    <div class="mountain m2"></div>
-    <div class="mountain m3"></div>
-  </div>
+<div class="road"></div>
+<div class="grass"></div>
+<div class="tree t1"></div>
+<div class="tree t2"></div>
+<div class="tree t3"></div>
+<div class="tree t4"></div>
 
-  <div class="road"></div>
-  <div class="grass"></div>
+<div class="wall">
+ <div class="wallTower left"></div>
+ <div class="gate"></div>
+ <div class="wallTower right"></div>
+</div>
 
-  <div class="trees">
-    <div class="tree tree1"></div>
-    <div class="tree tree2"></div>
-    <div class="tree tree3"></div>
-    <div class="tree tree4"></div>
-  </div>
+<div class="courtyard"></div>
 
-  <div class="wall">
-    <div class="wallTower left"></div>
-    <div class="gate"></div>
-    <div class="wallTower right"></div>
-  </div>
+<div class="castle">
+ <div class="castleTower left"></div>
+ <div class="keep"><div class="keepDoor"></div></div>
+ <div class="castleTower right"></div>
+</div>
 
-  <div class="courtyard"></div>
+<div class="hud">
+ <span class="pill">🪙 <b id="money">400</b></span>
+ <span class="pill">❤️ <b id="wallhp">1000</b></span>
+ <span class="pill">🌊 <b id="wave">0</b></span>
+</div>
 
-  <div class="castle">
-    <div class="castleTower left"></div>
+<div id="notice" class="notice"></div>
 
-    <div class="keep">
-      <div class="keepDoor"></div>
-    </div>
+<div class="controls">
+ <button id="waveBtn">⚔️ Dalga Başlat</button>
+ <button id="slotBtn">➕ Alan <span id="slotPrice">120</span>🪙</button>
+ <button id="speedBtn">⏩ x1</button>
+</div>
 
-    <div class="castleTower right"></div>
-  </div>
+<div id="panel" class="panel">
+ <h3>Birlik Binası</h3>
+ <div id="choices" class="choices"></div>
+ <div class="note">Aynı tür ve seviyedeki iki binayı birbirinin üzerine sürükleyerek yükselt.</div>
+ <button onclick="closePanel()">Kapat</button>
+</div>
 
-  <div class="hud">
-    <span class="pill">🪙 <b id="money">300</b></span>
-    <span class="pill">❤️ <b id="wallhp">1000</b></span>
-    <span class="pill">🌊 <b id="wave">0</b></span>
-  </div>
-
-  <div id="enemyNotice" class="enemyNotice"></div>
-
-  <div class="controls">
-    <button id="waveBtn">⚔️ Dalga Başlat</button>
-
-    <button id="slotBtn">
-      ➕ Alan —
-      <span id="slotPrice">100</span>🪙
-    </button>
-
-    <button id="speedBtn">⏩ x1</button>
-  </div>
-
-  <div id="panel" class="panel">
-    <h3>🏗️ Yapı seç</h3>
-
-    <div id="choices" class="choices"></div>
-
-    <div class="note">
-      Aynı tür ve seviyedeki iki yapıya sırayla dokun.
-      Yapılar Lv.5'e kadar birleşebilir.
-    </div>
-
-    <button onclick="closePanel()">Kapat</button>
-  </div>
-
-  <div id="upgrade" class="panel">
-    <h3>🏆 Dalga Tamamlandı</h3>
-
-    <div class="choices">
-      <button onclick="upgrade('dmg')">⚔️ Hasar +20%</button>
-      <button onclick="upgrade('rate')">⏱️ Hız +15%</button>
-      <button onclick="upgrade('wall')">❤️ Sur +100</button>
-      <button onclick="upgrade('coin')">🪙 +100</button>
-    </div>
-  </div>
+<div id="upgrade" class="panel">
+ <h3>🏆 Dalga Tamamlandı</h3>
+ <div class="choices">
+  <button onclick="upgrade('dmg')">⚔️ Hasar +20%</button>
+  <button onclick="upgrade('rate')">⏱️ Üretim +15%</button>
+  <button onclick="upgrade('wall')">❤️ Sur +100</button>
+  <button onclick="upgrade('coin')">🪙 +120</button>
+ </div>
+</div>
 
 <script>
-
-/* =========================================================
-   TEMEL DEĞİŞKENLER
-========================================================= */
-
-const G=document.getElementById('g');
+const G=document.getElementById('game');
 const $=id=>document.getElementById(id);
 
-let money=300;
-let wall=1000;
-let wave=0;
+let money=400,wall=1000,wave=0,active=false,speed=1,slotPrice=120;
+let buildSlot=null,dmgMul=1,rateMul=1;
+let buildings=[],units=[],enemies=[],projectiles=[];
+let spawnLeft=0,lastSpawn=0,lastT=performance.now(),drag=null;
 
-let active=false;
-let speed=1;
-let slotPrice=100;
-
-let sel=null;
-let buildSlot=null;
-
-let dmgMul=1;
-let rateMul=1;
-
-let enemies=[];
-let units=[];
-let projectiles=[];
-let buildings=[];
-
-let spawnLeft=0;
-let lastSpawn=0;
-let lastT=performance.now();
-
-/* =========================================================
-   YAPI ALANLARI
-
-   BAŞLANGIÇTA 4 ADET AÇIK.
-   GERÇEKTEN SİMETRİK:
-   
-        1        4
-          2    3
-
-           KALE
-
-   5 ve 6 sonradan açılır.
-========================================================= */
+/* 4 AÇIK + 2 SATIN ALINABİLİR ALAN */
 
 const slots=[
-  {x:17,y:68,o:1},
-  {x:34,y:77,o:1},
-  {x:66,y:77,o:1},
-  {x:83,y:68,o:1},
-
-  {x:20,y:86,o:0},
-  {x:80,y:86,o:0}
+ {x:17,y:68,o:1},
+ {x:35,y:77,o:1},
+ {x:65,y:77,o:1},
+ {x:83,y:68,o:1},
+ {x:20,y:87,o:0},
+ {x:80,y:87,o:0}
 ];
 
-/* =========================================================
-   YAPILAR
-========================================================= */
-
 const D={
-
-  barracks:{
-    n:'Kışla',
-    i:'🛡️',
-    c:75,
-    r:2200,
-    d:9
-  },
-
-  archer:{
-    n:'Okçu Ocağı',
-    i:'🏹',
-    c:90,
-    r:3300,
-    d:12
-  },
-
-  mage:{
-    n:'Büyücü Kulesi',
-    i:'🔮',
-    c:135,
-    r:1700,
-    d:20,
-    def:1
-  },
-
-  tower:{
-    n:'Okçu Kulesi',
-    i:'🗼',
-    c:125,
-    r:1200,
-    d:8,
-    def:1
-  },
-
-  catapult:{
-    n:'Mancınık',
-    i:'☄️',
-    c:150,
-    r:2400,
-    d:25,
-    def:1
-  }
-
+ barracks:{n:'Kışla',icon:'⚔',c:75,rate:2600},
+ archer:{n:'Okçu Ocağı',icon:'➶',c:90,rate:3500},
+ cavalry:{n:'Süvari Kışlası',icon:'♞',c:130,rate:4400},
+ artillery:{n:'Topçu Kışlası',icon:'●',c:150,rate:5200}
 };
-
-/* =========================================================
-   DÜŞMAN TÜRLERİ
-========================================================= */
 
 const MONSTERS={
-
-  goblin:{
-    name:'Goblin',
-    unlock:1,
-    hp:.72,
-    speed:1.20,
-    wall:20,
-    reward:4,
-    attack:3
-  },
-
-  orc:{
-    name:'Ork',
-    unlock:2,
-    hp:1.10,
-    speed:1,
-    wall:32,
-    reward:7,
-    attack:5
-  },
-
-  wolf:{
-    name:'Kurt Yaratık',
-    unlock:3,
-    hp:.78,
-    speed:1.55,
-    wall:26,
-    reward:8,
-    attack:4
-  },
-
-  armored:{
-    name:'Zırhlı Ork',
-    unlock:5,
-    hp:1.85,
-    speed:.78,
-    wall:45,
-    reward:13,
-    attack:7
-  },
-
-  ogre:{
-    name:'Ogre',
-    unlock:7,
-    hp:2.8,
-    speed:.60,
-    wall:65,
-    reward:22,
-    attack:10
-  },
-
-  demon:{
-    name:'Şeytanî Muhafız',
-    unlock:10,
-    hp:4.2,
-    speed:.68,
-    wall:90,
-    reward:35,
-    attack:14
-  }
-
+ goblin:{name:'Goblin',unlock:1,hp:.70,speed:1.22,wall:20,reward:4,attack:3},
+ orc:{name:'Ork',unlock:2,hp:1.10,speed:1,wall:30,reward:7,attack:5},
+ wolf:{name:'Kurt Yaratık',unlock:3,hp:.75,speed:1.50,wall:25,reward:8,attack:4},
+ armored:{name:'Zırhlı Ork',unlock:5,hp:1.80,speed:.78,wall:42,reward:13,attack:7},
+ ogre:{name:'Ogre',unlock:7,hp:2.80,speed:.60,wall:65,reward:22,attack:10},
+ demon:{name:'Şeytanî Muhafız',unlock:10,hp:4.20,speed:.68,wall:90,reward:35,attack:14}
 };
 
-/* =========================================================
-   HUD
-========================================================= */
-
-function sync(){
-
-  $('money').textContent=
-    Math.floor(money);
-
-  $('wallhp').textContent=
-    Math.max(0,Math.floor(wall));
-
-  $('wave').textContent=
-    wave;
-
-  $('slotPrice').textContent=
-    slotPrice;
-
-  $('slotBtn').disabled=
-    money<slotPrice ||
-    slots.every(s=>s.o);
-
-  choices();
+function notice(text){
+ const n=$('notice');
+ n.textContent=text;
+ n.classList.add('show');
+ clearTimeout(notice.timer);
+ notice.timer=setTimeout(()=>n.classList.remove('show'),1500);
 }
 
-/* =========================================================
-   YAPI MENÜSÜ
-========================================================= */
+function sync(){
+ $('money').textContent=Math.floor(money);
+ $('wallhp').textContent=Math.max(0,Math.floor(wall));
+ $('wave').textContent=wave;
+ $('slotPrice').textContent=slotPrice;
+ $('slotBtn').disabled=money<slotPrice||slots.every(s=>s.o);
+ choices();
+}
 
 function choices(){
+ const c=$('choices');
+ c.innerHTML='';
 
-  const c=$('choices');
-
-  c.innerHTML='';
-
-  for(const [k,d] of Object.entries(D)){
-
-    const b=
-      document.createElement('button');
-
-    b.innerHTML=
-      `${d.i} ${d.n}<br>${d.c}🪙`;
-
-    b.disabled=
-      money<d.c;
-
-    b.onclick=
-      ()=>build(k);
-
-    c.appendChild(b);
-  }
+ Object.entries(D).forEach(([key,d])=>{
+  const b=document.createElement('button');
+  b.innerHTML=`${d.icon} ${d.n}<br>${d.c}🪙`;
+  b.disabled=money<d.c;
+  b.onclick=()=>build(key);
+  c.appendChild(b);
+ });
 }
 
 function buildingHTML(b){
-
-  const mark=
-    b.t==='barracks' ? '⚔️' :
-    b.t==='archer'   ? '🏹' :
-    b.t==='mage'     ? '🔮' :
-    b.t==='tower'    ? '🏹' :
-                       '☄️';
-
-  return `
-    <span class="mini ${b.t} lv${b.l}">
-      <i class="base"></i>
-      <i class="roof"></i>
-      <i class="door"></i>
-      <i class="sign">${mark}</i>
-    </span>
-
-    <span class="lvl">
-      Lv.${b.l}
-    </span>
-
-    ${
-      D[b.t].def
-      ? ''
-      : '<span class="prod"><i></i></span>'
-    }
-  `;
+ return `
+ <span class="mini ${b.t} lv${b.l}">
+  <i class="base"></i>
+  <i class="roof"></i>
+  <i class="door"></i>
+  <i class="buildIcon">${D[b.t].icon}</i>
+ </span>
+ <span class="lvl">Lv.${b.l}</span>
+ <span class="prod"><i></i></span>`;
 }
-
-/* =========================================================
-   SLOT RENDER
-========================================================= */
 
 function render(){
+ document.querySelectorAll('.slot').forEach(e=>e.remove());
 
-  document
-    .querySelectorAll('.slot')
-    .forEach(x=>x.remove());
+ slots.forEach((s,i)=>{
+  if(!s.o)return;
 
-  slots.forEach((sl,i)=>{
+  const el=document.createElement('div');
+  el.className='slot';
+  el.dataset.slot=i;
+  el.style.left=s.x+'%';
+  el.style.top=s.y+'%';
 
-    if(!sl.o)return;
+  const b=buildings.find(x=>x.s===i);
 
-    const e=
-      document.createElement('div');
+  if(b){
+   el.classList.add('building');
+   el.innerHTML=buildingHTML(b);
+   el.addEventListener('pointerdown',ev=>startDrag(ev,b,el));
+  }else{
+   el.classList.add('empty');
+   el.innerHTML='＋<br>Yapı';
+   el.addEventListener('pointerup',()=>openPanel(i));
+  }
 
-    e.className='slot';
-
-    e.dataset.slot=i;
-
-    /*
-      Burada merkez koordinatı kullanıyoruz.
-      translate ile yerleştiriyoruz.
-      Böylece mobil ekran boyutundan bağımsız olarak
-      dört alan gerçekten simetrik kalıyor.
-    */
-
-    e.style.left=sl.x+'%';
-    e.style.top=sl.y+'%';
-    e.style.transform='translate(-50%,-50%)';
-
-    const b=
-      buildings.find(q=>q.s===i);
-
-    if(b){
-
-      e.classList.add('building');
-
-      if(sel===b){
-        e.classList.add('selected');
-      }
-
-      e.innerHTML=
-        buildingHTML(b);
-
-      e.onclick=
-        ()=>tap(b);
-
-    }else{
-
-      e.innerHTML=
-        '＋<br>Yapı';
-
-      e.onclick=
-        ()=>openPanel(i);
-    }
-
-    G.appendChild(e);
-  });
+  G.appendChild(el);
+ });
 }
 
-/* =========================================================
-   YAPI KUR
-========================================================= */
-
 function openPanel(i){
-
-  buildSlot=i;
-
-  $('panel').style.display=
-    'block';
-
-  choices();
+ buildSlot=i;
+ $('panel').style.display='block';
+ choices();
 }
 
 function closePanel(){
-
-  $('panel').style.display=
-    'none';
-
-  buildSlot=null;
+ $('panel').style.display='none';
+ buildSlot=null;
 }
 
-function build(t){
+function build(type){
+ const d=D[type];
+ if(buildSlot===null||money<d.c)return;
 
-  const d=D[t];
+ money-=d.c;
 
-  if(
-    buildSlot==null ||
-    money<d.c
-  )return;
+ buildings.push({
+  s:buildSlot,
+  t:type,
+  l:1,
+  last:performance.now()
+ });
 
-  money-=d.c;
-
-  buildings.push({
-
-    s:buildSlot,
-
-    t:t,
-
-    l:1,
-
-    last:performance.now()
-
-  });
-
-  closePanel();
-
-  render();
-
-  sync();
+ closePanel();
+ render();
+ sync();
 }
 
-/* =========================================================
-   BİRLEŞTİRME
-========================================================= */
+/* ===== SÜRÜKLE-BIRAK YÜKSELTME ===== */
 
-function tap(b){
+function startDrag(ev,b,source){
+ ev.preventDefault();
 
-  if(!sel){
+ drag={
+  building:b,
+  source,
+  startX:ev.clientX,
+  startY:ev.clientY,
+  moved:false,
+  ghost:null
+ };
 
-    sel=b;
+ source.setPointerCapture?.(ev.pointerId);
+ source.addEventListener('pointermove',dragMove);
+ source.addEventListener('pointerup',endDrag);
+ source.addEventListener('pointercancel',endDrag);
+}
 
-    render();
+function dragMove(ev){
+ if(!drag)return;
 
-    return;
+ const distance=Math.hypot(
+  ev.clientX-drag.startX,
+  ev.clientY-drag.startY
+ );
+
+ if(!drag.moved&&distance<7)return;
+
+ if(!drag.moved){
+  drag.moved=true;
+  drag.source.classList.add('dragSource');
+
+  const ghost=document.createElement('div');
+  ghost.className='dragGhost';
+  ghost.innerHTML=buildingHTML(drag.building);
+  G.appendChild(ghost);
+  drag.ghost=ghost;
+ }
+
+ const r=G.getBoundingClientRect();
+
+ drag.ghost.style.left=(ev.clientX-r.left)+'px';
+ drag.ghost.style.top=(ev.clientY-r.top)+'px';
+
+ document.querySelectorAll('.slot').forEach(e=>e.classList.remove('dropTarget'));
+
+ const target=findDropTarget(ev.clientX,ev.clientY,drag.building);
+
+ if(target!==null){
+  document.querySelector(`.slot[data-slot="${target}"]`)?.classList.add('dropTarget');
+ }
+}
+
+function findDropTarget(x,y,source){
+ let result=null,best=50;
+
+ document.querySelectorAll('.slot.building').forEach(el=>{
+  const slot=Number(el.dataset.slot);
+  if(slot===source.s)return;
+
+  const target=buildings.find(b=>b.s===slot);
+  if(!target)return;
+
+  if(target.t!==source.t||target.l!==source.l||target.l>=5)return;
+
+  const r=el.getBoundingClientRect();
+  const d=Math.hypot(x-(r.left+r.width/2),y-(r.top+r.height/2));
+
+  if(d<best){
+   best=d;
+   result=slot;
   }
+ });
 
-  if(sel===b){
+ return result;
+}
 
-    sel=null;
+function endDrag(ev){
+ if(!drag)return;
 
-    render();
+ const current=drag;
 
-    return;
-  }
+ current.source.removeEventListener('pointermove',dragMove);
+ current.source.removeEventListener('pointerup',endDrag);
+ current.source.removeEventListener('pointercancel',endDrag);
 
-  if(
-    sel.t===b.t &&
-    sel.l===b.l &&
-    b.l<5
-  ){
+ if(current.moved){
+  const slot=findDropTarget(ev.clientX,ev.clientY,current.building);
 
-    b.l++;
+  if(slot!==null){
+   const target=buildings.find(b=>b.s===slot);
 
-    buildings=
-      buildings.filter(
-        x=>x!==sel
-      );
+   if(target&&
+      target.t===current.building.t&&
+      target.l===current.building.l&&
+      target.l<5){
 
-    sel=null;
+    target.l++;
+    target.last=performance.now();
 
-    render();
+    buildings=buildings.filter(b=>b!==current.building);
 
-    sync();
-
+    notice(`${D[target.t].n} → Lv.${target.l}`);
+   }
   }else{
-
-    sel=b;
-
-    render();
+   notice('Aynı tür ve seviyedeki binanın üzerine bırak.');
   }
+ }
+
+ current.ghost?.remove();
+
+ document.querySelectorAll('.slot').forEach(e=>{
+  e.classList.remove('dropTarget','dragSource');
+ });
+
+ drag=null;
+ render();
+ sync();
 }
 
-/* =========================================================
-   EK ALAN SATIN AL
-========================================================= */
+/* ===== YENİ YAPI ALANI ===== */
 
 $('slotBtn').onclick=()=>{
+ const s=slots.find(x=>!x.o);
 
-  const s=
-    slots.find(x=>!x.o);
+ if(!s||money<slotPrice)return;
 
-  if(
-    !s ||
-    money<slotPrice
-  )return;
+ money-=slotPrice;
+ s.o=1;
+ slotPrice+=60;
 
-  money-=slotPrice;
-
-  s.o=1;
-
-  slotPrice+=50;
-
-  render();
-
-  sync();
+ render();
+ sync();
 };
 
-/* =========================================================
-   HIZ
-========================================================= */
+/* ===== HIZ ===== */
 
 $('speedBtn').onclick=()=>{
-
-  speed=
-    speed===1
-    ? 2
-    : speed===2
-    ? 3
-    : 1;
-
-  $('speedBtn').textContent=
-    '⏩ x'+speed;
+ speed=speed===1?2:speed===2?3:1;
+ $('speedBtn').textContent='⏩ x'+speed;
 };
 
-/* =========================================================
-   DALGA
-========================================================= */
+/* ===== DALGA ===== */
 
 $('waveBtn').onclick=()=>{
+ if(active)return;
 
-  if(active)return;
+ wave++;
+ active=true;
+ spawnLeft=5+wave*2;
 
-  wave++;
+ const now=performance.now();
+ buildings.forEach(b=>b.last=now);
 
-  active=true;
+ $('waveBtn').disabled=true;
 
-  spawnLeft=
-    5+wave*2;
+ const fresh=Object.values(MONSTERS).find(m=>m.unlock===wave);
 
-  const now=
-    performance.now();
+ if(fresh)notice('⚠ Yeni düşman: '+fresh.name);
 
-  buildings.forEach(
-    b=>b.last=now
-  );
-
-  $('waveBtn').disabled=
-    true;
-
-  announceNewMonster();
-
-  sync();
+ sync();
 };
 
-/* =========================================================
-   YENİ DÜŞMAN BİLDİRİMİ
-========================================================= */
-
-function announceNewMonster(){
-
-  const entry=
-    Object.values(MONSTERS)
-      .find(m=>m.unlock===wave);
-
-  if(!entry)return;
-
-  const n=
-    $('enemyNotice');
-
-  n.textContent=
-    '⚠️ Yeni düşman: '+entry.name;
-
-  n.classList.add('show');
-
-  setTimeout(
-    ()=>n.classList.remove('show'),
-    1800
-  );
-}
-
-/* =========================================================
-   CANAVAR SEÇ
-========================================================= */
-
 function chooseMonster(){
+ const possible=Object.entries(MONSTERS).filter(([key,m])=>wave>=m.unlock);
 
-  /*
-    Boss her 10. dalgada garantili.
-  */
+ const bag=[];
 
-  if(
-    wave>=10 &&
-    wave%10===0 &&
-    Math.random()<.35
-  ){
-    return 'demon';
-  }
+ possible.forEach(([key,m],index)=>{
+  const weight=index+1;
+  for(let i=0;i<weight;i++)bag.push(key);
+ });
 
-  const available=
-    Object.entries(MONSTERS)
-      .filter(
-        ([key,m])=>
-          wave>=m.unlock &&
-          key!=='demon'
-      );
-
-  const bag=[];
-
-  available.forEach(
-    ([key,m],index)=>{
-
-      /*
-        Yeni açılan düşman biraz daha sık.
-      */
-
-      const weight=
-        index+2;
-
-      for(
-        let i=0;
-        i<weight;
-        i++
-      ){
-        bag.push(key);
-      }
-    }
-  );
-
-  if(
-    wave>=10 &&
-    Math.random()<.10
-  ){
-    bag.push('demon');
-  }
-
-  return bag[
-    Math.floor(
-      Math.random()*bag.length
-    )
-  ] || 'goblin';
+ return bag[Math.floor(Math.random()*bag.length)]||'goblin';
 }
-
-/* =========================================================
-   CANAVAR HTML
-========================================================= */
 
 function monsterHTML(type){
-
-  const club=
-    type==='ogre'
-    ? '<i class="club"></i>'
-    : '';
-
-  return `
-    <div class="monster ${type}">
-
-      <i class="monsterShadow"></i>
-
-      <i class="mLeg l1"></i>
-      <i class="mLeg l2"></i>
-
-      <i class="mArm a1"></i>
-      <i class="mArm a2"></i>
-
-      <i class="mBody"></i>
-      <i class="mHead"></i>
-
-      <i class="mEye e1"></i>
-      <i class="mEye e2"></i>
-
-      <i class="mMouth"></i>
-
-      ${club}
-
-    </div>
-
-    <div class="hp">
-      <i></i>
-    </div>
-  `;
+ return `
+ <div class="monster ${type}">
+  <i class="mLeg l1"></i>
+  <i class="mLeg l2"></i>
+  <i class="mArm a1"></i>
+  <i class="mArm a2"></i>
+  <i class="mBody"></i>
+  <i class="mHead"></i>
+  <i class="mEye e1"></i>
+  <i class="mEye e2"></i>
+  <i class="mMouth"></i>
+ </div>
+ <div class="hp"><i></i></div>`;
 }
-
-/* =========================================================
-   DÜŞMAN ÜRET
-========================================================= */
 
 function spawnEnemy(){
+ const type=chooseMonster();
+ const m=MONSTERS[type];
 
-  const type=
-    chooseMonster();
+ const baseHP=30+wave*10;
 
-  const m=
-    MONSTERS[type];
+ const e={
+  type,
+  x:37+Math.random()*26,
+  y:8,
+  hp:baseHP*m.hp,
+  max:baseHP*m.hp,
+  speed:(.006+wave*.00018)*m.speed,
+  attack:m.attack+wave*.25,
+  wallDamage:m.wall,
+  reward:m.reward,
+  lastAttack:0,
+  el:document.createElement('div')
+ };
 
-  const baseHP=
-    28+
-    wave*10;
+ e.el.className='enemy';
+ e.el.innerHTML=monsterHTML(type);
 
-  const e={
-
-    type:type,
-
-    x:
-      35+
-      Math.random()*30,
-
-    y:8,
-
-    hp:
-      baseHP*m.hp,
-
-    max:
-      baseHP*m.hp,
-
-    v:
-      (.006+
-      wave*.00020) *
-      m.speed,
-
-    wallDamage:
-      m.wall,
-
-    attack:
-      m.attack+
-      wave*.25,
-
-    reward:
-      m.reward,
-
-    last:0,
-
-    engageX:
-      44+
-      Math.random()*12,
-
-    el:
-      document.createElement(
-        'div'
-      )
-  };
-
-  e.el.className=
-    'enemy';
-
-  e.el.innerHTML=
-    monsterHTML(type);
-
-  G.appendChild(
-    e.el
-  );
-
-  enemies.push(e);
+ G.appendChild(e.el);
+ enemies.push(e);
 }
 
-/* =========================================================
-   KILIÇLI ASKER HTML
-========================================================= */
+/* ===== BİRLİK GÖRSELLERİ ===== */
 
 function warriorHTML(level){
-
-  const shield=
-    level>=2
-    ? '<i class="shield"></i>'
-    : '';
-
-  const helmet=
-    level>=3
-    ? '<i class="helmet"></i>'
-    : '<i class="hair"></i>';
-
-  return `
-    <span class="soldier warriorHuman lv${level}">
-
-      ${helmet}
-
-      <i class="head"></i>
-
-      <i class="torso"></i>
-
-      <i class="arm armL"></i>
-      <i class="arm armR"></i>
-
-      <i class="leg legL"></i>
-      <i class="leg legR"></i>
-
-      ${shield}
-
-      <i class="sword"></i>
-
-    </span>
-  `;
+ return `
+ <span class="soldier warrior lv${level}">
+  ${level>=3?'<i class="helmet"></i>':'<i class="hair"></i>'}
+  <i class="head"></i>
+  <i class="torso"></i>
+  <i class="arm armL"></i>
+  <i class="arm armR"></i>
+  <i class="leg legL"></i>
+  <i class="leg legR"></i>
+  ${level>=2?'<i class="shield"></i>':''}
+  <i class="sword"></i>
+ </span>`;
 }
-
-/* =========================================================
-   OKÇU HTML
-========================================================= */
 
 function archerHTML(level){
-
-  const helmet=
-    level>=3
-    ? '<i class="helmet"></i>'
-    : '<i class="hair"></i>';
-
-  return `
-    <span class="soldier archerHuman lv${level}">
-
-      ${helmet}
-
-      <i class="head"></i>
-
-      <i class="torso"></i>
-
-      <i class="arm armL"></i>
-      <i class="arm armR"></i>
-
-      <i class="leg legL"></i>
-      <i class="leg legR"></i>
-
-      <i class="quiver"></i>
-      <i class="bow"></i>
-
-    </span>
-  `;
+ return `
+ <span class="soldier archer lv${level}">
+  ${level>=3?'<i class="helmet"></i>':'<i class="hair"></i>'}
+  <i class="head"></i>
+  <i class="torso"></i>
+  <i class="arm armL"></i>
+  <i class="arm armR"></i>
+  <i class="leg legL"></i>
+  <i class="leg legR"></i>
+  <i class="quiver"></i>
+  <i class="bow"></i>
+ </span>`;
 }
 
-/* =========================================================
-   ASKER ÜRET
-========================================================= */
+function cavalryHTML(level){
+ return `
+ <div class="horse cavalry lv${level}">
+  <i class="horseLeg h1"></i>
+  <i class="horseLeg h2"></i>
+  <i class="horseLeg h3"></i>
+  <i class="horseLeg h4"></i>
+  <i class="horseBody"></i>
+  <i class="horseNeck"></i>
+  <i class="horseHead"></i>
+
+  <span class="rider">
+   ${level>=3?'<i class="helmet"></i>':'<i class="hair"></i>'}
+   <i class="head"></i>
+   <i class="torso"></i>
+  </span>
+
+  <i class="lance"></i>
+ </div>`;
+}
+
+function artilleryHTML(level){
+ return `
+ <div class="cannon artillery lv${level}">
+  <i class="wheel w1"></i>
+  <i class="wheel w2"></i>
+  <i class="carriage"></i>
+  <i class="barrel"></i>
+
+  <span class="gunner">
+   ${level>=3?'<i class="helmet"></i>':'<i class="hair"></i>'}
+   <i class="head"></i>
+   <i class="torso"></i>
+  </span>
+ </div>`;
+}
+
+/* ===== BİRLİK ÜRET ===== */
 
 function spawnUnit(b){
+ const s=slots[b.s];
+ const level=b.l;
 
-  const s=
-    slots[b.s];
-
-  const u={
-
-    x:
-      s.x+
-      (Math.random()-.5)*3,
-
-    /*
-      Yapılar avluda.
-      Askerler kapıya doğru çıkar.
-    */
-
-    y:
-      Math.min(
-        s.y-4,
-        79
-      ),
-
-    d:
-      D[b.t].d *
-      b.l *
-      dmgMul,
-
-    t:
-      b.t,
-
-    level:
-      b.l,
-
-    last:0,
-
-    hp:
-      24+
-      10*b.l,
-
-    wander:
-      (Math.random()-.5)*.002,
-
-    el:
-      document.createElement(
-        'div'
-      )
-  };
-
-  u.el.className=
-    'unit';
-
-  if(
-    b.t==='barracks'
-  ){
-
-    u.el.innerHTML=
-      warriorHTML(b.l);
-
-  }else{
-
-    u.el.innerHTML=
-      archerHTML(b.l);
+ const stats={
+  barracks:{
+   hp:34+level*14,
+   damage:9+level*6,
+   move:.010,
+   range:3.3,
+   attackRate:650
+  },
+  archer:{
+   hp:24+level*9,
+   damage:9+level*7,
+   move:.007,
+   range:22+level*2,
+   attackRate:950
+  },
+  cavalry:{
+   hp:45+level*18,
+   damage:15+level*9,
+   move:.016,
+   range:4,
+   attackRate:850
+  },
+  artillery:{
+   hp:30+level*12,
+   damage:24+level*15,
+   move:.0045,
+   range:30+level*2,
+   attackRate:1900
   }
+ }[b.t];
 
-  G.appendChild(
-    u.el
-  );
+ const u={
+  t:b.t,
+  level,
+  x:s.x+(Math.random()-.5)*3,
+  y:Math.min(s.y-5,81),
+  hp:stats.hp,
+  max:stats.hp,
+  damage:stats.damage*dmgMul,
+  move:stats.move,
+  range:stats.range,
+  attackRate:stats.attackRate,
+  lastAttack:0,
+  charge:true,
+  el:document.createElement('div')
+ };
 
-  units.push(u);
+ u.el.className='unit moving';
+
+ if(b.t==='barracks'){
+  u.el.innerHTML=warriorHTML(level);
+ }
+
+ if(b.t==='archer'){
+  u.el.innerHTML=archerHTML(level);
+ }
+
+ if(b.t==='cavalry'){
+  u.el.classList.add('cavalryUnit');
+  u.el.innerHTML=cavalryHTML(level);
+ }
+
+ if(b.t==='artillery'){
+  u.el.classList.add('artilleryUnit');
+  u.el.innerHTML=artilleryHTML(level);
+ }
+
+ G.appendChild(u.el);
+ units.push(u);
 }
 
-/* =========================================================
-   ATIŞ
-========================================================= */
-
-function shoot(
-  x,
-  y,
-  enemy,
-  damage,
-  kind,
-  level=1
-){
-
-  if(!enemy)return;
-
-  const p={
-
-    x:x,
-
-    y:y,
-
-    e:enemy,
-
-    d:damage,
-
-    kind:kind,
-
-    level:level,
-
-    el:
-      document.createElement(
-        'div'
-      )
-  };
-
-  p.el.className=
-    'proj';
-
-  if(
-    kind==='arrow'
-  ){
-
-    p.el.textContent=
-      level>=4
-      ? '➽'
-      : '➶';
-
-  }else if(
-    kind==='magic'
-  ){
-
-    p.el.textContent=
-      level>=5
-      ? '✹'
-      : level>=3
-      ? '✦'
-      : '✧';
-
-    if(
-      level>=3
-    ){
-      p.el.classList.add(
-        'magic'+
-        Math.min(level,5)
-      );
-    }
-
-  }else{
-
-    p.el.textContent=
-      level>=4
-      ? '●'
-      : '•';
-  }
-
-  G.appendChild(
-    p.el
-  );
-
-  projectiles.push(p);
-}
-
-/* =========================================================
-   YARDIMCILAR
-========================================================= */
-
-function dist(a,b){
-
-  return Math.hypot(
-    a.x-b.x,
-    a.y-b.y
-  );
+function distance(a,b){
+ return Math.hypot(a.x-b.x,a.y-b.y);
 }
 
 function nearestEnemy(x,y){
+ let target=null,best=Infinity;
 
-  let target=null;
+ enemies.forEach(e=>{
+  const d=Math.hypot(e.x-x,e.y-y);
 
-  let best=Infinity;
-
-  for(
-    const e of enemies
-  ){
-
-    const d=
-      Math.hypot(
-        e.x-x,
-        e.y-y
-      );
-
-    if(
-      d<best
-    ){
-
-      best=d;
-
-      target=e;
-    }
+  if(d<best){
+   best=d;
+   target=e;
   }
+ });
 
-  return target;
+ return target;
 }
 
-function hit(e,d){
+function nearestDefender(enemy){
+ let target=null,best=Infinity;
 
-  if(
-    !e ||
-    !enemies.includes(e)
-  )return;
+ units.forEach(u=>{
+  const d=distance(enemy,u);
 
-  e.hp-=d;
-
-  if(
-    e.hp<=0
-  ){
-
-    money+=
-      5+
-      wave+
-      e.reward;
-
-    e.el.remove();
-
-    enemies=
-      enemies.filter(
-        x=>x!==e
-      );
-
-    sync();
+  if(d<best){
+   best=d;
+   target=u;
   }
+ });
+
+ return target;
 }
 
-/* =========================================================
-   OYUN DÖNGÜSÜ
-========================================================= */
+/* ===== HASAR ===== */
 
-function loop(t){
+function damageEnemy(e,damage){
+ if(!e||!enemies.includes(e))return;
 
-  const dt=
-    Math.min(
-      40,
-      t-lastT
-    ) * speed;
+ e.hp-=damage;
 
-  lastT=t;
+ if(e.hp<=0){
+  money+=5+wave+MONSTERS[e.type].reward;
 
-  /* =====================================================
-     DÜŞMAN ÜRETİMİ
-  ===================================================== */
-
-  if(
-    active &&
-    spawnLeft>0 &&
-    t-lastSpawn>
-    700/speed
-  ){
-
-    spawnEnemy();
-
-    spawnLeft--;
-
-    lastSpawn=t;
-  }
-
-  /* =====================================================
-     DÜŞMAN AI
-  ===================================================== */
-
-  for(
-    const e of [...enemies]
-  ){
-
-    /*
-      Önünde yakın bir asker varsa savaşır.
-      Uzak askerler düşmanın kapıya gitmesini engellemez.
-    */
-
-    let defender=null;
-    let defenderDistance=Infinity;
-
-    for(
-      const u of units
-    ){
-
-      const d=
-        dist(e,u);
-
-      if(
-        d<defenderDistance
-      ){
-
-        defenderDistance=d;
-
-        defender=u;
-      }
-    }
-
-    /*
-      Yakındaki askerle savaş.
-    */
-
-    if(
-      defender &&
-      defenderDistance<=4
-    ){
-
-      if(
-        t-e.last >
-        850/speed
-      ){
-
-        e.last=t;
-
-        defender.hp-=
-          e.attack;
-
-        if(
-          defender.hp<=0
-        ){
-
-          defender.el.remove();
-
-          units=
-            units.filter(
-              x=>x!==defender
-            );
-        }
-      }
-
-    }else{
-
-      /*
-        Kapıya doğru ilerle.
-      */
-
-      const dx=
-        e.engageX-e.x;
-
-      const dy=
-        54-e.y;
-
-      const di=
-        Math.hypot(
-          dx,
-          dy
-        ) || 1;
-
-      e.x+=
-        dx/di *
-        e.v *
-        dt;
-
-      e.y+=
-        dy/di *
-        e.v *
-        dt;
-    }
-
-    e.x=
-      Math.max(
-        20,
-        Math.min(
-          80,
-          e.x
-        )
-      );
-
-    /*
-      KRİTİK DÜZELTME:
-      Başka asker olup olmadığına bakmıyoruz.
-      Düşman kapıya ulaştıysa sura vurur.
-    */
-
-    if(
-      e.y>=53.6
-    ){
-
-      wall-=
-        e.wallDamage;
-
-      e.el.remove();
-
-      enemies=
-        enemies.filter(
-          x=>x!==e
-        );
-
-      sync();
-
-      if(
-        wall<=0
-      ){
-
-        wall=0;
-
-        active=false;
-
-        $('waveBtn').disabled=
-          true;
-
-        sync();
-
-        setTimeout(
-          ()=>{
-            alert(
-              'Sur yıkıldı! Sayfayı yenileyerek tekrar başlayabilirsin.'
-            );
-          },
-          100
-        );
-      }
-
-      continue;
-    }
-
-    e.el.style.left=
-      e.x+'%';
-
-    e.el.style.top=
-      e.y+'%';
-
-    const hp=
-      e.el.querySelector(
-        '.hp i'
-      );
-
-    if(hp){
-
-      hp.style.width=
-        Math.max(
-          0,
-          100*
-          e.hp/
-          e.max
-        )+'%';
-    }
-  }
-
-  /* =====================================================
-     BİNALAR
-  ===================================================== */
-
-  if(active){
-
-    for(
-      const b of buildings
-    ){
-
-      const d=
-        D[b.t];
-
-      const rate=
-        d.r /
-        (
-          1+
-          (b.l-1)*.22
-        ) /
-        rateMul;
-
-      const se=
-        document.querySelector(
-          `.slot[data-slot="${b.s}"]`
-        );
-
-      /*
-        Kışla / okçu üretim barı
-      */
-
-      if(
-        se &&
-        !d.def
-      ){
-
-        const bar=
-          se.querySelector(
-            '.prod i'
-          );
-
-        if(bar){
-
-          bar.style.width=
-            Math.min(
-              100,
-              Math.max(
-                0,
-                (t-b.last)/
-                (rate/speed)*
-                100
-              )
-            )+'%';
-        }
-      }
-
-      if(
-        t-b.last >
-        rate/speed
-      ){
-
-        b.last=t;
-
-        /*
-          SAVUNMA BİNALARI
-        */
-
-        if(d.def){
-
-          const s=
-            slots[b.s];
-
-          const enemy=
-            nearestEnemy(
-              s.x,
-              s.y
-            );
-
-          if(enemy){
-
-            const distance=
-              Math.hypot(
-                enemy.x-s.x,
-                enemy.y-s.y
-              );
-
-            if(
-              distance<48
-            ){
-
-              shoot(
-                s.x,
-                s.y,
-                enemy,
-                d.d*
-                b.l*
-                dmgMul,
-
-                b.t==='tower'
-                ? 'arrow'
-                : b.t==='mage'
-                ? 'magic'
-                : 'stone',
-
-                b.l
-              );
-            }
-          }
-
-        }else{
-
-          /*
-            KIŞLA / OKÇU OCAĞI
-          */
-
-          spawnUnit(b);
-        }
-      }
-    }
-  }
-
-  /* =====================================================
-     ASKER AI
-  ===================================================== */
-
-  for(
-    const u of [...units]
-  ){
-
-    const e=
-      nearestEnemy(
-        u.x,
-        u.y
-      );
-
-    if(!e){
-
-      u.el.style.left=
-        u.x+'%';
-
-      u.el.style.top=
-        u.y+'%';
-
-      continue;
-    }
-
-    const dx=
-      e.x-u.x;
-
-    const dy=
-      e.y-u.y;
-
-    const di=
-      Math.hypot(
-        dx,
-        dy
-      ) || 1;
-
-    /* ===================================================
-       KILIÇLI
-    =================================================== */
-
-    if(
-      u.t==='barracks'
-    ){
-
-      if(
-        di<3.4
-      ){
-
-        if(
-          t-u.last >
-          650/rateMul
-        ){
-
-          u.last=t;
-
-          u.el.classList.remove(
-            'meleeAttack'
-          );
-
-          void u.el.offsetWidth;
-
-          u.el.classList.add(
-            'meleeAttack'
-          );
-
-          hit(
-            e,
-            u.d
-          );
-        }
-
-      }else{
-
-        u.x+=
-          dx/di*
-          .0105*
-          dt+
-          u.wander*dt;
-
-        u.y+=
-          dy/di*
-          .0105*
-          dt;
-      }
-
-    }
-
-    /* ===================================================
-       OKÇU
-    =================================================== */
-
-    else{
-
-      const range=
-        u.level>=5
-        ? 30
-        : u.level>=3
-        ? 27
-        : 24;
-
-      if(
-        di>range
-      ){
-
-        u.x+=
-          dx/di*
-          .0075*
-          dt+
-          u.wander*dt;
-
-        u.y+=
-          dy/di*
-          .0075*
-          dt;
-
-      }else if(
-        di<range-7
-      ){
-
-        u.x-=
-          dx/di*
-          .004*
-          dt;
-
-        u.y-=
-          dy/di*
-          .004*
-          dt;
-
-      }else if(
-        t-u.last >
-        900/rateMul
-      ){
-
-        u.last=t;
-
-        u.el.classList.remove(
-          'bowAttack'
-        );
-
-        void u.el.offsetWidth;
-
-        u.el.classList.add(
-          'bowAttack'
-        );
-
-        shoot(
-          u.x,
-          u.y,
-          e,
-          u.d,
-          'arrow',
-          u.level
-        );
-      }
-    }
-
-    /*
-      Askerler surun çok yukarısına çıkmasın.
-    */
-
-    u.x=
-      Math.max(
-        16,
-        Math.min(
-          84,
-          u.x
-        )
-      );
-
-    u.y=
-      Math.max(
-        45,
-        Math.min(
-          84,
-          u.y
-        )
-      );
-
-    u.el.style.left=
-      u.x+'%';
-
-    u.el.style.top=
-      u.y+'%';
-  }
-
-  /* =====================================================
-     MERMİLER
-  ===================================================== */
-
-  for(
-    const p of [...projectiles]
-  ){
-
-    if(
-      !p.e ||
-      !enemies.includes(p.e)
-    ){
-
-      p.el.remove();
-
-      projectiles=
-        projectiles.filter(
-          x=>x!==p
-        );
-
-      continue;
-    }
-
-    const dx=
-      p.e.x-p.x;
-
-    const dy=
-      p.e.y-p.y;
-
-    const di=
-      Math.hypot(
-        dx,
-        dy
-      ) || 1;
-
-    if(
-      di<2
-    ){
-
-      hit(
-        p.e,
-        p.d
-      );
-
-      p.el.remove();
-
-      projectiles=
-        projectiles.filter(
-          x=>x!==p
-        );
-
-    }else{
-
-      let velocity=
-        p.kind==='stone'
-        ? .020
-        : .032;
-
-      if(
-        p.kind==='magic' &&
-        p.level>=4
-      ){
-        velocity=.038;
-      }
-
-      p.x+=
-        dx/di*
-        velocity*
-        dt;
-
-      p.y+=
-        dy/di*
-        velocity*
-        dt;
-
-      p.el.style.left=
-        p.x+'%';
-
-      p.el.style.top=
-        p.y+'%';
-    }
-  }
-
-  /* =====================================================
-     DALGA TAMAMLANDI
-  ===================================================== */
-
-  if(
-    active &&
-    spawnLeft===0 &&
-    enemies.length===0
-  ){
-
-    active=false;
-
-    document
-      .querySelectorAll(
-        '.prod i'
-      )
-      .forEach(
-        x=>x.style.width='0%'
-      );
-
-    /*
-      Dalga sonunda askerleri temizliyoruz.
-    */
-
-    for(
-      const u of units
-    ){
-      u.el.remove();
-    }
-
-    units=[];
-
-    for(
-      const p of projectiles
-    ){
-      p.el.remove();
-    }
-
-    projectiles=[];
-
-    $('waveBtn').disabled=
-      false;
-
-    $('upgrade').style.display=
-      'block';
-  }
-
-  requestAnimationFrame(loop);
-}
-
-/* =========================================================
-   DALGA ÖDÜLLERİ
-========================================================= */
-
-function upgrade(k){
-
-  if(
-    k==='dmg'
-  ){
-    dmgMul*=1.2;
-  }
-
-  if(
-    k==='rate'
-  ){
-    rateMul*=1.15;
-  }
-
-  if(
-    k==='wall'
-  ){
-
-    wall=
-      Math.min(
-        1500,
-        wall+100
-      );
-  }
-
-  if(
-    k==='coin'
-  ){
-    money+=100;
-  }
-
-  $('upgrade').style.display=
-    'none';
+  e.el.remove();
+  enemies=enemies.filter(x=>x!==e);
 
   sync();
+ }
 }
 
-/* =========================================================
-   BAŞLAT
-========================================================= */
+function damageUnit(u,damage){
+ if(!u||!units.includes(u))return;
+
+ u.hp-=damage;
+
+ if(u.hp<=0){
+  u.el.remove();
+  units=units.filter(x=>x!==u);
+ }
+}
+
+/* ===== MERMİLER ===== */
+
+function fireProjectile(unit,enemy,damage,kind){
+ if(!enemy)return;
+
+ const p={
+  x:unit.x,
+  y:unit.y,
+  target:enemy,
+  damage,
+  kind,
+  level:unit.level,
+  el:document.createElement('div')
+ };
+
+ p.el.className='proj '+(kind==='cannon'?'ballProj':'arrowProj');
+
+ G.appendChild(p.el);
+ projectiles.push(p);
+}
+
+function artilleryExplosion(x,y,damage,level){
+ const blast=document.createElement('div');
+
+ blast.className='blast';
+ blast.style.left=x+'%';
+ blast.style.top=y+'%';
+
+ G.appendChild(blast);
+
+ setTimeout(()=>blast.remove(),350);
+
+ const radius=5+level*.8;
+
+ [...enemies].forEach(e=>{
+  const d=Math.hypot(e.x-x,e.y-y);
+
+  if(d<=radius){
+   damageEnemy(e,damage*(d<2?1:.55));
+  }
+ });
+}
+
+/* ===== BİNA ÜRETİMİ ===== */
+
+function updateBuildings(t){
+ if(!active)return;
+
+ buildings.forEach(b=>{
+  const d=D[b.t];
+
+  const rate=
+   d.rate/
+   (1+(b.l-1)*.18)/
+   rateMul;
+
+  const slot=document.querySelector(`.slot[data-slot="${b.s}"]`);
+  const bar=slot?.querySelector('.prod i');
+
+  if(bar){
+   bar.style.width=Math.min(100,((t-b.last)/(rate/speed))*100)+'%';
+  }
+
+  if(t-b.last>rate/speed){
+   b.last=t;
+   spawnUnit(b);
+  }
+ });
+}
+
+/* ===== SAVUNMA BİRLİKLERİ ===== */
+
+function updateUnits(t,dt){
+ for(const u of [...units]){
+  const enemy=nearestEnemy(u.x,u.y);
+
+  if(!enemy){
+   u.el.classList.remove('moving');
+   continue;
+  }
+
+  const dx=enemy.x-u.x;
+  const dy=enemy.y-u.y;
+  const dist=Math.hypot(dx,dy)||1;
+
+  if(u.t==='barracks'){
+   if(dist>u.range){
+    u.el.classList.add('moving');
+    u.x+=dx/dist*u.move*dt;
+    u.y+=dy/dist*u.move*dt;
+   }else{
+    u.el.classList.remove('moving');
+
+    if(t-u.lastAttack>u.attackRate/rateMul){
+     u.lastAttack=t;
+
+     u.el.classList.remove('meleeAttack');
+     void u.el.offsetWidth;
+     u.el.classList.add('meleeAttack');
+
+     damageEnemy(enemy,u.damage);
+    }
+   }
+  }
+
+  else if(u.t==='archer'){
+   if(dist>u.range){
+    u.el.classList.add('moving');
+    u.x+=dx/dist*u.move*dt;
+    u.y+=dy/dist*u.move*dt;
+   }else{
+    u.el.classList.remove('moving');
+
+    if(t-u.lastAttack>u.attackRate/rateMul){
+     u.lastAttack=t;
+     fireProjectile(u,enemy,u.damage,'arrow');
+    }
+   }
+  }
+
+  else if(u.t==='cavalry'){
+   if(dist>u.range){
+    u.el.classList.add('moving');
+    u.x+=dx/dist*u.move*dt;
+    u.y+=dy/dist*u.move*dt;
+   }else{
+    u.el.classList.remove('moving');
+
+    if(t-u.lastAttack>u.attackRate/rateMul){
+     u.lastAttack=t;
+
+     let damage=u.damage;
+
+     if(u.charge){
+      damage*=1.75;
+      u.charge=false;
+     }
+
+     damageEnemy(enemy,damage);
+    }
+   }
+  }
+
+  else if(u.t==='artillery'){
+   if(dist>u.range){
+    u.el.classList.add('moving');
+    u.x+=dx/dist*u.move*dt;
+    u.y+=dy/dist*u.move*dt;
+   }
+   else if(dist<u.range*.45){
+    u.el.classList.add('moving');
+    u.x-=dx/dist*u.move*.65*dt;
+    u.y-=dy/dist*u.move*.65*dt;
+   }
+   else{
+    u.el.classList.remove('moving');
+
+    if(t-u.lastAttack>u.attackRate/rateMul){
+     u.lastAttack=t;
+     fireProjectile(u,enemy,u.damage,'cannon');
+    }
+   }
+  }
+
+  u.x=Math.max(12,Math.min(88,u.x));
+  u.y=Math.max(28,Math.min(84,u.y));
+
+  u.el.style.left=u.x+'%';
+  u.el.style.top=u.y+'%';
+ }
+}
+
+/* ===== DÜŞMAN AI =====
+   SAVUNMACI VARSA SUR HEDEF OLAMAZ
+*/
+
+function updateEnemies(t,dt){
+ for(const e of [...enemies]){
+
+  if(units.length>0){
+   const target=nearestDefender(e);
+
+   if(target){
+    const dx=target.x-e.x;
+    const dy=target.y-e.y;
+    const dist=Math.hypot(dx,dy)||1;
+
+    if(dist>3.4){
+     e.el.classList.add('moving');
+
+     e.x+=dx/dist*e.speed*dt;
+     e.y+=dy/dist*e.speed*dt;
+    }else{
+     e.el.classList.remove('moving');
+
+     if(t-e.lastAttack>850){
+      e.lastAttack=t;
+      damageUnit(target,e.attack);
+     }
+    }
+   }
+  }
+
+  else{
+   /* Son savunmacı da öldükten sonra kapıya gider */
+
+   const gateX=50;
+   const gateY=53.5;
+
+   const dx=gateX-e.x;
+   const dy=gateY-e.y;
+   const dist=Math.hypot(dx,dy)||1;
+
+   e.el.classList.add('moving');
+
+   e.x+=dx/dist*e.speed*dt;
+   e.y+=dy/dist*e.speed*dt;
+
+   if(dist<1.4){
+    wall-=e.wallDamage;
+
+    e.el.remove();
+    enemies=enemies.filter(x=>x!==e);
+
+    sync();
+
+    if(wall<=0){
+     wall=0;
+     active=false;
+     sync();
+
+     setTimeout(()=>{
+      alert('Sur yıkıldı! Sayfayı yenileyerek yeniden başlayabilirsin.');
+     },100);
+    }
+
+    continue;
+   }
+  }
+
+  e.el.style.left=e.x+'%';
+  e.el.style.top=e.y+'%';
+
+  const hp=e.el.querySelector('.hp i');
+
+  if(hp){
+   hp.style.width=Math.max(0,e.hp/e.max*100)+'%';
+  }
+ }
+}
+
+/* ===== MERMİ HAREKETİ ===== */
+
+function updateProjectiles(dt){
+ for(const p of [...projectiles]){
+
+  if(!p.target||!enemies.includes(p.target)){
+   p.el.remove();
+   projectiles=projectiles.filter(x=>x!==p);
+   continue;
+  }
+
+  const dx=p.target.x-p.x;
+  const dy=p.target.y-p.y;
+  const dist=Math.hypot(dx,dy)||1;
+
+  const velocity=p.kind==='cannon'?.022:.038;
+
+  if(dist<1.8){
+   const x=p.target.x;
+   const y=p.target.y;
+
+   if(p.kind==='cannon'){
+    artilleryExplosion(x,y,p.damage,p.level);
+   }else{
+    damageEnemy(p.target,p.damage);
+   }
+
+   p.el.remove();
+   projectiles=projectiles.filter(x=>x!==p);
+   continue;
+  }
+
+  p.x+=dx/dist*velocity*dt;
+  p.y+=dy/dist*velocity*dt;
+
+  p.el.style.left=p.x+'%';
+  p.el.style.top=p.y+'%';
+
+  if(p.kind==='arrow'){
+   const angle=Math.atan2(dy,dx)*180/Math.PI;
+   p.el.style.transform=`translate(-50%,-50%) rotate(${angle}deg)`;
+  }
+ }
+}
+
+/* ===== DALGA SONU ===== */
+
+function checkWaveEnd(){
+ if(!active||spawnLeft>0||enemies.length>0)return;
+
+ active=false;
+
+ units.forEach(u=>u.el.remove());
+ units=[];
+
+ projectiles.forEach(p=>p.el.remove());
+ projectiles=[];
+
+ document.querySelectorAll('.prod i').forEach(b=>b.style.width='0%');
+
+ $('waveBtn').disabled=false;
+ $('upgrade').style.display='block';
+}
+
+function upgrade(type){
+ if(type==='dmg')dmgMul*=1.20;
+ if(type==='rate')rateMul*=1.15;
+ if(type==='wall')wall=Math.min(1500,wall+100);
+ if(type==='coin')money+=120;
+
+ $('upgrade').style.display='none';
+ sync();
+}
+
+/* ===== ANA DÖNGÜ ===== */
+
+function loop(t){
+ const dt=Math.min(40,t-lastT)*speed;
+ lastT=t;
+
+ if(active&&spawnLeft>0&&t-lastSpawn>680/speed){
+  spawnEnemy();
+  spawnLeft--;
+  lastSpawn=t;
+ }
+
+ updateBuildings(t);
+ updateUnits(t,dt);
+ updateEnemies(t,dt);
+ updateProjectiles(dt);
+ checkWaveEnd();
+
+ requestAnimationFrame(loop);
+}
 
 render();
 sync();
-
 requestAnimationFrame(loop);
-
 </script>
-
 </div>
 </body>
 </html>
