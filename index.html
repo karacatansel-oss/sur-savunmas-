@@ -3,141 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Sur Savunması V13.1</title>
+<title>Sur Savunması V13.2</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{
-  margin:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  background:#101713;
-  font-family:Arial,Helvetica,sans-serif;
-  user-select:none;
+  margin:0;width:100%;height:100%;overflow:hidden;
+  background:#101713;font-family:Arial,Helvetica,sans-serif;
+  user-select:none
 }
 #game{
-  position:relative;
-  width:min(100vw,560px);
-  height:100dvh;
-  margin:auto;
-  overflow:hidden;
-  touch-action:none;
-  background:#79add0;
+  position:relative;width:min(100vw,560px);height:100dvh;
+  margin:auto;overflow:hidden;touch-action:none;background:#79add0
 }
 
-/* =========================
-   GÖKYÜZÜ
-========================= */
-
+/* ===== GÖKYÜZÜ ===== */
 #sky{
-  position:absolute;
-  inset:0 0 72% 0;
+  position:absolute;inset:0 0 72% 0;
   background:
     radial-gradient(circle at 80% 22%,#fff6c6 0 4%,#ffe899 5%,transparent 13%),
-    linear-gradient(#66a5d0,#b5d3d3);
+    linear-gradient(#66a5d0,#b5d3d3)
 }
 .cloud{
-  position:absolute;
-  height:15px;
-  width:80px;
-  border-radius:30px;
-  background:#ffffffa8;
-  filter:blur(.4px);
+  position:absolute;height:15px;width:80px;border-radius:30px;
+  background:#ffffffa8;filter:blur(.4px)
 }
 .cloud:before,.cloud:after{
-  content:"";
-  position:absolute;
-  border-radius:50%;
-  background:#ffffffa8;
+  content:"";position:absolute;border-radius:50%;background:#ffffffa8
 }
-.cloud:before{
-  width:34px;height:34px;
-  left:12px;top:-17px;
-}
-.cloud:after{
-  width:43px;height:43px;
-  right:8px;top:-23px;
-}
+.cloud:before{width:34px;height:34px;left:12px;top:-17px}
+.cloud:after{width:43px;height:43px;right:8px;top:-23px}
 .cloud1{left:6%;top:8%;transform:scale(.7)}
 .cloud2{right:8%;top:14%;transform:scale(.48)}
 .cloud3{left:42%;top:5%;transform:scale(.4)}
 
 #mountains{
-  position:absolute;
-  z-index:1;
-  left:0;right:0;
-  top:13%;
-  height:17%;
-  overflow:hidden;
+  position:absolute;z-index:1;left:0;right:0;top:13%;height:17%;overflow:hidden
 }
 .mountain{
-  position:absolute;
-  width:210px;
-  height:210px;
-  bottom:-145px;
+  position:absolute;width:210px;height:210px;bottom:-145px;
   transform:rotate(45deg);
   background:linear-gradient(135deg,#6f8874,#425d50);
-  border-radius:15px;
+  border-radius:15px
 }
 .mountain:before{
-  content:"";
-  position:absolute;
-  width:65px;height:65px;
-  left:0;top:0;
-  background:#d8dfd5;
-  clip-path:polygon(0 0,100% 0,0 100%);
+  content:"";position:absolute;width:65px;height:65px;left:0;top:0;
+  background:#d8dfd5;clip-path:polygon(0 0,100% 0,0 100%)
 }
 .mountain:nth-child(1){left:-70px}
 .mountain:nth-child(2){
-  left:130px;
-  transform:rotate(45deg) scale(1.2);
-  background:linear-gradient(135deg,#789278,#506958);
+  left:130px;transform:rotate(45deg) scale(1.2);
+  background:linear-gradient(135deg,#789278,#506958)
 }
 .mountain:nth-child(3){right:-80px}
 
-/* =========================
-   SAVAŞ ALANI
-========================= */
-
+/* ===== SAVAŞ ALANI ===== */
 #field{
-  position:absolute;
-  z-index:2;
-  left:0;right:0;
-  top:22%;
-  height:43%;
+  position:absolute;z-index:2;left:0;right:0;top:22%;height:43%;
   overflow:hidden;
   background:
     radial-gradient(ellipse at 8% 18%,#3f703b 0 3px,transparent 4px),
     radial-gradient(ellipse at 19% 60%,#477b40 0 3px,transparent 4px),
     radial-gradient(ellipse at 80% 35%,#426e3b 0 3px,transparent 4px),
     radial-gradient(ellipse at 90% 74%,#527f45 0 2px,transparent 3px),
-    linear-gradient(#729c55,#64894b 60%,#617f48);
+    linear-gradient(#729c55,#64894b 60%,#617f48)
 }
 #battleRoad{
-  position:absolute;
-  z-index:3;
-  left:28%;
-  width:44%;
-  top:22%;
-  height:44%;
+  position:absolute;z-index:3;left:28%;width:44%;top:22%;height:44%;
   clip-path:polygon(43% 0,57% 0,91% 100%,9% 100%);
   background:
     radial-gradient(circle at 35% 22%,#756249 0 2px,transparent 3px),
     radial-gradient(circle at 62% 43%,#79664b 0 2px,transparent 3px),
     radial-gradient(circle at 45% 75%,#705b43 0 3px,transparent 4px),
-    linear-gradient(90deg,#75664d,#a99268 25%,#bca778 50%,#a99268 75%,#75664d);
+    linear-gradient(90deg,#75664d,#a99268 25%,#bca778 50%,#a99268 75%,#75664d)
 }
 .grass{
-  position:absolute;
-  z-index:4;
-  width:2px;
-  height:12px;
-  background:#315f32;
-  transform-origin:bottom;
+  position:absolute;z-index:4;width:2px;height:12px;
+  background:#315f32;transform-origin:bottom
 }
 .g1{left:7%;top:31%;transform:rotate(-20deg)}
 .g2{left:14%;top:45%;transform:rotate(15deg)}
@@ -147,41 +89,23 @@ html,body{
 .g6{right:26%;top:59%;transform:rotate(-9deg)}
 
 .rock{
-  position:absolute;
-  z-index:4;
-  width:17px;height:10px;
+  position:absolute;z-index:4;width:17px;height:10px;
   border-radius:55% 45% 40% 35%;
   background:linear-gradient(#85887d,#555b54);
-  box-shadow:3px 4px 3px #0003;
+  box-shadow:3px 4px 3px #0003
 }
 .r1{left:10%;top:38%}
 .r2{right:11%;top:43%;transform:scale(.7)}
 .r3{left:20%;top:57%;transform:scale(.55)}
 
-/* =========================
-   SUR - AYNI KALDI
-========================= */
-
+/* ===== SUR ===== */
 #wallShadow{
-  position:absolute;
-  z-index:20;
-  left:-3%;
-  width:106%;
-  top:64%;
-  height:30px;
-  border-radius:50%;
-  background:#0005;
-  filter:blur(9px);
+  position:absolute;z-index:20;left:-3%;width:106%;top:64%;height:30px;
+  border-radius:50%;background:#0005;filter:blur(9px)
 }
 #wall{
-  position:absolute;
-  z-index:30;
-  left:-2%;
-  width:104%;
-  top:61%;
-  height:92px;
-  border-top:6px solid #595b57;
-  border-bottom:9px solid #494b48;
+  position:absolute;z-index:30;left:-2%;width:104%;top:61%;height:92px;
+  border-top:6px solid #595b57;border-bottom:9px solid #494b48;
   background:
     linear-gradient(90deg,
       transparent 0 9%,#6e706b 9.5% 10%,
@@ -193,1479 +117,658 @@ html,body{
       transparent 91.5%),
     repeating-linear-gradient(0deg,transparent 0 22px,#72746f 22px 25px),
     repeating-linear-gradient(90deg,#aaa99f 0 37px,#858781 37px 40px,#b6b4aa 40px 78px);
-  box-shadow:
-    inset 0 6px #d0cec2,
-    inset 0 -9px #666863,
-    0 11px 15px #0006;
+  box-shadow:inset 0 6px #d0cec2,inset 0 -9px #666863,0 11px 15px #0006
 }
 #wall:before{
-  content:"";
-  position:absolute;
-  left:0;right:0;
-  height:25px;
-  top:-23px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #aaa99f 0 24px,
-      #aaa99f 24px 26px,
-      transparent 26px 39px
-    );
-  filter:drop-shadow(0 4px 1px #0004);
+  content:"";position:absolute;left:0;right:0;height:25px;top:-23px;
+  background:repeating-linear-gradient(90deg,#aaa99f 0 24px,#aaa99f 24px 26px,transparent 26px 39px);
+  filter:drop-shadow(0 4px 1px #0004)
 }
 .stoneCrack{
-  position:absolute;
-  width:16px;height:14px;
-  border-left:2px solid #666761;
-  border-bottom:2px solid #666761;
-  transform:skew(-18deg) rotate(-20deg);
-  opacity:.6;
+  position:absolute;width:16px;height:14px;
+  border-left:2px solid #666761;border-bottom:2px solid #666761;
+  transform:skew(-18deg) rotate(-20deg);opacity:.6
 }
 .cr1{left:24%;top:25px}
 .cr2{right:25%;top:50px}
 .cr3{left:71%;top:14px}
 
 #gateFrame{
-  position:absolute;
-  z-index:5;
-  left:50%;
-  bottom:-7px;
-  transform:translateX(-50%);
-  width:31%;
-  height:92px;
-  border:9px solid #50514e;
-  border-bottom:0;
-  border-radius:60px 60px 0 0;
-  box-shadow:inset 0 0 15px #0008;
+  position:absolute;z-index:5;left:50%;bottom:-7px;
+  transform:translateX(-50%);width:31%;height:92px;
+  border:9px solid #50514e;border-bottom:0;border-radius:60px 60px 0 0;
+  box-shadow:inset 0 0 15px #0008
 }
 #gate{
-  position:absolute;
-  inset:7px 7px 0;
-  border-radius:48px 48px 0 0;
-  overflow:hidden;
-  background:
-    repeating-linear-gradient(90deg,#775036 0 10px,#4d3224 10px 13px);
+  position:absolute;inset:7px 7px 0;border-radius:48px 48px 0 0;overflow:hidden;
+  background:repeating-linear-gradient(90deg,#775036 0 10px,#4d3224 10px 13px)
 }
 #gate:before,#gate:after{
-  content:"";
-  position:absolute;
-  left:0;right:0;
-  height:7px;
-  background:linear-gradient(#4c5355,#252a2c);
+  content:"";position:absolute;left:0;right:0;height:7px;
+  background:linear-gradient(#4c5355,#252a2c)
 }
 #gate:before{top:31px}
 #gate:after{top:61px}
 .gateStuds{
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle,#b5b9b8 0 2px,transparent 3px) 2px 12px/20px 29px;
+  position:absolute;inset:0;
+  background:radial-gradient(circle,#b5b9b8 0 2px,transparent 3px) 2px 12px/20px 29px
 }
 
+/* ===== SUR KULELERİ ===== */
 .wallTower{
-  position:absolute;
-  z-index:9;
-  bottom:-7px;
-  width:72px;
-  height:126px;
+  position:absolute;z-index:40;bottom:-7px;width:72px;height:126px;
   border:6px solid #535652;
-  background:
-    repeating-linear-gradient(0deg,#9d9d95 0 23px,#777974 23px 26px);
-  box-shadow:
-    inset 8px 0 #ffffff13,
-    inset -8px 0 #00000012,
-    5px 6px 5px #0004;
+  background:repeating-linear-gradient(0deg,#9d9d95 0 23px,#777974 23px 26px);
+  box-shadow:inset 8px 0 #ffffff13,inset -8px 0 #00000012,5px 6px 5px #0004;
+  cursor:pointer
 }
 .wallTower.left{left:1%}
 .wallTower.right{right:1%}
 .wallTower:before{
-  content:"";
-  position:absolute;
-  left:-7px;
-  top:-23px;
-  width:74px;
-  height:27px;
-  background:
-    repeating-linear-gradient(90deg,#a5a59d 0 15px,transparent 15px 23px);
+  content:"";position:absolute;left:-7px;top:-23px;width:74px;height:27px;
+  background:repeating-linear-gradient(90deg,#a5a59d 0 15px,transparent 15px 23px)
 }
 .wallTower:after{
-  content:"";
-  position:absolute;
-  left:25px;
-  top:32px;
-  width:11px;
-  height:23px;
-  border-radius:8px 8px 1px 1px;
-  background:#303637;
-  box-shadow:0 48px #303637;
+  content:"";position:absolute;left:25px;top:45px;width:11px;height:23px;
+  border-radius:8px 8px 1px 1px;background:#303637;
+  box-shadow:0 42px #303637
+}
+.wallTower.selected{
+  filter:drop-shadow(0 0 8px #ffe46a) drop-shadow(0 0 14px #ffb52d)
 }
 
-/* =========================
-   GENİŞ AVLU
-   ANA KALE KALDIRILDI
-========================= */
-
-#yard{
+/* kule tıklama alanı */
+.towerTap{
   position:absolute;
-  z-index:2;
-  left:0;right:0;
-  top:68%;
-  bottom:0;
+  z-index:100;
+  top:-28px;left:-8px;
+  width:76px;height:145px
+}
+
+/* kule okçuları */
+.towerArchers{
+  position:absolute;
+  z-index:80;
+  left:-2px;
+  top:-40px;
+  width:66px;
+  height:48px;
+  pointer-events:none
+}
+.towerArcher{
+  position:absolute;
+  width:20px;
+  height:36px;
+  transform-origin:bottom center;
+  filter:drop-shadow(1px 2px 1px #0006)
+}
+.towerArcher:nth-child(1){left:0;top:9px}
+.towerArcher:nth-child(2){left:15px;top:2px}
+.towerArcher:nth-child(3){left:31px;top:2px}
+.towerArcher:nth-child(4){left:46px;top:9px}
+
+.taHead{
+  position:absolute;z-index:5;left:6px;top:1px;
+  width:9px;height:10px;border-radius:50%;
+  background:#d49a71;border:1px solid #60412f
+}
+.taHood{
+  position:absolute;z-index:6;left:4px;top:-1px;
+  width:13px;height:9px;border-radius:8px 8px 2px 2px;
+  background:#425d3c
+}
+.taBody{
+  position:absolute;z-index:4;left:4px;top:10px;
+  width:13px;height:15px;border-radius:4px;
+  background:linear-gradient(90deg,#344c36,#66805c)
+}
+.taLeg{
+  position:absolute;z-index:3;top:24px;width:4px;height:10px;background:#403b34
+}
+.taLeg.l{left:6px}
+.taLeg.r{left:12px}
+.taBow{
+  position:absolute;z-index:7;right:-3px;top:8px;
+  width:10px;height:20px;border-right:2px solid #724b29;
+  border-radius:0 100% 100% 0
+}
+.taBow:after{
+  content:"";position:absolute;right:6px;top:1px;width:1px;height:18px;background:#eee
+}
+.towerArcher.fire .taBow{
+  animation:towerBowFire .22s
+}
+.towerArcher.fire{
+  animation:towerArcherFire .22s
+}
+@keyframes towerBowFire{
+  50%{transform:scaleX(.45)}
+}
+@keyframes towerArcherFire{
+  50%{transform:translateX(2px)}
+}
+.towerCount{
+  position:absolute;z-index:90;left:50%;top:14px;transform:translateX(-50%);
+  min-width:34px;padding:3px 5px;border-radius:10px;
+  background:#1a2b23e8;border:1px solid #ffffff99;color:#fff;
+  text-align:center;font-size:9px;font-weight:900;
+  pointer-events:none
+}
+.towerReady{
+  position:absolute;z-index:91;left:50%;top:-58px;
+  transform:translateX(-50%);
+  padding:3px 7px;border-radius:9px;
+  white-space:nowrap;font-size:8px;font-weight:900;color:#fff5a5;
+  background:#27382be8;
+  box-shadow:0 0 8px #ffd348;
+  pointer-events:none;
+  animation:towerReady 1s infinite alternate
+}
+@keyframes towerReady{
+  to{box-shadow:0 0 15px #ffe268;transform:translateX(-50%) translateY(-2px)}
+}
+
+/* ===== AVLU ===== */
+#yard{
+  position:absolute;z-index:2;left:0;right:0;top:68%;bottom:0;
   background:
     radial-gradient(circle at 11% 20%,#735a40 0 2px,transparent 3px),
     radial-gradient(circle at 88% 37%,#7b6246 0 2px,transparent 3px),
     radial-gradient(circle at 35% 68%,#816548 0 2px,transparent 3px),
     radial-gradient(circle at 64% 73%,#755b41 0 2px,transparent 3px),
-    repeating-linear-gradient(
-      92deg,
-      transparent 0 38px,
-      #ffffff08 39px,
-      transparent 41px
-    ),
-    linear-gradient(#b59a69,#8d704c);
+    repeating-linear-gradient(92deg,transparent 0 38px,#ffffff08 39px,transparent 41px),
+    linear-gradient(#b59a69,#8d704c)
 }
 
-/* =========================
-   HUD
-========================= */
-
+/* ===== HUD ===== */
 #hud{
-  position:absolute;
-  z-index:500;
-  top:max(7px,env(safe-area-inset-top));
-  left:7px;right:7px;
-  display:flex;
-  gap:5px;
-  justify-content:space-between;
+  position:absolute;z-index:500;top:max(7px,env(safe-area-inset-top));
+  left:7px;right:7px;display:flex;gap:5px;justify-content:space-between
 }
 .hudBox{
-  flex:1;
-  padding:8px 4px;
-  text-align:center;
-  border-radius:16px;
-  border:2px solid #ffffff55;
-  background:linear-gradient(#354e43ee,#172820ee);
-  color:#fff;
-  font-weight:900;
-  font-size:13px;
-  box-shadow:0 5px 9px #0005;
+  flex:1;padding:8px 4px;text-align:center;border-radius:16px;
+  border:2px solid #ffffff55;background:linear-gradient(#354e43ee,#172820ee);
+  color:#fff;font-weight:900;font-size:13px;box-shadow:0 5px 9px #0005
 }
 
-/* =========================
-   10 BİNA ALANI
-========================= */
-
+/* ===== BİNALAR ===== */
 .slot{
-  position:absolute;
-  z-index:100;
-  width:60px;
-  height:60px;
-  transform:translate(-50%,-50%);
-  border:2px dashed #59442e;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  color:#473621;
-  background:#efd49780;
-  font-size:9px;
-  font-weight:bold;
+  position:absolute;z-index:100;width:60px;height:60px;
+  transform:translate(-50%,-50%);border:2px dashed #59442e;
+  border-radius:50%;display:grid;place-items:center;text-align:center;
+  color:#473621;background:#efd49780;font-size:9px;font-weight:bold
 }
-.slot.building{
-  border:0;
-  background:transparent;
-}
-.slot.dragging{
-  opacity:.22;
-}
-
+.slot.building{border:0;background:transparent}
+.slot.dragging{opacity:.22}
 .buildingModel{
-  position:relative;
-  width:60px;
-  height:58px;
-  filter:drop-shadow(4px 6px 3px #0005);
-  transition:.15s;
+  position:relative;width:60px;height:58px;
+  filter:drop-shadow(4px 6px 3px #0005);transition:.15s
 }
 .bHouse{
-  position:absolute;
-  left:7px;right:7px;
-  bottom:4px;
-  height:34px;
-  border:3px solid #4d3c2d;
-  background:linear-gradient(90deg,#99704a,#c69f69,#88613f);
+  position:absolute;left:7px;right:7px;bottom:4px;height:34px;
+  border:3px solid #4d3c2d;background:linear-gradient(90deg,#99704a,#c69f69,#88613f)
 }
 .bRoof{
-  position:absolute;
-  left:2px;right:2px;
-  top:0;
-  height:27px;
+  position:absolute;left:2px;right:2px;top:0;height:27px;
   clip-path:polygon(50% 0,100% 100%,0 100%);
-  background:#914339;
-  border-bottom:4px solid #54332b;
+  background:#914339;border-bottom:4px solid #54332b
 }
 .archerBuilding .bRoof{background:#456f45}
 .cavalryBuilding .bRoof{background:#496a84}
 .artilleryBuilding .bRoof{background:#555452}
-
 .bDoor{
-  position:absolute;
-  width:13px;
-  height:18px;
-  left:24px;
-  bottom:5px;
-  background:#543728;
-  border-radius:8px 8px 0 0;
+  position:absolute;width:13px;height:18px;left:24px;bottom:5px;
+  background:#543728;border-radius:8px 8px 0 0
 }
 .bFlag{
-  position:absolute;
-  right:2px;
-  top:15px;
-  width:23px;
-  height:23px;
-  display:grid;
-  place-items:center;
-  border:2px solid #4d3c2d;
-  border-radius:50%;
-  background:#e4d09d;
-  font-style:normal;
+  position:absolute;right:2px;top:15px;width:23px;height:23px;
+  display:grid;place-items:center;border:2px solid #4d3c2d;
+  border-radius:50%;background:#e4d09d;font-style:normal
 }
 .level{
-  position:absolute;
-  left:-1px;
-  bottom:-4px;
-  padding:2px 5px;
-  border-radius:7px;
-  color:#fff;
-  background:#4c3476;
-  font-size:8px;
+  position:absolute;left:-1px;bottom:-4px;padding:2px 5px;border-radius:7px;
+  color:#fff;background:#4c3476;font-size:8px
 }
 .prod{
-  position:absolute;
-  left:6px;right:6px;
-  bottom:-9px;
-  height:5px;
-  border-radius:5px;
-  overflow:hidden;
-  border:1px solid #fff;
-  background:#1d2a23;
+  position:absolute;left:6px;right:6px;bottom:-9px;height:5px;
+  border-radius:5px;overflow:hidden;border:1px solid #fff;background:#1d2a23
 }
-.prod i{
-  display:block;
-  height:100%;
-  width:0;
-  background:#e4bb42;
-}
+.prod i{display:block;height:100%;width:0;background:#e4bb42}
 
-/* =========================
-   BİRLEŞEBİLİR BİNA IŞIĞI
-========================= */
-
-.slot.canMerge{
-  z-index:115;
-}
-
+/* birleşebilir bina */
+.slot.canMerge{z-index:115}
 .slot.canMerge:before{
-  content:"";
-  position:absolute;
-  z-index:-2;
-  width:72px;
-  height:72px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  border-radius:50%;
-  background:
-    radial-gradient(
-      circle,
-      #fffbd0cc 0%,
-      #ffe05a88 25%,
-      #ffb51f55 48%,
-      transparent 72%
-    );
-  animation:mergeAura 1s ease-in-out infinite alternate;
+  content:"";position:absolute;z-index:-2;width:72px;height:72px;
+  left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,#fffbd0cc 0%,#ffe05a88 25%,#ffb51f55 48%,transparent 72%);
+  animation:mergeAura 1s ease-in-out infinite alternate
 }
-
 .slot.canMerge:after{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  width:63px;
-  height:63px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  border-radius:50%;
+  content:"";position:absolute;z-index:-1;width:63px;height:63px;
+  left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;
   border:2px solid #ffe875;
-  box-shadow:
-    0 0 7px #fff,
-    0 0 13px #ffd43b,
-    0 0 23px #ff9f1c;
-  animation:mergeRing 1s ease-in-out infinite;
+  box-shadow:0 0 7px #fff,0 0 13px #ffd43b,0 0 23px #ff9f1c;
+  animation:mergeRing 1s ease-in-out infinite
 }
-
-.slot.canMerge .buildingModel{
-  animation:mergeGlow .85s ease-in-out infinite alternate;
-}
-
-.slot.canMerge .level{
-  box-shadow:
-    0 0 6px #fff5aa,
-    0 0 12px #ffc928;
-}
-
+.slot.canMerge .buildingModel{animation:mergeGlow .85s ease-in-out infinite alternate}
 @keyframes mergeAura{
-  from{
-    opacity:.45;
-    transform:translate(-50%,-50%) scale(.82);
-  }
-  to{
-    opacity:1;
-    transform:translate(-50%,-50%) scale(1.17);
-  }
+  from{opacity:.45;transform:translate(-50%,-50%) scale(.82)}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1.17)}
 }
-
 @keyframes mergeRing{
-  0%{
-    opacity:.25;
-    transform:translate(-50%,-50%) scale(.82);
-  }
-  55%{
-    opacity:1;
-  }
-  100%{
-    opacity:0;
-    transform:translate(-50%,-50%) scale(1.35);
-  }
+  0%{opacity:.25;transform:translate(-50%,-50%) scale(.82)}
+  55%{opacity:1}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.35)}
 }
-
 @keyframes mergeGlow{
-  from{
-    transform:translateY(0) scale(1);
-    filter:
-      drop-shadow(0 0 3px #fff5a5)
-      drop-shadow(0 0 7px #ffc928)
-      drop-shadow(4px 6px 3px #0005);
-  }
-  to{
-    transform:translateY(-3px) scale(1.06);
-    filter:
-      drop-shadow(0 0 7px #fffbd0)
-      drop-shadow(0 0 15px #ffd43b)
-      drop-shadow(0 0 24px #ff9f1c)
-      drop-shadow(4px 7px 3px #0005);
-  }
+  from{transform:translateY(0) scale(1);filter:drop-shadow(0 0 3px #fff5a5) drop-shadow(0 0 7px #ffc928)}
+  to{transform:translateY(-3px) scale(1.06);filter:drop-shadow(0 0 7px #fffbd0) drop-shadow(0 0 15px #ffd43b) drop-shadow(0 0 24px #ff9f1c)}
 }
-
-/* SÜRÜKLEME SIRASINDA DOĞRU EŞ */
-
-.slot.mergeTarget:before{
-  content:"";
-  position:absolute;
-  z-index:-2;
-  left:50%;
-  top:50%;
-  width:82px;
-  height:82px;
-  transform:translate(-50%,-50%);
-  border-radius:50%;
-  background:
-    radial-gradient(circle,#fff 0%,#fff3a2 17%,#ffd02e88 45%,transparent 72%);
-  animation:targetAura .35s ease-in-out infinite alternate;
-}
-
 .slot.mergeTarget .buildingModel{
-  animation:mergeTargetGlow .3s ease-in-out infinite alternate !important;
+  animation:mergeTargetGlow .3s ease-in-out infinite alternate!important
 }
-
-@keyframes targetAura{
-  to{
-    transform:translate(-50%,-50%) scale(1.18);
-    opacity:.55;
-  }
-}
-
 @keyframes mergeTargetGlow{
-  from{
-    transform:scale(1.09);
-    filter:
-      drop-shadow(0 0 8px #fff)
-      drop-shadow(0 0 16px #ffe452);
-  }
-  to{
-    transform:scale(1.2);
-    filter:
-      drop-shadow(0 0 13px #fff)
-      drop-shadow(0 0 25px #ffd32c)
-      drop-shadow(0 0 36px #ff9f1c);
-  }
+  from{transform:scale(1.09);filter:drop-shadow(0 0 8px #fff) drop-shadow(0 0 16px #ffe452)}
+  to{transform:scale(1.2);filter:drop-shadow(0 0 13px #fff) drop-shadow(0 0 25px #ffd32c)}
 }
-
 .dragGhost{
-  position:absolute;
-  z-index:900;
-  pointer-events:none;
-  width:60px;
-  height:60px;
-  transform:translate(-50%,-50%) scale(1.15);
+  position:absolute;z-index:900;pointer-events:none;width:60px;height:60px;
+  transform:translate(-50%,-50%) scale(1.15)
 }
 
-/* =========================
-   ASKER
-========================= */
-
+/* ===== SAHA ASKERİ ===== */
 .unit{
-  position:absolute;
-  z-index:80;
-  width:52px;
-  height:70px;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
+  position:absolute;z-index:80;width:52px;height:70px;
+  transform:translate(-50%,-50%);pointer-events:none
 }
 .shadow{
-  position:absolute;
-  z-index:0;
-  left:7px;
-  bottom:2px;
-  width:40px;
-  height:10px;
-  border-radius:50%;
-  background:#0006;
-  filter:blur(2px);
+  position:absolute;z-index:0;left:7px;bottom:2px;width:40px;height:10px;
+  border-radius:50%;background:#0006;filter:blur(2px)
 }
-.soldier{
-  position:absolute;
-  z-index:2;
-  left:6px;
-  top:1px;
-  width:42px;
-  height:62px;
-}
+.soldier{position:absolute;z-index:2;left:6px;top:1px;width:42px;height:62px}
 .sHead{
-  position:absolute;
-  z-index:8;
-  left:14px;
-  top:5px;
-  width:15px;
-  height:17px;
-  border-radius:48%;
-  border:1px solid #6d4935;
-  background:linear-gradient(90deg,#a86e4c,#e0a47b);
+  position:absolute;z-index:8;left:14px;top:5px;width:15px;height:17px;
+  border-radius:48%;border:1px solid #6d4935;background:linear-gradient(90deg,#a86e4c,#e0a47b)
 }
 .face{
-  position:absolute;
-  z-index:10;
-  left:24px;
-  top:11px;
-  width:2px;
-  height:2px;
-  border-radius:50%;
-  background:#241c18;
+  position:absolute;z-index:10;left:24px;top:11px;width:2px;height:2px;
+  border-radius:50%;background:#241c18
 }
 .hair{
-  position:absolute;
-  z-index:9;
-  left:13px;
-  top:3px;
-  width:17px;
-  height:8px;
-  border-radius:10px 10px 3px 3px;
-  background:#39291f;
+  position:absolute;z-index:9;left:13px;top:3px;width:17px;height:8px;
+  border-radius:10px 10px 3px 3px;background:#39291f
 }
 .helmet{
-  position:absolute;
-  z-index:11;
-  left:11px;
-  top:1px;
-  width:20px;
-  height:13px;
-  border:2px solid #414a4e;
-  border-radius:11px 11px 3px 3px;
-  background:linear-gradient(90deg,#555f64,#b6bec0,#4d575c);
-}
-.helmet:after{
-  content:"";
-  position:absolute;
-  width:4px;
-  height:11px;
-  left:7px;
-  top:9px;
-  background:#636c70;
+  position:absolute;z-index:11;left:11px;top:1px;width:20px;height:13px;
+  border:2px solid #414a4e;border-radius:11px 11px 3px 3px;
+  background:linear-gradient(90deg,#555f64,#b6bec0,#4d575c)
 }
 .chest{
-  position:absolute;
-  z-index:6;
-  left:10px;
-  top:21px;
-  width:23px;
-  height:23px;
-  border-radius:6px 6px 4px 4px;
-  border:1px solid #42382f;
-  background:#775c44;
+  position:absolute;z-index:6;left:10px;top:21px;width:23px;height:23px;
+  border-radius:6px;border:1px solid #42382f;background:#775c44
 }
-.waist{
-  position:absolute;
-  z-index:8;
-  left:9px;
-  top:39px;
-  width:25px;
-  height:5px;
-  background:#3e2c20;
-}
+.waist{position:absolute;z-index:8;left:9px;top:39px;width:25px;height:5px;background:#3e2c20}
 .arm{
-  position:absolute;
-  z-index:5;
-  top:23px;
-  width:7px;
-  height:23px;
-  border-radius:5px;
-  background:#a47454;
-  transform-origin:50% 2px;
+  position:absolute;z-index:5;top:23px;width:7px;height:23px;
+  border-radius:5px;background:#a47454;transform-origin:50% 2px
 }
-.arm.left{left:5px}
-.arm.right{right:3px}
+.arm.left{left:5px}.arm.right{right:3px}
 .leg{
-  position:absolute;
-  z-index:4;
-  top:42px;
-  width:8px;
-  height:19px;
-  border-radius:4px;
-  background:#393a37;
-  transform-origin:50% 1px;
+  position:absolute;z-index:4;top:42px;width:8px;height:19px;
+  border-radius:4px;background:#393a37;transform-origin:50% 1px
 }
-.leg.left{left:11px}
-.leg.right{right:8px}
-
-.unit.walk .soldier{
-  animation:bodyWalk .28s ease-in-out infinite alternate;
-}
+.leg.left{left:11px}.leg.right{right:8px}
+.unit.walk .soldier{animation:bodyWalk .28s ease-in-out infinite alternate}
 .unit.walk .leg.left{animation:legA .28s infinite alternate}
 .unit.walk .leg.right{animation:legB .28s infinite alternate}
 .unit.walk .arm.left{animation:legB .28s infinite alternate}
 .unit.walk .arm.right{animation:legA .28s infinite alternate}
-
 @keyframes bodyWalk{to{transform:translateY(-2px)}}
 @keyframes legA{from{transform:rotate(25deg)}to{transform:rotate(-25deg)}}
 @keyframes legB{from{transform:rotate(-25deg)}to{transform:rotate(25deg)}}
 
-/* PİYADE */
-
-.warrior .chest{
-  background:linear-gradient(90deg,#59656a,#a9b1b2,#505a60);
-}
+.warrior .chest{background:linear-gradient(90deg,#59656a,#a9b1b2,#505a60)}
 .sword{
-  position:absolute;
-  z-index:15;
-  right:-5px;
-  top:15px;
-  width:5px;
-  height:37px;
-  border-radius:2px;
-  background:linear-gradient(90deg,#536065,#f1f3f1,#68757a);
-  border:1px solid #414a4e;
-  transform:rotate(-25deg);
-  transform-origin:50% 88%;
+  position:absolute;z-index:15;right:-5px;top:15px;width:5px;height:37px;
+  border-radius:2px;background:linear-gradient(90deg,#536065,#f1f3f1,#68757a);
+  border:1px solid #414a4e;transform:rotate(-25deg);transform-origin:50% 88%
 }
 .sword:before{
-  content:"";
-  position:absolute;
-  left:-6px;
-  bottom:6px;
-  width:16px;
-  height:4px;
-  background:#b08a43;
-}
-.sword:after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-7px;
-  width:4px;
-  height:10px;
-  background:#503521;
+  content:"";position:absolute;left:-6px;bottom:6px;width:16px;height:4px;background:#b08a43
 }
 .shield{
-  position:absolute;
-  z-index:14;
-  left:-6px;
-  top:23px;
-  width:22px;
-  height:28px;
-  border:3px solid #4c3829;
-  border-radius:10px 10px 15px 15px;
-  background:
-    linear-gradient(90deg,#87352f 0 45%,#d3a53c 46% 54%,#87352f 55%);
-  box-shadow:inset 0 0 5px #0005;
+  position:absolute;z-index:14;left:-6px;top:23px;width:22px;height:28px;
+  border:3px solid #4c3829;border-radius:10px 10px 15px 15px;
+  background:linear-gradient(90deg,#87352f 0 45%,#d3a53c 46% 54%,#87352f 55%)
 }
-.shield:after{
-  content:"";
-  position:absolute;
-  left:7px;
-  top:9px;
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:#d2d7d7;
-}
-.unit.melee .sword{
-  animation:swordSwing .32s ease-out;
-}
-.unit.melee .soldier{
-  animation:lunge .32s;
-}
-@keyframes swordSwing{
-  0%{transform:rotate(-60deg)}
-  45%{transform:rotate(95deg)}
-  100%{transform:rotate(-25deg)}
-}
-@keyframes lunge{
-  50%{transform:translate(5px,-2px)}
-}
+.unit.melee .sword{animation:swordSwing .32s ease-out}
+.unit.melee .soldier{animation:lunge .32s}
+@keyframes swordSwing{0%{transform:rotate(-60deg)}45%{transform:rotate(95deg)}100%{transform:rotate(-25deg)}}
+@keyframes lunge{50%{transform:translate(5px,-2px)}}
 
-/* OKÇU */
-
-.archerSoldier .chest{
-  background:linear-gradient(90deg,#36583b,#68825b,#314e35);
-}
+.archerSoldier .chest{background:linear-gradient(90deg,#36583b,#68825b,#314e35)}
 .bow{
-  position:absolute;
-  z-index:15;
-  right:-10px;
-  top:15px;
-  width:22px;
-  height:38px;
-  border-right:4px solid #714b28;
-  border-radius:0 100% 100% 0;
+  position:absolute;z-index:15;right:-10px;top:15px;width:22px;height:38px;
+  border-right:4px solid #714b28;border-radius:0 100% 100% 0
 }
 .bow:after{
-  content:"";
-  position:absolute;
-  right:15px;
-  top:1px;
-  width:1px;
-  height:35px;
-  background:#eee8d9;
+  content:"";position:absolute;right:15px;top:1px;width:1px;height:35px;background:#eee8d9
 }
 .quiver{
-  position:absolute;
-  z-index:2;
-  left:2px;
-  top:18px;
-  width:9px;
-  height:29px;
-  border:2px solid #49311f;
-  border-radius:4px 4px 7px 7px;
-  background:#76502f;
-  transform:rotate(18deg);
-}
-.quiver:before{
-  content:"↑↑↑";
-  position:absolute;
-  top:-13px;
-  left:-3px;
-  font-size:9px;
-  color:#d1d1c7;
-}
-.unit.shoot .bow{
-  animation:bowFire .32s;
-}
-@keyframes bowFire{
-  0%,100%{transform:scaleX(1)}
-  50%{transform:scaleX(.55)}
+  position:absolute;z-index:2;left:2px;top:18px;width:9px;height:29px;
+  border:2px solid #49311f;border-radius:4px 4px 7px 7px;background:#76502f;
+  transform:rotate(18deg)
 }
 
-/* =========================
-   SÜVARİ
-========================= */
-
-.cavalryUnit{
-  width:96px;
-  height:78px;
-}
-.cavalryUnit .shadow{
-  left:9px;
-  width:77px;
-  height:13px;
-}
-.horse{
-  position:absolute;
-  left:4px;
-  top:20px;
-  width:88px;
-  height:54px;
-}
+/* ===== SÜVARİ ===== */
+.cavalryUnit{width:96px;height:78px}
+.cavalryUnit .shadow{left:9px;width:77px;height:13px}
+.horse{position:absolute;left:4px;top:20px;width:88px;height:54px}
 .horseTorso{
-  position:absolute;
-  z-index:4;
-  left:15px;
-  top:14px;
-  width:54px;
-  height:27px;
-  border:2px solid #4a3023;
-  border-radius:48% 55% 45% 50%;
-  background:linear-gradient(180deg,#a1734d,#815638 70%,#6a442f);
-}
-.horseShoulder{
-  position:absolute;
-  z-index:5;
-  right:13px;
-  top:12px;
-  width:21px;
-  height:31px;
-  border-radius:50%;
-  background:#8b5e3e;
+  position:absolute;z-index:4;left:15px;top:14px;width:54px;height:27px;
+  border:2px solid #4a3023;border-radius:48% 55% 45% 50%;
+  background:linear-gradient(180deg,#a1734d,#815638 70%,#6a442f)
 }
 .horseNeck{
-  position:absolute;
-  z-index:5;
-  right:8px;
-  top:-1px;
-  width:17px;
-  height:38px;
-  border-radius:12px;
-  border:2px solid #4a3023;
-  background:#8d5f3f;
-  transform:rotate(-27deg);
+  position:absolute;z-index:5;right:8px;top:-1px;width:17px;height:38px;
+  border-radius:12px;border:2px solid #4a3023;background:#8d5f3f;transform:rotate(-27deg)
 }
 .horseHead{
-  position:absolute;
-  z-index:7;
-  right:-7px;
-  top:-10px;
-  width:29px;
-  height:17px;
-  border:2px solid #4a3023;
-  border-radius:12px 15px 11px 9px;
-  background:linear-gradient(#986847,#795038);
-}
-.horseHead:before{
-  content:"";
-  position:absolute;
-  right:6px;
-  top:5px;
-  width:3px;
-  height:3px;
-  border-radius:50%;
-  background:#111;
-}
-.ear{
-  position:absolute;
-  z-index:6;
-  top:-16px;
-  width:7px;
-  height:13px;
-  background:#815538;
-  clip-path:polygon(50% 0,100% 100%,0 100%);
-}
-.ear.e1{right:5px}
-.ear.e2{right:14px}
-.mane{
-  position:absolute;
-  z-index:3;
-  right:17px;
-  top:-1px;
-  width:11px;
-  height:36px;
-  background:#35261d;
-  clip-path:polygon(20% 0,100% 10%,45% 30%,100% 45%,40% 63%,90% 80%,0 100%);
-}
-.tail{
-  position:absolute;
-  z-index:2;
-  left:2px;
-  top:18px;
-  width:25px;
-  height:29px;
-  border-left:8px solid #35261d;
-  border-radius:70%;
-  transform:rotate(22deg);
-  transform-origin:top;
-}
-.saddle{
-  position:absolute;
-  z-index:8;
-  left:34px;
-  top:8px;
-  width:29px;
-  height:15px;
-  border-radius:9px 9px 4px 4px;
-  border:2px solid #3f2b20;
-  background:#6c4931;
-}
-.rein{
-  position:absolute;
-  z-index:12;
-  right:1px;
-  top:5px;
-  width:42px;
-  height:22px;
-  border-bottom:2px solid #3e2a1e;
-  border-radius:50%;
-  transform:rotate(-11deg);
+  position:absolute;z-index:7;right:-7px;top:-10px;width:29px;height:17px;
+  border:2px solid #4a3023;border-radius:12px;background:#8d5f3f
 }
 .hLeg{
-  position:absolute;
-  z-index:3;
-  top:36px;
-  width:8px;
-  height:25px;
-  border-radius:5px;
-  background:linear-gradient(#795037,#5a3929);
-  transform-origin:50% 1px;
+  position:absolute;z-index:3;top:36px;width:8px;height:25px;
+  border-radius:5px;background:#795037;transform-origin:50% 1px
 }
-.hl1{left:20px}
-.hl2{left:34px}
-.hl3{right:26px}
-.hl4{right:12px}
-.hLeg:after{
-  content:"";
-  position:absolute;
-  bottom:-3px;
-  left:-1px;
-  width:10px;
-  height:6px;
-  border-radius:5px;
-  background:#292521;
+.hl1{left:20px}.hl2{left:34px}.hl3{right:26px}.hl4{right:12px}
+.saddle{
+  position:absolute;z-index:8;left:34px;top:8px;width:29px;height:15px;
+  border-radius:9px;background:#6c4931
 }
-.rider{
-  position:absolute;
-  z-index:15;
-  left:40px;
-  top:-11px;
-  width:39px;
-  height:44px;
-}
-.rider .sHead{left:11px}
-.rider .helmet{left:8px}
-.rider .hair{left:10px}
+.rider{position:absolute;z-index:15;left:40px;top:-11px;width:39px;height:44px}
+.rider .sHead{left:11px}.rider .helmet{left:8px}.rider .hair{left:10px}
 .rider .chest{
-  left:7px;
-  top:21px;
-  width:24px;
-  height:21px;
-  background:linear-gradient(90deg,#58646a,#aeb6b8,#505a60);
+  left:7px;top:21px;width:24px;height:21px;
+  background:linear-gradient(90deg,#58646a,#aeb6b8,#505a60)
 }
 .lance{
-  position:absolute;
-  z-index:18;
-  left:53px;
-  top:-4px;
-  width:5px;
-  height:70px;
-  border-radius:3px;
-  background:linear-gradient(90deg,#4f321e,#a57645);
-  transform:rotate(69deg);
-  transform-origin:50% 80%;
+  position:absolute;z-index:18;left:53px;top:-4px;width:5px;height:70px;
+  background:#795032;transform:rotate(69deg);transform-origin:50% 80%
 }
-.lance:before{
-  content:"";
-  position:absolute;
-  left:-4px;
-  top:-14px;
-  width:13px;
-  height:17px;
-  background:#c9d0d1;
-  clip-path:polygon(50% 0,100% 100%,0 100%);
-}
-.cavalryUnit.walk .horse{
-  animation:horseBob .20s infinite alternate;
-}
-.cavalryUnit.walk .hl1,
-.cavalryUnit.walk .hl3{
-  animation:horseLeg1 .20s infinite alternate;
-}
-.cavalryUnit.walk .hl2,
-.cavalryUnit.walk .hl4{
-  animation:horseLeg2 .20s infinite alternate;
-}
-.cavalryUnit.walk .tail{
-  animation:tailMove .27s infinite alternate;
-}
+.cavalryUnit.walk .horse{animation:horseBob .2s infinite alternate}
+.cavalryUnit.walk .hl1,.cavalryUnit.walk .hl3{animation:horseLeg1 .2s infinite alternate}
+.cavalryUnit.walk .hl2,.cavalryUnit.walk .hl4{animation:horseLeg2 .2s infinite alternate}
 @keyframes horseBob{to{transform:translateY(-3px)}}
 @keyframes horseLeg1{from{transform:rotate(34deg)}to{transform:rotate(-34deg)}}
 @keyframes horseLeg2{from{transform:rotate(-34deg)}to{transform:rotate(34deg)}}
-@keyframes tailMove{to{transform:rotate(48deg)}}
-.cavalryUnit.charge{
-  animation:charge .3s;
-}
-@keyframes charge{
-  45%{
-    transform:translate(-50%,-50%) translateX(8px) scale(1.07);
-  }
-}
 
-/* =========================
-   TOPÇU
-========================= */
-
-.artilleryUnit{
-  width:100px;
-  height:72px;
-}
-.artilleryUnit .shadow{
-  left:10px;
-  width:80px;
-  height:12px;
-}
-.cannon{
-  position:absolute;
-  left:5px;
-  top:12px;
-  width:92px;
-  height:55px;
-}
+/* ===== TOP ===== */
+.artilleryUnit{width:100px;height:72px}
+.cannon{position:absolute;left:5px;top:12px;width:92px;height:55px}
 .cannonWheel{
-  position:absolute;
-  z-index:5;
-  bottom:0;
-  width:31px;
-  height:31px;
-  border:6px solid #493321;
-  border-radius:50%;
-  background:#9a7047;
+  position:absolute;z-index:5;bottom:0;width:31px;height:31px;
+  border:6px solid #493321;border-radius:50%;background:#9a7047
 }
-.cw1{left:17px}
-.cw2{right:12px}
-.cannonWheel:before,.cannonWheel:after{
-  content:"";
-  position:absolute;
-  left:9px;
-  top:0;
-  width:2px;
-  height:19px;
-  background:#493321;
-}
-.cannonWheel:after{transform:rotate(90deg)}
-.axle{
-  position:absolute;
-  z-index:3;
-  left:22px;
-  top:33px;
-  width:56px;
-  height:8px;
-  border-radius:4px;
-  background:#4b3322;
-}
+.cw1{left:17px}.cw2{right:12px}
 .carriage{
-  position:absolute;
-  z-index:4;
-  left:22px;
-  top:25px;
-  width:51px;
-  height:18px;
-  border:3px solid #4d3624;
-  border-radius:4px;
-  background:linear-gradient(#9d7147,#70482d);
+  position:absolute;z-index:4;left:22px;top:25px;width:51px;height:18px;
+  border:3px solid #4d3624;background:#8a603d
 }
 .cannonBarrel{
-  position:absolute;
-  z-index:9;
-  left:35px;
-  top:10px;
-  width:63px;
-  height:18px;
-  border:2px solid #30383c;
-  border-radius:10px 4px 4px 10px;
-  background:linear-gradient(#a9b0b1,#515b60 50%,#333c40);
-  transform:rotate(-8deg);
-  transform-origin:left center;
+  position:absolute;z-index:9;left:35px;top:10px;width:63px;height:18px;
+  border:2px solid #30383c;border-radius:10px 4px 4px 10px;
+  background:linear-gradient(#a9b0b1,#515b60 50%,#333c40);transform:rotate(-8deg)
 }
-.cannonBarrel:after{
-  content:"";
-  position:absolute;
-  right:-7px;
-  top:-4px;
-  width:10px;
-  height:22px;
-  border-radius:3px;
-  background:#3b4448;
-}
-.gunner{
-  position:absolute;
-  z-index:12;
-  left:2px;
-  top:-2px;
-  width:39px;
-  height:49px;
-}
-.gunner .sHead{left:11px}
-.gunner .helmet{left:8px}
-.gunner .hair{left:10px}
-.gunner .chest{
-  left:7px;
-  top:21px;
-  width:24px;
-  height:22px;
-  background:#5c5a4e;
-}
-.artilleryUnit.fire .cannonBarrel{
-  animation:recoil .38s ease-out;
-}
-@keyframes recoil{
-  35%{
-    transform:rotate(-8deg) translateX(-13px);
-  }
-}
+.gunner{position:absolute;z-index:12;left:2px;top:-2px;width:39px;height:49px}
+.gunner .sHead{left:11px}.gunner .helmet{left:8px}.gunner .hair{left:10px}
+.gunner .chest{left:7px;top:21px;width:24px;height:22px;background:#5c5a4e}
 
-/* =========================
-   DÜŞMAN
-========================= */
-
+/* ===== DÜŞMAN ===== */
 .enemy{
-  position:absolute;
-  z-index:75;
-  width:57px;
-  height:68px;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
+  position:absolute;z-index:75;width:57px;height:68px;
+  transform:translate(-50%,-50%);pointer-events:none
 }
 .enemyShadow{
-  position:absolute;
-  left:8px;
-  bottom:1px;
-  width:42px;
-  height:10px;
-  border-radius:50%;
-  background:#0006;
-  filter:blur(2px);
+  position:absolute;left:8px;bottom:1px;width:42px;height:10px;
+  border-radius:50%;background:#0006;filter:blur(2px)
 }
-.monster{
-  position:absolute;
-  left:7px;
-  top:2px;
-  width:46px;
-  height:60px;
-}
+.monster{position:absolute;left:7px;top:2px;width:46px;height:60px}
 .mHead{
-  position:absolute;
-  z-index:8;
-  left:11px;
-  top:4px;
-  width:26px;
-  height:22px;
-  border-radius:45%;
-  border:2px solid #273528;
-  background:#668e50;
+  position:absolute;z-index:8;left:11px;top:4px;width:26px;height:22px;
+  border-radius:45%;border:2px solid #273528;background:#668e50
 }
 .mBody{
-  position:absolute;
-  z-index:5;
-  left:9px;
-  top:23px;
-  width:30px;
-  height:27px;
-  border:2px solid #273528;
-  border-radius:8px;
-  background:#557846;
+  position:absolute;z-index:5;left:9px;top:23px;width:30px;height:27px;
+  border:2px solid #273528;border-radius:8px;background:#557846
 }
 .mArm{
-  position:absolute;
-  z-index:4;
-  top:25px;
-  width:9px;
-  height:25px;
-  border-radius:5px;
-  background:#557846;
-  transform-origin:50% 2px;
+  position:absolute;z-index:4;top:25px;width:9px;height:25px;
+  border-radius:5px;background:#557846;transform-origin:50% 2px
 }
 .ma1{left:3px}.ma2{right:1px}
 .mLeg{
-  position:absolute;
-  z-index:3;
-  top:47px;
-  width:9px;
-  height:16px;
-  border-radius:4px;
-  background:#3c5139;
-  transform-origin:50% 1px;
+  position:absolute;z-index:3;top:47px;width:9px;height:16px;
+  border-radius:4px;background:#3c5139;transform-origin:50% 1px
 }
 .ml1{left:11px}.ml2{right:9px}
 .mEye{
-  position:absolute;
-  z-index:10;
-  top:12px;
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:#f5df4e;
+  position:absolute;z-index:10;top:12px;width:4px;height:4px;
+  border-radius:50%;background:#f5df4e
 }
 .me1{left:17px}.me2{right:13px}
-.enemy.walk .ma1,.enemy.walk .ml2{
-  animation:monsterA .25s infinite alternate;
-}
-.enemy.walk .ma2,.enemy.walk .ml1{
-  animation:monsterB .25s infinite alternate;
-}
-@keyframes monsterA{
-  from{transform:rotate(26deg)}
-  to{transform:rotate(-26deg)}
-}
-@keyframes monsterB{
-  from{transform:rotate(-26deg)}
-  to{transform:rotate(26deg)}
-}
-
 .goblin{transform:scale(.77)}
 .orc{transform:scale(1)}
-.orc .mBody{width:35px;left:6px;background:#496a40}
 .wolf{transform:scale(.86)}
-.wolf .mHead,.wolf .mBody,.wolf .mArm{background:#66645e}
 .raider .mHead,.raider .mBody,.raider .mArm{background:#765441}
 .armored{transform:scale(1.08)}
-.armored .mBody{background:linear-gradient(90deg,#4e585d,#a0aaac,#4c565b)}
+.armored .mBody{background:#7a8589}
 .brute{transform:scale(1.16)}
-.brute .mBody,.brute .mArm{background:#686b40}
 .ogre{transform:scale(1.27)}
-.ogre .mBody{width:37px;left:5px;background:#69733e}
 .warlord{transform:scale(1.31)}
-.warlord .mBody{background:linear-gradient(90deg,#3b4448,#939b9e,#3b4448)}
 .demon{transform:scale(1.38)}
 .demon .mHead,.demon .mBody,.demon .mArm{background:#733434}
-.demon .mEye{background:#ff3e25;box-shadow:0 0 6px red}
 .boss{transform:scale(1.48)}
 .boss .mHead,.boss .mBody,.boss .mArm{background:#493449}
-.boss .mEye{background:#ffb32b;box-shadow:0 0 7px #ff6325}
 
 .hpbar{
-  position:absolute;
-  top:-6px;
-  left:50%;
-  transform:translateX(-50%);
-  width:42px;
-  height:6px;
-  border:1px solid #fff9;
-  border-radius:5px;
-  overflow:hidden;
-  background:#4b1e1e;
+  position:absolute;top:-6px;left:50%;transform:translateX(-50%);
+  width:42px;height:6px;border:1px solid #fff9;border-radius:5px;
+  overflow:hidden;background:#4b1e1e
 }
-.hpbar i{
-  display:block;
-  height:100%;
-  width:100%;
-  background:#54c35a;
-}
-.enemy.hit{
-  animation:enemyImpact .18s;
-}
+.hpbar i{display:block;height:100%;width:100%;background:#54c35a}
+.enemy.hit{animation:enemyImpact .18s}
 @keyframes enemyImpact{
-  50%{
-    transform:translate(-50%,-50%) translateX(5px) scale(.92);
-    filter:brightness(1.7);
-  }
+  50%{transform:translate(-50%,-50%) translateX(5px) scale(.92);filter:brightness(1.7)}
 }
 
-/* =========================
-   EFEKTLER
-========================= */
-
-.projectile{
-  position:absolute;
-  z-index:250;
-  pointer-events:none;
-}
+/* ===== MERMİLER / EFEKTLER ===== */
+.projectile{position:absolute;z-index:250;pointer-events:none}
 .arrowProjectile{
-  width:25px;
-  height:3px;
-  background:linear-gradient(90deg,#5c3d25 0 78%,#ddd 79%);
+  width:25px;height:3px;
+  background:linear-gradient(90deg,#5c3d25 0 78%,#ddd 79%)
+}
+.towerArrow{
+  width:21px;height:2px;
+  background:linear-gradient(90deg,#5b3a20 0 77%,#eee 78%)
 }
 .cannonball{
-  width:15px;
-  height:15px;
-  border-radius:50%;
-  background:radial-gradient(circle at 32% 27%,#8c9699,#303639 55%,#15191b);
-  box-shadow:4px 7px 4px #0005;
-}
-.muzzleFlash{
-  position:absolute;
-  z-index:260;
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background:#fff8b2;
-  box-shadow:
-    0 0 8px 5px #ffc13c,
-    0 0 18px 11px #ff702b;
-  animation:muzzleFlash .2s forwards;
-  pointer-events:none;
-}
-@keyframes muzzleFlash{
-  to{transform:scale(2.5);opacity:0}
-}
-.explosion{
-  position:absolute;
-  z-index:270;
-  width:18px;
-  height:18px;
-  transform:translate(-50%,-50%);
-  pointer-events:none;
-}
-.explosion .core{
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  background:#fffbd0;
-  box-shadow:
-    0 0 10px 7px #ffc234,
-    0 0 24px 15px #ff7b27,
-    0 0 39px 22px #d9471e;
-  animation:explosionCore .45s forwards;
-}
-.explosion .ring{
-  position:absolute;
-  left:-5px;
-  top:-5px;
-  width:28px;
-  height:28px;
-  border-radius:50%;
-  border:5px solid #4a4640aa;
-  animation:explosionRing .75s forwards;
-}
-@keyframes explosionCore{
-  45%{transform:scale(3)}
-  100%{transform:scale(4.7);opacity:0}
-}
-@keyframes explosionRing{
-  to{transform:scale(3);opacity:0}
-}
-.smoke{
-  position:absolute;
-  z-index:265;
-  width:21px;
-  height:21px;
-  border-radius:50%;
-  background:#4b4b49a0;
-  filter:blur(3px);
-  pointer-events:none;
-  animation:smokeRise 1.25s forwards;
-}
-@keyframes smokeRise{
-  to{
-    transform:translateY(-45px) translateX(8px) scale(2.5);
-    opacity:0;
-  }
-}
-.dust{
-  position:absolute;
-  z-index:60;
-  width:13px;
-  height:7px;
-  border-radius:50%;
-  background:#c7b17c99;
-  filter:blur(2px);
-  animation:dust .45s forwards;
-  pointer-events:none;
-}
-@keyframes dust{
-  to{
-    transform:translateY(-6px) scale(2.2);
-    opacity:0;
-  }
+  width:15px;height:15px;border-radius:50%;
+  background:radial-gradient(circle at 32% 27%,#8c9699,#303639 55%,#15191b)
 }
 .hitSpark{
-  position:absolute;
-  z-index:260;
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  border:2px solid #fff5bd;
-  box-shadow:0 0 7px #ffc74a;
-  pointer-events:none;
-  animation:spark .25s forwards;
+  position:absolute;z-index:260;width:10px;height:10px;border-radius:50%;
+  border:2px solid #fff5bd;box-shadow:0 0 7px #ffc74a;
+  pointer-events:none;animation:spark .25s forwards
 }
-@keyframes spark{
-  to{transform:scale(3);opacity:0}
+@keyframes spark{to{transform:scale(3);opacity:0}}
+.explosion{
+  position:absolute;z-index:270;width:18px;height:18px;
+  transform:translate(-50%,-50%);pointer-events:none
 }
+.explosion:before{
+  content:"";position:absolute;inset:0;border-radius:50%;background:#fffbd0;
+  box-shadow:0 0 10px 7px #ffc234,0 0 24px 15px #ff7b27;
+  animation:boom .45s forwards
+}
+@keyframes boom{to{transform:scale(4);opacity:0}}
 
-/* =========================
-   MENÜ
-========================= */
-
+/* ===== PANELLER ===== */
 #controls{
-  position:absolute;
-  z-index:700;
-  left:6px;
-  right:6px;
-  bottom:max(6px,env(safe-area-inset-bottom));
-  display:flex;
-  gap:7px;
+  position:absolute;z-index:700;left:6px;right:6px;
+  bottom:max(6px,env(safe-area-inset-bottom));display:flex;gap:7px
 }
 button{
-  border:0;
-  border-radius:13px;
-  padding:10px 6px;
-  font-weight:900;
-  color:#25352d;
-  background:linear-gradient(#fff,#ddd9ca);
-  box-shadow:0 4px 0 #0005;
+  border:0;border-radius:13px;padding:10px 6px;font-weight:900;
+  color:#25352d;background:linear-gradient(#fff,#ddd9ca);
+  box-shadow:0 4px 0 #0005
 }
-button:active{
-  transform:translateY(2px);
-  box-shadow:0 2px 0 #0005;
-}
+button:active{transform:translateY(2px);box-shadow:0 2px 0 #0005}
 button:disabled{opacity:.4}
-#controls button{
-  flex:1;
-  font-size:12px;
-}
+#controls button{flex:1;font-size:12px}
 .panel{
-  position:absolute;
-  z-index:1000;
-  display:none;
-  left:5%;
-  right:5%;
-  top:15%;
-  padding:16px;
-  border:2px solid #ffffff66;
-  border-radius:22px;
-  color:white;
-  text-align:center;
-  background:linear-gradient(#29463bfa,#15271ffa);
-  box-shadow:0 18px 45px #000a;
+  position:absolute;z-index:1000;display:none;left:5%;right:5%;top:15%;
+  padding:16px;border:2px solid #ffffff66;border-radius:22px;
+  color:white;text-align:center;background:linear-gradient(#29463bfa,#15271ffa);
+  box-shadow:0 18px 45px #000a
 }
 .panel h3{margin:0 0 12px}
-.choices{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .choices button{min-height:65px}
-.small{
-  font-size:11px;
-  opacity:.75;
-  margin:11px 0;
-}
+.small{font-size:11px;opacity:.75;margin:11px 0}
 #notice{
-  position:absolute;
-  z-index:900;
-  top:62px;
-  left:50%;
-  transform:translate(-50%,-15px);
-  opacity:0;
-  white-space:nowrap;
-  padding:8px 14px;
-  border:2px solid #ffffff66;
-  border-radius:18px;
-  color:white;
-  background:#1d3129ee;
-  font-size:12px;
-  font-weight:900;
-  transition:.2s;
+  position:absolute;z-index:1200;top:62px;left:50%;
+  transform:translate(-50%,-15px);opacity:0;white-space:nowrap;
+  padding:8px 14px;border:2px solid #ffffff66;border-radius:18px;
+  color:white;background:#1d3129ee;font-size:12px;font-weight:900;transition:.2s
 }
-#notice.show{
-  opacity:1;
-  transform:translate(-50%,0);
+#notice.show{opacity:1;transform:translate(-50%,0)}
+
+.towerStatus{
+  margin:10px 0;padding:10px;border-radius:13px;
+  background:#ffffff12;border:1px solid #ffffff33
+}
+#towerAdd{
+  width:100%;font-size:14px
 }
 </style>
 </head>
 
 <body>
-
 <div id="game">
 
-  <div id="sky"></div>
+<div id="sky"></div>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
 
-  <div class="cloud cloud1"></div>
-  <div class="cloud cloud2"></div>
-  <div class="cloud cloud3"></div>
+<div id="mountains">
+  <div class="mountain"></div>
+  <div class="mountain"></div>
+  <div class="mountain"></div>
+</div>
 
-  <div id="mountains">
-    <div class="mountain"></div>
-    <div class="mountain"></div>
-    <div class="mountain"></div>
+<div id="field"></div>
+<div id="battleRoad"></div>
+
+<div class="grass g1"></div><div class="grass g2"></div>
+<div class="grass g3"></div><div class="grass g4"></div>
+<div class="grass g5"></div><div class="grass g6"></div>
+
+<div class="rock r1"></div>
+<div class="rock r2"></div>
+<div class="rock r3"></div>
+
+<div id="wallShadow"></div>
+
+<div id="wall">
+
+  <div class="stoneCrack cr1"></div>
+  <div class="stoneCrack cr2"></div>
+  <div class="stoneCrack cr3"></div>
+
+  <div class="wallTower left" id="leftTower">
+    <div class="towerTap" data-tower="left"></div>
+    <div class="towerArchers" id="leftArchers"></div>
+    <div class="towerCount" id="leftCount">0/4</div>
   </div>
 
-  <div id="field"></div>
-  <div id="battleRoad"></div>
-
-  <div class="grass g1"></div>
-  <div class="grass g2"></div>
-  <div class="grass g3"></div>
-  <div class="grass g4"></div>
-  <div class="grass g5"></div>
-  <div class="grass g6"></div>
-
-  <div class="rock r1"></div>
-  <div class="rock r2"></div>
-  <div class="rock r3"></div>
-
-  <div id="wallShadow"></div>
-
-  <div id="wall">
-
-    <div class="stoneCrack cr1"></div>
-    <div class="stoneCrack cr2"></div>
-    <div class="stoneCrack cr3"></div>
-
-    <div class="wallTower left"></div>
-
-    <div id="gateFrame">
-      <div id="gate">
-        <div class="gateStuds"></div>
-      </div>
-    </div>
-
-    <div class="wallTower right"></div>
-
+  <div id="gateFrame">
+    <div id="gate"><div class="gateStuds"></div></div>
   </div>
 
-  <!-- ANA KALE YOK -->
-  <div id="yard"></div>
-
-  <div id="hud">
-    <div class="hudBox">🪙 <span id="money">400</span></div>
-    <div class="hudBox">❤️ <span id="wallHP">1000</span></div>
-    <div class="hudBox">🌊 <span id="wave">0</span></div>
-  </div>
-
-  <div id="notice"></div>
-
-  <div id="controls">
-    <button id="waveButton">⚔ DALGA</button>
-    <button id="speedButton">⏩ x1</button>
-  </div>
-
-  <div id="buildPanel" class="panel">
-
-    <h3>Birlik Binası</h3>
-
-    <div id="buildChoices" class="choices"></div>
-
-    <div class="small">
-      Aynı tür ve aynı seviyedeki iki bina ışık saçar.
-      Birini diğerinin üzerine sürükleyerek birleştir.
-    </div>
-
-    <button id="closeBuild">Kapat</button>
-
-  </div>
-
-  <div id="upgradePanel" class="panel">
-
-    <h3>🏆 Dalga Tamamlandı</h3>
-
-    <div class="choices">
-      <button data-up="damage">⚔ Hasar +20%</button>
-      <button data-up="production">⏱ Üretim +15%</button>
-      <button data-up="wall">❤️ Sur +100</button>
-      <button data-up="money">🪙 +120</button>
-    </div>
-
+  <div class="wallTower right" id="rightTower">
+    <div class="towerTap" data-tower="right"></div>
+    <div class="towerArchers" id="rightArchers"></div>
+    <div class="towerCount" id="rightCount">0/4</div>
   </div>
 
 </div>
 
-<script>
+<div id="yard"></div>
 
+<div id="hud">
+  <div class="hudBox">🪙 <span id="money">400</span></div>
+  <div class="hudBox">❤️ <span id="wallHP">1000</span></div>
+  <div class="hudBox">🌊 <span id="wave">0</span></div>
+</div>
+
+<div id="notice"></div>
+
+<div id="controls">
+  <button id="waveButton">⚔ DALGA</button>
+  <button id="speedButton">⏩ x1</button>
+</div>
+
+<div id="buildPanel" class="panel">
+  <h3>Birlik Binası</h3>
+  <div id="buildChoices" class="choices"></div>
+  <div class="small">
+    Aynı tür ve aynı seviyedeki binaları üst üste sürükleyerek birleştir.
+  </div>
+  <button id="closeBuild">Kapat</button>
+</div>
+
+<div id="towerPanel" class="panel">
+  <h3 id="towerTitle">🏹 Sur Kulesi</h3>
+
+  <div class="towerStatus">
+    Kuledeki okçu:
+    <b><span id="towerCurrent">0</span>/4</b>
+  </div>
+
+  <button id="towerAdd">
+    🏹 Okçu Yerleştir — 60 🪙
+  </button>
+
+  <div class="small">
+    Kule okçuları sabittir ve savaş alanındaki düşmanlara sur üzerinden ateş eder.
+  </div>
+
+  <button id="closeTower">Kapat</button>
+</div>
+
+<div id="upgradePanel" class="panel">
+  <h3>🏆 Dalga Tamamlandı</h3>
+  <div class="choices">
+    <button data-up="damage">⚔ Hasar +20%</button>
+    <button data-up="production">⏱ Üretim +15%</button>
+    <button data-up="wall">❤️ Sur +100</button>
+    <button data-up="money">🪙 +120</button>
+  </div>
+</div>
+
+</div>
+
+<script>
 const game=document.getElementById("game");
 const $=id=>document.getElementById(id);
 
 let money=400;
 let wallHP=1000;
 let wave=0;
-
 let waveActive=false;
 let gameSpeed=1;
-
 let damageBonus=1;
 let productionBonus=1;
 
@@ -1676,244 +779,224 @@ let projectiles=[];
 
 let buildSlot=null;
 let drag=null;
-
 let enemiesToSpawn=0;
 
 let realLastFrame=performance.now();
 let gameTime=0;
 let lastSpawnGameTime=0;
 
-/* =========================
-   10 AÇIK BİNA ALANI
-========================= */
+/* ===== KULE SİSTEMİ ===== */
+
+const TOWER_ARCHER_COST=60;
+const TOWER_CAPACITY=4;
+const TOWER_RANGE=52;
+const TOWER_ATTACK_RATE=1050;
+const TOWER_BASE_DAMAGE=12;
+
+const towers={
+  left:{
+    side:"left",
+    count:0,
+    x:8,
+    y:56.5,
+    lastAttacks:[0,0,0,0]
+  },
+  right:{
+    side:"right",
+    count:0,
+    x:92,
+    y:56.5,
+    lastAttacks:[0,0,0,0]
+  }
+};
+
+let selectedTower=null;
+
+/* ===== 10 BİNA YERİ ===== */
 
 const slots=[
-  {x:10,y:74,open:true},
-  {x:30,y:74,open:true},
-  {x:50,y:74,open:true},
-  {x:70,y:74,open:true},
-  {x:90,y:74,open:true},
-
-  {x:10,y:87,open:true},
-  {x:30,y:87,open:true},
-  {x:50,y:87,open:true},
-  {x:70,y:87,open:true},
-  {x:90,y:87,open:true}
+  {x:10,y:74},{x:30,y:74},{x:50,y:74},{x:70,y:74},{x:90,y:74},
+  {x:10,y:87},{x:30,y:87},{x:50,y:87},{x:70,y:87},{x:90,y:87}
 ];
 
 const BUILDINGS={
-
-  barracks:{
-    name:"Kışla",
-    icon:"⚔",
-    cost:75,
-    rate:2700
-  },
-
-  archer:{
-    name:"Okçu Ocağı",
-    icon:"➶",
-    cost:90,
-    rate:3600
-  },
-
-  cavalry:{
-    name:"Süvari Kışlası",
-    icon:"♞",
-    cost:130,
-    rate:4500
-  },
-
-  artillery:{
-    name:"Topçu Kışlası",
-    icon:"●",
-    cost:150,
-    rate:5400
-  }
-
+  barracks:{name:"Kışla",icon:"⚔",cost:75,rate:2700},
+  archer:{name:"Okçu Ocağı",icon:"➶",cost:90,rate:3600},
+  cavalry:{name:"Süvari Kışlası",icon:"♞",cost:130,rate:4500},
+  artillery:{name:"Topçu Kışlası",icon:"●",cost:150,rate:5400}
 };
 
 const MONSTERS=[
-
-  {
-    type:"goblin",
-    name:"Goblin",
-    unlock:1,
-    hp:.65,
-    speed:1.25,
-    damage:3,
-    wall:18,
-    reward:4
-  },
-
-  {
-    type:"orc",
-    name:"Ork",
-    unlock:2,
-    hp:.95,
-    speed:1,
-    damage:4,
-    wall:25,
-    reward:6
-  },
-
-  {
-    type:"wolf",
-    name:"Kurt Yaratık",
-    unlock:3,
-    hp:.72,
-    speed:1.55,
-    damage:4,
-    wall:22,
-    reward:7
-  },
-
-  {
-    type:"raider",
-    name:"Yağmacı",
-    unlock:4,
-    hp:1.15,
-    speed:1.12,
-    damage:5,
-    wall:30,
-    reward:8
-  },
-
-  {
-    type:"armored",
-    name:"Zırhlı Ork",
-    unlock:5,
-    hp:1.65,
-    speed:.82,
-    damage:7,
-    wall:40,
-    reward:11
-  },
-
-  {
-    type:"brute",
-    name:"Vahşi",
-    unlock:6,
-    hp:2,
-    speed:.75,
-    damage:8,
-    wall:48,
-    reward:14
-  },
-
-  {
-    type:"ogre",
-    name:"Ogre",
-    unlock:7,
-    hp:2.6,
-    speed:.62,
-    damage:10,
-    wall:60,
-    reward:18
-  },
-
-  {
-    type:"warlord",
-    name:"Savaş Lordu",
-    unlock:8,
-    hp:3.1,
-    speed:.68,
-    damage:12,
-    wall:70,
-    reward:22
-  },
-
-  {
-    type:"demon",
-    name:"İblis",
-    unlock:9,
-    hp:3.7,
-    speed:.72,
-    damage:13,
-    wall:80,
-    reward:27
-  },
-
-  {
-    type:"boss",
-    name:"Kadim Muhafız",
-    unlock:10,
-    hp:5,
-    speed:.58,
-    damage:17,
-    wall:100,
-    reward:40
-  }
-
+  {type:"goblin",name:"Goblin",unlock:1,hp:.65,speed:1.25,damage:3,wall:18,reward:4},
+  {type:"orc",name:"Ork",unlock:2,hp:.95,speed:1,damage:4,wall:25,reward:6},
+  {type:"wolf",name:"Kurt Yaratık",unlock:3,hp:.72,speed:1.55,damage:4,wall:22,reward:7},
+  {type:"raider",name:"Yağmacı",unlock:4,hp:1.15,speed:1.12,damage:5,wall:30,reward:8},
+  {type:"armored",name:"Zırhlı Ork",unlock:5,hp:1.65,speed:.82,damage:7,wall:40,reward:11},
+  {type:"brute",name:"Vahşi",unlock:6,hp:2,speed:.75,damage:8,wall:48,reward:14},
+  {type:"ogre",name:"Ogre",unlock:7,hp:2.6,speed:.62,damage:10,wall:60,reward:18},
+  {type:"warlord",name:"Savaş Lordu",unlock:8,hp:3.1,speed:.68,damage:12,wall:70,reward:22},
+  {type:"demon",name:"İblis",unlock:9,hp:3.7,speed:.72,damage:13,wall:80,reward:27},
+  {type:"boss",name:"Kadim Muhafız",unlock:10,hp:5,speed:.58,damage:17,wall:100,reward:40}
 ];
 
-/* =========================
-   UI
-========================= */
+/* ===== BİLDİRİM ===== */
 
 function showNotice(text){
-
-  const notice=$("notice");
-
-  notice.textContent=text;
-  notice.classList.add("show");
-
+  const n=$("notice");
+  n.textContent=text;
+  n.classList.add("show");
   clearTimeout(showNotice.timer);
-
-  showNotice.timer=setTimeout(()=>{
-    notice.classList.remove("show");
-  },1500);
-
+  showNotice.timer=setTimeout(()=>n.classList.remove("show"),1500);
 }
 
 function sync(){
-
   $("money").textContent=Math.floor(money);
   $("wallHP").textContent=Math.max(0,Math.floor(wallHP));
   $("wave").textContent=wave;
-
   renderBuildChoices();
-
+  renderTowerArchers();
 }
 
+/* ===== KULE PANELİ ===== */
+
+document.querySelectorAll(".towerTap").forEach(tap=>{
+  tap.addEventListener("pointerup",()=>{
+    openTowerPanel(tap.dataset.tower);
+  });
+});
+
+function openTowerPanel(side){
+  selectedTower=side;
+
+  $("leftTower").classList.toggle("selected",side==="left");
+  $("rightTower").classList.toggle("selected",side==="right");
+
+  $("towerTitle").textContent=
+    side==="left" ? "🏹 Sol Sur Kulesi" : "🏹 Sağ Sur Kulesi";
+
+  updateTowerPanel();
+
+  $("buildPanel").style.display="none";
+  $("towerPanel").style.display="block";
+}
+
+function updateTowerPanel(){
+  if(!selectedTower)return;
+
+  const tower=towers[selectedTower];
+
+  $("towerCurrent").textContent=tower.count;
+
+  const btn=$("towerAdd");
+
+  if(tower.count>=TOWER_CAPACITY){
+    btn.textContent="✓ Kule Dolu — 4/4";
+    btn.disabled=true;
+  }else{
+    btn.textContent="🏹 Okçu Yerleştir — "+TOWER_ARCHER_COST+" 🪙";
+    btn.disabled=money<TOWER_ARCHER_COST;
+  }
+}
+
+$("towerAdd").onclick=()=>{
+  if(!selectedTower)return;
+
+  const tower=towers[selectedTower];
+
+  if(tower.count>=TOWER_CAPACITY){
+    showNotice("Bu kulede 4 okçu var.");
+    return;
+  }
+
+  if(money<TOWER_ARCHER_COST){
+    showNotice("Yeterli altın yok.");
+    return;
+  }
+
+  money-=TOWER_ARCHER_COST;
+  tower.count++;
+
+  /* yeni okçu anında ateş edebilsin */
+  tower.lastAttacks[tower.count-1]=gameTime-2000;
+
+  renderTowerArchers();
+  updateTowerPanel();
+  sync();
+
+  showNotice(
+    (selectedTower==="left"?"Sol":"Sağ")+
+    " kule: "+tower.count+"/4 okçu"
+  );
+};
+
+$("closeTower").onclick=()=>{
+  selectedTower=null;
+  $("towerPanel").style.display="none";
+  $("leftTower").classList.remove("selected");
+  $("rightTower").classList.remove("selected");
+};
+
+function towerArcherHTML(index){
+  return `
+    <div class="towerArcher" data-archer="${index}">
+      <i class="taLeg l"></i>
+      <i class="taLeg r"></i>
+      <i class="taBody"></i>
+      <i class="taHead"></i>
+      <i class="taHood"></i>
+      <i class="taBow"></i>
+    </div>
+  `;
+}
+
+function renderTowerArchers(){
+  ["left","right"].forEach(side=>{
+    const tower=towers[side];
+    const box=$(side+"Archers");
+    const count=$(side+"Count");
+
+    box.innerHTML="";
+
+    for(let i=0;i<tower.count;i++){
+      box.insertAdjacentHTML("beforeend",towerArcherHTML(i));
+    }
+
+    count.textContent=tower.count+"/4";
+
+    const old=$(side+"Tower").querySelector(".towerReady");
+    if(old)old.remove();
+
+    if(tower.count<TOWER_CAPACITY){
+      const hint=document.createElement("div");
+      hint.className="towerReady";
+      hint.textContent="🏹 "+tower.count+"/4";
+      $(side+"Tower").appendChild(hint);
+    }
+  });
+
+  updateTowerPanel();
+}
+
+/* ===== BİNALAR ===== */
+
 function renderBuildChoices(){
-
   const box=$("buildChoices");
-
   box.innerHTML="";
 
   Object.entries(BUILDINGS).forEach(([type,data])=>{
-
     const button=document.createElement("button");
-
-    button.innerHTML=
-      data.icon+" "+data.name+
-      "<br>"+data.cost+" 🪙";
-
+    button.innerHTML=data.icon+" "+data.name+"<br>"+data.cost+" 🪙";
     button.disabled=money<data.cost;
-
     button.onclick=()=>build(type);
-
     box.appendChild(button);
-
   });
-
 }
 
-/* =========================
-   BİNALAR
-========================= */
-
 function buildingHTML(building){
-
   const extra=
-    building.type==="archer"
-      ?"archerBuilding"
-    :building.type==="cavalry"
-      ?"cavalryBuilding"
-    :building.type==="artillery"
-      ?"artilleryBuilding"
-      :"";
+    building.type==="archer"?"archerBuilding":
+    building.type==="cavalry"?"cavalryBuilding":
+    building.type==="artillery"?"artilleryBuilding":"";
 
   return `
     <div class="buildingModel ${extra}">
@@ -1922,30 +1005,15 @@ function buildingHTML(building){
       <i class="bDoor"></i>
       <i class="bFlag">${BUILDINGS[building.type].icon}</i>
     </div>
-
-    <span class="level">
-      Lv.${building.level}
-    </span>
-
-    <span class="prod">
-      <i></i>
-    </span>
+    <span class="level">Lv.${building.level}</span>
+    <span class="prod"><i></i></span>
   `;
-
 }
 
-/* HANGİ BİNALAR BİRLEŞEBİLİR? */
-
 function updateMergeLights(){
-
-  document
-    .querySelectorAll(".slot")
-    .forEach(element=>{
-      element.classList.remove("canMerge");
-    });
+  document.querySelectorAll(".slot").forEach(e=>e.classList.remove("canMerge"));
 
   buildings.forEach(building=>{
-
     if(building.level>=5)return;
 
     const partner=buildings.find(other=>
@@ -1954,170 +1022,98 @@ function updateMergeLights(){
       other.level===building.level
     );
 
-    if(!partner)return;
-
-    document
-      .querySelector(
-        `.slot[data-slot="${building.slot}"]`
-      )
-      ?.classList.add("canMerge");
-
+    if(partner){
+      document.querySelector(`.slot[data-slot="${building.slot}"]`)
+        ?.classList.add("canMerge");
+    }
   });
-
 }
 
 function renderSlots(){
-
-  document
-    .querySelectorAll(".slot")
-    .forEach(element=>element.remove());
+  document.querySelectorAll(".slot").forEach(e=>e.remove());
 
   slots.forEach((slot,index)=>{
-
     const element=document.createElement("div");
-
     element.className="slot";
     element.dataset.slot=index;
-
     element.style.left=slot.x+"%";
     element.style.top=slot.y+"%";
 
-    const building=
-      buildings.find(b=>b.slot===index);
+    const building=buildings.find(b=>b.slot===index);
 
     if(building){
-
       element.classList.add("building");
+      element.innerHTML=buildingHTML(building);
 
-      element.innerHTML=
-        buildingHTML(building);
-
-      element.addEventListener(
-        "pointerdown",
-        event=>{
-          startBuildingDrag(
-            event,
-            building,
-            element
-          );
-        }
-      );
-
+      element.addEventListener("pointerdown",event=>{
+        startBuildingDrag(event,building,element);
+      });
     }else{
-
       element.innerHTML="＋<br>YAPI";
 
-      element.addEventListener(
-        "pointerup",
-        ()=>{
-
-          if(drag)return;
-
-          buildSlot=index;
-
-          $("buildPanel").style.display="block";
-
-          renderBuildChoices();
-
-        }
-      );
-
+      element.addEventListener("pointerup",()=>{
+        if(drag)return;
+        buildSlot=index;
+        $("towerPanel").style.display="none";
+        $("buildPanel").style.display="block";
+        renderBuildChoices();
+      });
     }
 
     game.appendChild(element);
-
   });
 
   updateMergeLights();
-
 }
 
 function build(type){
-
   if(buildSlot===null)return;
 
   const data=BUILDINGS[type];
-
   if(money<data.cost)return;
 
   money-=data.cost;
 
   buildings.push({
-
     slot:buildSlot,
-
     type,
-
     level:1,
-
     lastProduction:gameTime
-
   });
 
   buildSlot=null;
-
   $("buildPanel").style.display="none";
 
   renderSlots();
   sync();
-
 }
 
 $("closeBuild").onclick=()=>{
-
   buildSlot=null;
-
   $("buildPanel").style.display="none";
-
 };
 
-/* =========================
-   BİNA BİRLEŞTİRME
-========================= */
+/* ===== BİRLEŞTİRME ===== */
 
 function startBuildingDrag(event,building,source){
-
   event.preventDefault();
 
   drag={
-
     building,
-
     source,
-
     startX:event.clientX,
-
     startY:event.clientY,
-
     moved:false,
-
     ghost:null
-
   };
 
-  source.setPointerCapture?.(
-    event.pointerId
-  );
-
-  source.addEventListener(
-    "pointermove",
-    moveBuilding
-  );
-
-  source.addEventListener(
-    "pointerup",
-    dropBuilding
-  );
-
-  source.addEventListener(
-    "pointercancel",
-    dropBuilding
-  );
-
+  source.setPointerCapture?.(event.pointerId);
+  source.addEventListener("pointermove",moveBuilding);
+  source.addEventListener("pointerup",dropBuilding);
+  source.addEventListener("pointercancel",dropBuilding);
 }
 
 function moveBuilding(event){
-
   if(!drag)return;
 
   const movement=Math.hypot(
@@ -2128,165 +1124,78 @@ function moveBuilding(event){
   if(!drag.moved && movement<7)return;
 
   if(!drag.moved){
-
     drag.moved=true;
+    drag.source.classList.add("dragging");
 
-    drag.source.classList.add(
-      "dragging"
-    );
-
-    const ghost=
-      document.createElement("div");
-
+    const ghost=document.createElement("div");
     ghost.className="dragGhost";
-
-    ghost.innerHTML=
-      buildingHTML(drag.building);
-
+    ghost.innerHTML=buildingHTML(drag.building);
     game.appendChild(ghost);
-
     drag.ghost=ghost;
-
   }
 
-  const rect=
-    game.getBoundingClientRect();
+  const rect=game.getBoundingClientRect();
 
-  drag.ghost.style.left=
-    event.clientX-
-    rect.left+
-    "px";
+  drag.ghost.style.left=(event.clientX-rect.left)+"px";
+  drag.ghost.style.top=(event.clientY-rect.top)+"px";
 
-  drag.ghost.style.top=
-    event.clientY-
-    rect.top+
-    "px";
+  document.querySelectorAll(".slot").forEach(e=>e.classList.remove("mergeTarget"));
 
-  document
-    .querySelectorAll(".slot")
-    .forEach(element=>{
-      element.classList.remove(
-        "mergeTarget"
-      );
-    });
-
-  const target=
-    findMergeTarget(
-      event.clientX,
-      event.clientY,
-      drag.building
-    );
+  const target=findMergeTarget(event.clientX,event.clientY,drag.building);
 
   if(target!==null){
-
-    document
-      .querySelector(
-        `.slot[data-slot="${target}"]`
-      )
-      ?.classList.add(
-        "mergeTarget"
-      );
-
+    document.querySelector(`.slot[data-slot="${target}"]`)
+      ?.classList.add("mergeTarget");
   }
-
 }
 
 function findMergeTarget(x,y,source){
-
   let target=null;
   let best=58;
 
-  document
-    .querySelectorAll(".slot.building")
-    .forEach(element=>{
+  document.querySelectorAll(".slot.building").forEach(element=>{
+    const slot=Number(element.dataset.slot);
+    if(slot===source.slot)return;
 
-      const slot=
-        Number(element.dataset.slot);
+    const other=buildings.find(b=>b.slot===slot);
 
-      if(slot===source.slot)return;
+    if(
+      !other ||
+      other.type!==source.type ||
+      other.level!==source.level ||
+      other.level>=5
+    )return;
 
-      const other=
-        buildings.find(
-          b=>b.slot===slot
-        );
+    const rect=element.getBoundingClientRect();
 
-      if(
-        !other ||
-        other.type!==source.type ||
-        other.level!==source.level ||
-        other.level>=5
-      ){
-        return;
-      }
+    const d=Math.hypot(
+      x-(rect.left+rect.width/2),
+      y-(rect.top+rect.height/2)
+    );
 
-      const rect=
-        element.getBoundingClientRect();
-
-      const distance=Math.hypot(
-
-        x-
-        (
-          rect.left+
-          rect.width/2
-        ),
-
-        y-
-        (
-          rect.top+
-          rect.height/2
-        )
-
-      );
-
-      if(distance<best){
-
-        best=distance;
-        target=slot;
-
-      }
-
-    });
+    if(d<best){
+      best=d;
+      target=slot;
+    }
+  });
 
   return target;
-
 }
 
 function dropBuilding(event){
-
   if(!drag)return;
 
   const old=drag;
 
-  old.source.removeEventListener(
-    "pointermove",
-    moveBuilding
-  );
-
-  old.source.removeEventListener(
-    "pointerup",
-    dropBuilding
-  );
-
-  old.source.removeEventListener(
-    "pointercancel",
-    dropBuilding
-  );
+  old.source.removeEventListener("pointermove",moveBuilding);
+  old.source.removeEventListener("pointerup",dropBuilding);
+  old.source.removeEventListener("pointercancel",dropBuilding);
 
   if(old.moved){
-
-    const targetSlot=
-      findMergeTarget(
-        event.clientX,
-        event.clientY,
-        old.building
-      );
+    const targetSlot=findMergeTarget(event.clientX,event.clientY,old.building);
 
     if(targetSlot!==null){
-
-      const target=
-        buildings.find(
-          b=>b.slot===targetSlot
-        );
+      const target=buildings.find(b=>b.slot===targetSlot);
 
       if(
         target &&
@@ -2294,1768 +1203,709 @@ function dropBuilding(event){
         target.level===old.building.level &&
         target.level<5
       ){
-
         target.level++;
+        target.lastProduction=gameTime;
+        buildings=buildings.filter(b=>b!==old.building);
 
-        target.lastProduction=
-          gameTime;
-
-        buildings=
-          buildings.filter(
-            b=>b!==old.building
-          );
-
-        showNotice(
-          BUILDINGS[target.type].name+
-          " → Lv."+target.level
-        );
-
+        showNotice(BUILDINGS[target.type].name+" → Lv."+target.level);
       }
-
-    }else{
-
-      showNotice(
-        "Işık saçan eş binanın üzerine bırak."
-      );
-
     }
-
   }
 
   old.ghost?.remove();
 
-  document
-    .querySelectorAll(".slot")
-    .forEach(element=>{
-
-      element.classList.remove(
-        "mergeTarget"
-      );
-
-      element.classList.remove(
-        "dragging"
-      );
-
-    });
+  document.querySelectorAll(".slot").forEach(e=>{
+    e.classList.remove("mergeTarget","dragging");
+  });
 
   drag=null;
-
   renderSlots();
   sync();
-
 }
 
-/* =========================
-   DALGA
-========================= */
+/* ===== DALGA ===== */
 
 $("waveButton").onclick=()=>{
-
-  if(
-    waveActive ||
-    wallHP<=0
-  )return;
+  if(waveActive || wallHP<=0)return;
 
   wave++;
-
   waveActive=true;
+  enemiesToSpawn=5+wave*2;
+  lastSpawnGameTime=gameTime-1000;
 
-  enemiesToSpawn=
-    5+wave*2;
-
-  lastSpawnGameTime=
-    gameTime-1000;
-
-  buildings.forEach(building=>{
-    building.lastProduction=
-      gameTime;
-  });
+  buildings.forEach(b=>b.lastProduction=gameTime);
 
   $("waveButton").disabled=true;
 
-  const unlocked=
-    MONSTERS.find(
-      monster=>monster.unlock===wave
-    );
-
-  if(unlocked){
-
-    showNotice(
-      "⚠ Yeni düşman: "+
-      unlocked.name
-    );
-
-  }
+  const unlocked=MONSTERS.find(m=>m.unlock===wave);
+  if(unlocked)showNotice("⚠ Yeni düşman: "+unlocked.name);
 
   sync();
-
 };
 
 $("speedButton").onclick=()=>{
-
-  gameSpeed=
-    gameSpeed===1
-      ?2
-    :gameSpeed===2
-      ?3
-      :1;
-
-  $("speedButton").textContent=
-    "⏩ x"+gameSpeed;
-
+  gameSpeed=gameSpeed===1?2:gameSpeed===2?3:1;
+  $("speedButton").textContent="⏩ x"+gameSpeed;
 };
 
-/* =========================
-   DÜŞMAN OLUŞTURMA
-========================= */
+/* ===== DÜŞMAN ===== */
 
 function chooseMonster(){
+  const available=MONSTERS.filter(m=>m.unlock<=wave);
 
-  const available=
-    MONSTERS.filter(
-      monster=>
-        monster.unlock<=wave
-    );
+  if(Math.random()<.34)return available[available.length-1];
 
-  if(Math.random()<.34){
-
-    return available[
-      available.length-1
-    ];
-
-  }
-
-  return available[
-    Math.floor(
-      Math.random()*
-      available.length
-    )
-  ];
-
+  return available[Math.floor(Math.random()*available.length)];
 }
 
 function monsterHTML(type){
-
   return `
     <div class="enemyShadow"></div>
-
     <div class="monster ${type}">
-
-      <i class="mLeg ml1"></i>
-      <i class="mLeg ml2"></i>
-
-      <i class="mArm ma1"></i>
-      <i class="mArm ma2"></i>
-
-      <i class="mBody"></i>
-      <i class="mHead"></i>
-
-      <i class="mEye me1"></i>
-      <i class="mEye me2"></i>
-
+      <i class="mLeg ml1"></i><i class="mLeg ml2"></i>
+      <i class="mArm ma1"></i><i class="mArm ma2"></i>
+      <i class="mBody"></i><i class="mHead"></i>
+      <i class="mEye me1"></i><i class="mEye me2"></i>
     </div>
-
-    <div class="hpbar">
-      <i></i>
-    </div>
+    <div class="hpbar"><i></i></div>
   `;
-
 }
 
 function spawnEnemy(){
-
-  const monster=
-    chooseMonster();
-
-  const baseHP=
-    32+wave*11;
+  const monster=chooseMonster();
+  const baseHP=32+wave*11;
 
   const enemy={
-
     type:monster.type,
-
     x:35+Math.random()*30,
-
     y:24,
-
-    hp:
-      baseHP*
-      monster.hp,
-
-    maxHP:
-      baseHP*
-      monster.hp,
-
-    speed:
-      (.006+wave*.00016)*
-      monster.speed,
-
-    damage:
-      monster.damage+
-      wave*.22,
-
-    wallDamage:
-      monster.wall,
-
-    reward:
-      monster.reward,
-
+    hp:baseHP*monster.hp,
+    maxHP:baseHP*monster.hp,
+    speed:(.006+wave*.00016)*monster.speed,
+    damage:monster.damage+wave*.22,
+    wallDamage:monster.wall,
+    reward:monster.reward,
     lastAttack:0,
-
-    element:
-      document.createElement("div")
-
+    element:document.createElement("div")
   };
 
-  enemy.element.className=
-    "enemy walk";
+  enemy.element.className="enemy";
+  enemy.element.innerHTML=monsterHTML(monster.type);
 
-  enemy.element.innerHTML=
-    monsterHTML(monster.type);
-
-  game.appendChild(
-    enemy.element
-  );
-
+  game.appendChild(enemy.element);
   enemies.push(enemy);
-
 }
 
-/* =========================
-   ASKER MODELLERİ
-========================= */
+/* ===== BİRLİKLER ===== */
 
 function soldierCore(level){
-
   return `
-    ${
-      level>=3
-        ?'<i class="helmet"></i>'
-        :'<i class="hair"></i>'
-    }
-
-    <i class="sHead"></i>
-    <i class="face"></i>
-
-    <i class="chest"></i>
-    <i class="waist"></i>
-
-    <i class="arm left"></i>
-    <i class="arm right"></i>
-
-    <i class="leg left"></i>
-    <i class="leg right"></i>
+    ${level>=3?'<i class="helmet"></i>':'<i class="hair"></i>'}
+    <i class="sHead"></i><i class="face"></i>
+    <i class="chest"></i><i class="waist"></i>
+    <i class="arm left"></i><i class="arm right"></i>
+    <i class="leg left"></i><i class="leg right"></i>
   `;
-
 }
 
 function infantryHTML(level){
-
   return `
     <div class="shadow"></div>
-
     <div class="soldier warrior">
-
       ${soldierCore(level)}
-
-      ${
-        level>=2
-          ?'<i class="shield"></i>'
-          :''
-      }
-
+      ${level>=2?'<i class="shield"></i>':''}
       <i class="sword"></i>
-
     </div>
   `;
-
 }
 
 function archerHTML(level){
-
   return `
     <div class="shadow"></div>
-
     <div class="soldier archerSoldier">
-
       ${soldierCore(level)}
-
-      <i class="quiver"></i>
-      <i class="bow"></i>
-
+      <i class="quiver"></i><i class="bow"></i>
     </div>
   `;
-
 }
 
 function cavalryHTML(level){
-
   return `
     <div class="shadow"></div>
-
     <div class="horse">
-
-      <i class="tail"></i>
-
-      <i class="hLeg hl1"></i>
-      <i class="hLeg hl2"></i>
-      <i class="hLeg hl3"></i>
-      <i class="hLeg hl4"></i>
-
-      <i class="horseTorso"></i>
-      <i class="horseShoulder"></i>
-      <i class="horseNeck"></i>
-      <i class="mane"></i>
-
-      <i class="horseHead">
-        <i class="ear e1"></i>
-        <i class="ear e2"></i>
-      </i>
-
-      <i class="saddle"></i>
-      <i class="rein"></i>
-
+      <i class="hLeg hl1"></i><i class="hLeg hl2"></i>
+      <i class="hLeg hl3"></i><i class="hLeg hl4"></i>
+      <i class="horseTorso"></i><i class="horseNeck"></i>
+      <i class="horseHead"></i><i class="saddle"></i>
       <div class="rider">
-
-        ${
-          level>=3
-            ?'<i class="helmet"></i>'
-            :'<i class="hair"></i>'
-        }
-
-        <i class="sHead"></i>
-        <i class="chest"></i>
-
+        ${level>=3?'<i class="helmet"></i>':'<i class="hair"></i>'}
+        <i class="sHead"></i><i class="chest"></i>
       </div>
-
       <i class="lance"></i>
-
     </div>
   `;
-
 }
 
 function artilleryHTML(level){
-
   return `
     <div class="shadow"></div>
-
     <div class="cannon">
-
-      <i class="cannonWheel cw1"></i>
-      <i class="cannonWheel cw2"></i>
-
-      <i class="axle"></i>
-      <i class="carriage"></i>
-      <i class="cannonBarrel"></i>
-
+      <i class="cannonWheel cw1"></i><i class="cannonWheel cw2"></i>
+      <i class="carriage"></i><i class="cannonBarrel"></i>
       <div class="gunner">
-
-        ${
-          level>=3
-            ?'<i class="helmet"></i>'
-            :'<i class="hair"></i>'
-        }
-
-        <i class="sHead"></i>
-        <i class="chest"></i>
-
+        ${level>=3?'<i class="helmet"></i>':'<i class="hair"></i>'}
+        <i class="sHead"></i><i class="chest"></i>
       </div>
-
     </div>
   `;
-
 }
 
-/* =========================
-   ASKER OLUŞTUR
-========================= */
-
 function spawnUnit(building){
-
-  const slot=
-    slots[building.slot];
-
-  const level=
-    building.level;
+  const slot=slots[building.slot];
+  const level=building.level;
 
   const stats={
-
-    barracks:{
-      hp:48+level*16,
-      damage:10+level*6,
-      speed:.010,
-      range:3.4,
-      attackRate:650,
-      preferredY:53
-    },
-
-    archer:{
-      hp:30+level*10,
-      damage:10+level*7,
-      speed:.007,
-      range:24+level*2,
-      attackRate:1000,
-      preferredY:56
-    },
-
-    cavalry:{
-      hp:60+level*19,
-      damage:17+level*9,
-      speed:.017,
-      range:4.2,
-      attackRate:850,
-      preferredY:48
-    },
-
-    artillery:{
-      hp:42+level*13,
-      damage:28+level*16,
-      speed:.0045,
-      range:32+level*2,
-      attackRate:2100,
-      preferredY:58
-    }
-
+    barracks:{hp:48+level*16,damage:10+level*6,speed:.010,range:3.4,attackRate:650,preferredY:53},
+    archer:{hp:30+level*10,damage:10+level*7,speed:.007,range:24+level*2,attackRate:1000,preferredY:56},
+    cavalry:{hp:60+level*19,damage:17+level*9,speed:.017,range:4.2,attackRate:850,preferredY:48},
+    artillery:{hp:42+level*13,damage:28+level*16,speed:.0045,range:32+level*2,attackRate:2100,preferredY:58}
   }[building.type];
 
   const unit={
-
     type:building.type,
-
     level,
-
-    x:
-      slot.x+
-      (Math.random()-.5)*4,
-
+    x:slot.x+(Math.random()-.5)*4,
     y:62,
-
     hp:stats.hp,
-
     maxHP:stats.hp,
-
-    damage:
-      stats.damage*
-      damageBonus,
-
+    damage:stats.damage*damageBonus,
     speed:stats.speed,
-
     range:stats.range,
-
-    attackRate:
-      stats.attackRate,
-
-    preferredY:
-      stats.preferredY,
-
+    attackRate:stats.attackRate,
+    preferredY:stats.preferredY,
     lastAttack:0,
-
     charged:true,
-
-    dustTimer:0,
-
-    element:
-      document.createElement("div")
-
+    element:document.createElement("div")
   };
 
-  unit.element.className=
-    "unit walk";
+  unit.element.className="unit walk";
 
-  if(unit.type==="barracks"){
-
-    unit.element.innerHTML=
-      infantryHTML(level);
-
-  }
-
-  if(unit.type==="archer"){
-
-    unit.element.innerHTML=
-      archerHTML(level);
-
-  }
+  if(unit.type==="barracks")unit.element.innerHTML=infantryHTML(level);
+  if(unit.type==="archer")unit.element.innerHTML=archerHTML(level);
 
   if(unit.type==="cavalry"){
-
-    unit.element.classList.add(
-      "cavalryUnit"
-    );
-
-    unit.element.innerHTML=
-      cavalryHTML(level);
-
+    unit.element.classList.add("cavalryUnit");
+    unit.element.innerHTML=cavalryHTML(level);
   }
 
   if(unit.type==="artillery"){
-
-    unit.element.classList.add(
-      "artilleryUnit"
-    );
-
-    unit.element.innerHTML=
-      artilleryHTML(level);
-
+    unit.element.classList.add("artilleryUnit");
+    unit.element.innerHTML=artilleryHTML(level);
   }
 
-  game.appendChild(
-    unit.element
-  );
-
+  game.appendChild(unit.element);
   units.push(unit);
-
 }
 
-/* =========================
-   MESAFE
-========================= */
+/* ===== HEDEF ===== */
 
 function distance(a,b){
-
-  return Math.hypot(
-    a.x-b.x,
-    a.y-b.y
-  );
-
+  return Math.hypot(a.x-b.x,a.y-b.y);
 }
 
 function nearestEnemy(unit){
+  let target=null,best=Infinity;
 
+  enemies.forEach(enemy=>{
+    const d=distance(unit,enemy);
+    if(d<best){best=d;target=enemy}
+  });
+
+  return target;
+}
+
+function nearestDefender(enemy){
+  let target=null,best=Infinity;
+
+  units.forEach(unit=>{
+    const d=distance(enemy,unit);
+    if(d<best){best=d;target=unit}
+  });
+
+  return target;
+}
+
+/* ===== HASAR ===== */
+
+function hitSpark(x,y){
+  const e=document.createElement("div");
+  e.className="hitSpark";
+  e.style.left=x+"%";
+  e.style.top=y+"%";
+  game.appendChild(e);
+  setTimeout(()=>e.remove(),300);
+}
+
+function damageEnemy(enemy,damage){
+  if(!enemy || !enemies.includes(enemy))return;
+
+  enemy.hp-=damage;
+
+  enemy.element.classList.remove("hit");
+  void enemy.element.offsetWidth;
+  enemy.element.classList.add("hit");
+
+  hitSpark(enemy.x,enemy.y);
+
+  if(enemy.hp<=0){
+    money+=5+wave+enemy.reward;
+    enemy.element.remove();
+    enemies=enemies.filter(e=>e!==enemy);
+    sync();
+  }
+}
+
+function damageUnit(unit,damage){
+  if(!unit || !units.includes(unit))return;
+
+  unit.hp-=damage;
+
+  if(unit.hp<=0){
+    unit.element.remove();
+    units=units.filter(u=>u!==unit);
+  }
+}
+
+/* ===== KULE OKÇULARININ ATEŞİ ===== */
+
+function nearestTowerTarget(tower){
   let target=null;
   let best=Infinity;
 
   enemies.forEach(enemy=>{
+    const d=Math.hypot(enemy.x-tower.x,enemy.y-tower.y);
 
-    const d=
-      distance(unit,enemy);
-
-    if(d<best){
-
+    if(d<=TOWER_RANGE && d<best){
       best=d;
       target=enemy;
-
     }
-
   });
 
   return target;
-
 }
 
-function nearestDefender(enemy){
+function fireTowerArrow(tower,index,target){
+  const arrow={
+    x:tower.x,
+    y:tower.y-2.5,
+    target,
+    type:"towerArrow",
+    damage:(TOWER_BASE_DAMAGE+wave*.45)*damageBonus,
+    element:document.createElement("div")
+  };
 
-  let target=null;
-  let best=Infinity;
+  arrow.element.className="projectile towerArrow";
+  game.appendChild(arrow.element);
+  projectiles.push(arrow);
 
-  units.forEach(unit=>{
+  const archer=$(tower.side+"Archers")
+    .querySelector(`[data-archer="${index}"]`);
 
-    const d=
-      distance(enemy,unit);
+  if(archer){
+    archer.classList.remove("fire");
+    void archer.offsetWidth;
+    archer.classList.add("fire");
+  }
+}
 
-    if(d<best){
+function updateTowerArchers(){
+  if(!waveActive || enemies.length===0)return;
 
-      best=d;
-      target=unit;
+  ["left","right"].forEach(side=>{
+    const tower=towers[side];
 
+    for(let i=0;i<tower.count;i++){
+      if(gameTime-tower.lastAttacks[i]<TOWER_ATTACK_RATE)return;
+
+      const target=nearestTowerTarget(tower);
+
+      if(target){
+        tower.lastAttacks[i]=gameTime;
+        fireTowerArrow(tower,i,target);
+      }
     }
-
   });
-
-  return target;
-
 }
 
-/* =========================
-   EFEKTLER
-========================= */
+/* ===== NORMAL MERMİ ===== */
 
-function hitSpark(x,y){
+function fireProjectile(unit,target,type){
+  if(!target)return;
 
-  const spark=
-    document.createElement("div");
+  const p={
+    x:unit.x,
+    y:unit.y,
+    target,
+    type,
+    damage:unit.damage,
+    level:unit.level,
+    element:document.createElement("div")
+  };
 
-  spark.className="hitSpark";
+  p.element.className="projectile "+(type==="cannon"?"cannonball":"arrowProjectile");
 
-  spark.style.left=x+"%";
-  spark.style.top=y+"%";
-
-  game.appendChild(spark);
-
-  setTimeout(()=>{
-    spark.remove();
-  },300);
-
-}
-
-function createDust(x,y){
-
-  const dust=
-    document.createElement("div");
-
-  dust.className="dust";
-
-  dust.style.left=
-    (
-      x+
-      (Math.random()-.5)*2
-    )+"%";
-
-  dust.style.top=
-    (y+2)+"%";
-
-  game.appendChild(dust);
-
-  setTimeout(()=>{
-    dust.remove();
-  },500);
-
-}
-
-function muzzleFlash(unit){
-
-  const flash=
-    document.createElement("div");
-
-  flash.className="muzzleFlash";
-
-  flash.style.left=
-    (unit.x+6)+"%";
-
-  flash.style.top=
-    (unit.y-1.5)+"%";
-
-  game.appendChild(flash);
-
-  setTimeout(()=>{
-    flash.remove();
-  },230);
-
+  game.appendChild(p.element);
+  projectiles.push(p);
 }
 
 function createExplosion(x,y,damage,level){
+  const boom=document.createElement("div");
+  boom.className="explosion";
+  boom.style.left=x+"%";
+  boom.style.top=y+"%";
+  game.appendChild(boom);
 
-  const explosion=
-    document.createElement("div");
+  setTimeout(()=>boom.remove(),500);
 
-  explosion.className=
-    "explosion";
-
-  explosion.style.left=x+"%";
-  explosion.style.top=y+"%";
-
-  explosion.innerHTML=
-    '<i class="core"></i><i class="ring"></i>';
-
-  game.appendChild(
-    explosion
-  );
-
-  setTimeout(()=>{
-    explosion.remove();
-  },800);
-
-  for(let i=0;i<6;i++){
-
-    const smoke=
-      document.createElement("div");
-
-    smoke.className="smoke";
-
-    smoke.style.left=
-      (
-        x+
-        (Math.random()-.5)*5
-      )+"%";
-
-    smoke.style.top=
-      (
-        y+
-        (Math.random()-.5)*3
-      )+"%";
-
-    game.appendChild(smoke);
-
-    setTimeout(()=>{
-      smoke.remove();
-    },1300);
-
-  }
-
-  const radius=
-    5.5+
-    level*.9;
+  const radius=5.5+level*.9;
 
   [...enemies].forEach(enemy=>{
-
-    const d=Math.hypot(
-      enemy.x-x,
-      enemy.y-y
-    );
+    const d=Math.hypot(enemy.x-x,enemy.y-y);
 
     if(d<=radius){
-
-      damageEnemy(
-        enemy,
-        damage*
-        (
-          d<2.3
-            ?1
-            :.55
-        )
-      );
-
+      damageEnemy(enemy,damage*(d<2.3?1:.55));
     }
-
   });
-
 }
 
-/* =========================
-   HASAR
-========================= */
-
-function damageEnemy(enemy,damage){
-
-  if(
-    !enemy ||
-    !enemies.includes(enemy)
-  )return;
-
-  enemy.hp-=damage;
-
-  enemy.element.classList.remove(
-    "hit"
-  );
-
-  void enemy.element.offsetWidth;
-
-  enemy.element.classList.add(
-    "hit"
-  );
-
-  hitSpark(
-    enemy.x,
-    enemy.y
-  );
-
-  if(enemy.hp<=0){
-
-    money+=
-      5+
-      wave+
-      enemy.reward;
-
-    enemy.element.remove();
-
-    enemies=
-      enemies.filter(
-        e=>e!==enemy
-      );
-
-    sync();
-
-  }
-
-}
-
-function damageUnit(unit,damage){
-
-  if(
-    !unit ||
-    !units.includes(unit)
-  )return;
-
-  unit.hp-=damage;
-
-  unit.element.animate(
-    [
-      {
-        transform:
-          "translate(-50%,-50%)"
-      },
-      {
-        transform:
-          "translate(-50%,-50%) translateX(6px)"
-      },
-      {
-        transform:
-          "translate(-50%,-50%)"
-      }
-    ],
-    {
-      duration:180
-    }
-  );
-
-  if(unit.hp<=0){
-
-    unit.element.remove();
-
-    units=
-      units.filter(
-        u=>u!==unit
-      );
-
-  }
-
-}
-
-/* =========================
-   MERMİ
-========================= */
-
-function fireProjectile(unit,target,type){
-
-  if(!target)return;
-
-  if(type==="cannon"){
-
-    unit.element.classList.remove(
-      "fire"
-    );
-
-    void unit.element.offsetWidth;
-
-    unit.element.classList.add(
-      "fire"
-    );
-
-    muzzleFlash(unit);
-
-  }else{
-
-    unit.element.classList.remove(
-      "shoot"
-    );
-
-    void unit.element.offsetWidth;
-
-    unit.element.classList.add(
-      "shoot"
-    );
-
-  }
-
-  const projectile={
-
-    x:unit.x,
-
-    y:unit.y,
-
-    target,
-
-    type,
-
-    damage:unit.damage,
-
-    level:unit.level,
-
-    element:
-      document.createElement("div")
-
-  };
-
-  projectile.element.className=
-    "projectile "+
-    (
-      type==="cannon"
-        ?"cannonball"
-        :"arrowProjectile"
-    );
-
-  game.appendChild(
-    projectile.element
-  );
-
-  projectiles.push(
-    projectile
-  );
-
-}
-
-/* =========================
-   BİNA ÜRETİMİ
-========================= */
+/* ===== ÜRETİM ===== */
 
 function updateBuildings(){
-
   if(!waveActive)return;
 
   buildings.forEach(building=>{
-
-    const data=
-      BUILDINGS[building.type];
-
-    /*
-      productionBonus SADECE
-      üretimi etkiler.
-    */
+    const data=BUILDINGS[building.type];
 
     const productionTime=
       data.rate/
-      (
-        1+
-        (building.level-1)*.20
-      )/
+      (1+(building.level-1)*.20)/
       productionBonus;
 
-    const slot=
-      document.querySelector(
-        `.slot[data-slot="${building.slot}"]`
-      );
+    const slot=document.querySelector(`.slot[data-slot="${building.slot}"]`);
+    const bar=slot?.querySelector(".prod i");
 
-    const bar=
-      slot?.querySelector(
-        ".prod i"
-      );
-
-    const progress=
-      gameTime-
-      building.lastProduction;
+    const progress=gameTime-building.lastProduction;
 
     if(bar){
-
-      bar.style.width=
-        Math.min(
-          100,
-          progress/
-          productionTime*
-          100
-        )+"%";
-
+      bar.style.width=Math.min(100,progress/productionTime*100)+"%";
     }
 
-    if(
-      progress>=productionTime
-    ){
-
-      building.lastProduction=
-        gameTime;
-
+    if(progress>=productionTime){
+      building.lastProduction=gameTime;
       spawnUnit(building);
-
     }
-
   });
-
 }
 
-/* =========================
-   ASKER HAREKETİ
-========================= */
+/* ===== BİRLİK AI ===== */
+
+function moveUnit(unit,dx,dy,d,amount,dt){
+  unit.x+=dx/d*amount*dt;
+  unit.y+=dy/d*amount*dt;
+  unit.element.classList.add("walk");
+}
 
 function drawUnit(unit){
-
-  unit.element.style.left=
-    unit.x+"%";
-
-  unit.element.style.top=
-    unit.y+"%";
-
-}
-
-function moveUnit(
-  unit,
-  dx,
-  dy,
-  distanceValue,
-  amount,
-  dt
-){
-
-  unit.x+=
-    dx/
-    distanceValue*
-    amount*
-    dt;
-
-  unit.y+=
-    dy/
-    distanceValue*
-    amount*
-    dt;
-
-  unit.element.classList.add(
-    "walk"
-  );
-
-  unit.dustTimer+=dt;
-
-  if(unit.dustTimer>350){
-
-    if(
-      unit.type==="cavalry" ||
-      unit.type==="artillery"
-    ){
-
-      createDust(
-        unit.x,
-        unit.y
-      );
-
-    }
-
-    unit.dustTimer=0;
-
-  }
-
+  unit.element.style.left=unit.x+"%";
+  unit.element.style.top=unit.y+"%";
 }
 
 function updateUnits(dt){
-
   for(const unit of [...units]){
-
-    const enemy=
-      nearestEnemy(unit);
+    const enemy=nearestEnemy(unit);
 
     if(!enemy){
+      const dx=50-unit.x;
+      const dy=unit.preferredY-unit.y;
+      const d=Math.hypot(dx,dy)||1;
 
-      const dx=
-        50-unit.x;
-
-      const dy=
-        unit.preferredY-unit.y;
-
-      const d=
-        Math.hypot(dx,dy)||1;
-
-      if(d>2){
-
-        moveUnit(
-          unit,
-          dx,
-          dy,
-          d,
-          unit.speed*.45,
-          dt
-        );
-
-      }else{
-
-        unit.element
-          .classList.remove(
-            "walk"
-          );
-
-      }
+      if(d>2)moveUnit(unit,dx,dy,d,unit.speed*.45,dt);
+      else unit.element.classList.remove("walk");
 
       drawUnit(unit);
-
       continue;
-
     }
 
-    const dx=
-      enemy.x-unit.x;
-
-    const dy=
-      enemy.y-unit.y;
-
-    const d=
-      Math.hypot(dx,dy)||1;
-
-    /* PİYADE */
+    const dx=enemy.x-unit.x;
+    const dy=enemy.y-unit.y;
+    const d=Math.hypot(dx,dy)||1;
 
     if(unit.type==="barracks"){
-
       if(d>unit.range){
-
-        moveUnit(
-          unit,
-          dx,
-          dy,
-          d,
-          unit.speed,
-          dt
-        );
-
+        moveUnit(unit,dx,dy,d,unit.speed,dt);
       }else{
+        unit.element.classList.remove("walk");
 
-        unit.element
-          .classList.remove(
-            "walk"
-          );
-
-        if(
-          gameTime-
-          unit.lastAttack>=
-          unit.attackRate
-        ){
-
-          unit.lastAttack=
-            gameTime;
-
-          unit.element.classList.remove(
-            "melee"
-          );
-
+        if(gameTime-unit.lastAttack>=unit.attackRate){
+          unit.lastAttack=gameTime;
+          unit.element.classList.remove("melee");
           void unit.element.offsetWidth;
-
-          unit.element.classList.add(
-            "melee"
-          );
-
-          damageEnemy(
-            enemy,
-            unit.damage
-          );
-
+          unit.element.classList.add("melee");
+          damageEnemy(enemy,unit.damage);
         }
-
       }
-
     }
-
-    /* OKÇU */
 
     else if(unit.type==="archer"){
-
       if(d>unit.range){
+        moveUnit(unit,dx,dy,d,unit.speed,dt);
+      }else if(d<11){
+        moveUnit(unit,-dx,-dy,d,unit.speed*.55,dt);
+      }else{
+        unit.element.classList.remove("walk");
 
-        moveUnit(
-          unit,
-          dx,
-          dy,
-          d,
-          unit.speed,
-          dt
-        );
-
-      }
-
-      else if(d<11){
-
-        moveUnit(
-          unit,
-          -dx,
-          -dy,
-          d,
-          unit.speed*.55,
-          dt
-        );
-
-      }
-
-      else{
-
-        unit.element
-          .classList.remove(
-            "walk"
-          );
-
-        if(
-          gameTime-
-          unit.lastAttack>=
-          unit.attackRate
-        ){
-
-          unit.lastAttack=
-            gameTime;
-
-          fireProjectile(
-            unit,
-            enemy,
-            "arrow"
-          );
-
+        if(gameTime-unit.lastAttack>=unit.attackRate){
+          unit.lastAttack=gameTime;
+          fireProjectile(unit,enemy,"arrow");
         }
-
       }
-
     }
-
-    /* SÜVARİ */
 
     else if(unit.type==="cavalry"){
-
       if(d>unit.range){
-
-        moveUnit(
-          unit,
-          dx,
-          dy,
-          d,
-          unit.speed,
-          dt
-        );
-
+        moveUnit(unit,dx,dy,d,unit.speed,dt);
       }else{
+        unit.element.classList.remove("walk");
 
-        unit.element
-          .classList.remove(
-            "walk"
-          );
+        if(gameTime-unit.lastAttack>=unit.attackRate){
+          unit.lastAttack=gameTime;
 
-        if(
-          gameTime-
-          unit.lastAttack>=
-          unit.attackRate
-        ){
-
-          unit.lastAttack=
-            gameTime;
-
-          unit.element.classList.remove(
-            "charge"
-          );
-
-          void unit.element.offsetWidth;
-
-          unit.element.classList.add(
-            "charge"
-          );
-
-          let damage=
-            unit.damage;
-
+          let damage=unit.damage;
           if(unit.charged){
-
             damage*=1.8;
-
             unit.charged=false;
-
           }
 
-          damageEnemy(
-            enemy,
-            damage
-          );
-
+          damageEnemy(enemy,damage);
         }
-
       }
-
     }
-
-    /* TOPÇU */
 
     else if(unit.type==="artillery"){
-
       if(d>unit.range){
+        moveUnit(unit,dx,dy,d,unit.speed,dt);
+      }else if(d<14){
+        moveUnit(unit,-dx,-dy,d,unit.speed*.7,dt);
+      }else{
+        unit.element.classList.remove("walk");
 
-        moveUnit(
-          unit,
-          dx,
-          dy,
-          d,
-          unit.speed,
-          dt
-        );
-
-      }
-
-      else if(d<14){
-
-        moveUnit(
-          unit,
-          -dx,
-          -dy,
-          d,
-          unit.speed*.7,
-          dt
-        );
-
-      }
-
-      else{
-
-        unit.element
-          .classList.remove(
-            "walk"
-          );
-
-        if(
-          gameTime-
-          unit.lastAttack>=
-          unit.attackRate
-        ){
-
-          unit.lastAttack=
-            gameTime;
-
-          fireProjectile(
-            unit,
-            enemy,
-            "cannon"
-          );
-
+        if(gameTime-unit.lastAttack>=unit.attackRate){
+          unit.lastAttack=gameTime;
+          fireProjectile(unit,enemy,"cannon");
         }
-
       }
-
     }
 
-    unit.x=
-      Math.max(
-        6,
-        Math.min(
-          94,
-          unit.x
-        )
-      );
-
-    unit.y=
-      Math.max(
-        25,
-        Math.min(
-          62,
-          unit.y
-        )
-      );
+    unit.x=Math.max(6,Math.min(94,unit.x));
+    unit.y=Math.max(25,Math.min(62,unit.y));
 
     drawUnit(unit);
-
   }
-
 }
 
-/* =========================
-   DÜŞMAN AI
-
-   KRİTİK KURAL:
-   SAVUNMACI VARSA SUR
-   HASAR ALAMAZ.
-========================= */
+/* ===== DÜŞMAN AI ===== */
 
 function updateEnemies(dt){
-
   for(const enemy of [...enemies]){
 
-    if(units.length>0){
+    /*
+      KULE OKÇULARI SUR ÜSTÜNDE.
+      SAHADA BİRLİK VARSA DÜŞMAN
+      ÖNCE SAHA BİRLİKLERİYLE SAVAŞIR.
+    */
 
-      const defender=
-        nearestDefender(enemy);
+    if(units.length>0){
+      const defender=nearestDefender(enemy);
 
       if(defender){
-
-        const dx=
-          defender.x-enemy.x;
-
-        const dy=
-          defender.y-enemy.y;
-
-        const d=
-          Math.hypot(dx,dy)||1;
+        const dx=defender.x-enemy.x;
+        const dy=defender.y-enemy.y;
+        const d=Math.hypot(dx,dy)||1;
 
         if(d>3.7){
-
-          enemy.element
-            .classList.add(
-              "walk"
-            );
-
-          enemy.x+=
-            dx/d*
-            enemy.speed*
-            dt;
-
-          enemy.y+=
-            dy/d*
-            enemy.speed*
-            dt;
-
-        }else{
-
-          enemy.element
-            .classList.remove(
-              "walk"
-            );
-
-          if(
-            gameTime-
-            enemy.lastAttack>=
-            850
-          ){
-
-            enemy.lastAttack=
-              gameTime;
-
-            damageUnit(
-              defender,
-              enemy.damage
-            );
-
-          }
-
+          enemy.x+=dx/d*enemy.speed*dt;
+          enemy.y+=dy/d*enemy.speed*dt;
+        }else if(gameTime-enemy.lastAttack>=850){
+          enemy.lastAttack=gameTime;
+          damageUnit(defender,enemy.damage);
         }
-
       }
-
     }else{
-
       /*
-       SAVUNMACI KALMADI.
-       ARTIK KAPIYA GİDEBİLİR.
+        SAHADAKİ TÜM SAVUNMACILAR ÖLDÜ.
+        ANCAK ŞİMDİ SURA İLERLER.
       */
 
-      const gateX=50;
-      const gateY=61;
+      const dx=50-enemy.x;
+      const dy=61-enemy.y;
+      const d=Math.hypot(dx,dy)||1;
 
-      const dx=
-        gateX-enemy.x;
-
-      const dy=
-        gateY-enemy.y;
-
-      const d=
-        Math.hypot(dx,dy)||1;
-
-      enemy.element
-        .classList.add(
-          "walk"
-        );
-
-      enemy.x+=
-        dx/d*
-        enemy.speed*
-        dt;
-
-      enemy.y+=
-        dy/d*
-        enemy.speed*
-        dt;
+      enemy.x+=dx/d*enemy.speed*dt;
+      enemy.y+=dy/d*enemy.speed*dt;
 
       if(d<1.6){
-
-        wallHP-=
-          enemy.wallDamage;
+        wallHP-=enemy.wallDamage;
 
         enemy.element.remove();
-
-        enemies=
-          enemies.filter(
-            e=>e!==enemy
-          );
+        enemies=enemies.filter(e=>e!==enemy);
 
         sync();
 
         if(wallHP<=0){
-
           wallHP=0;
-
           waveActive=false;
-
           $("waveButton").disabled=true;
-
-          showNotice(
-            "SUR YIKILDI!"
-          );
-
+          showNotice("SUR YIKILDI!");
           sync();
-
-          continue;
-
         }
 
+        continue;
       }
-
     }
 
-    enemy.element.style.left=
-      enemy.x+"%";
+    enemy.element.style.left=enemy.x+"%";
+    enemy.element.style.top=enemy.y+"%";
 
-    enemy.element.style.top=
-      enemy.y+"%";
-
-    const hp=
-      enemy.element.querySelector(
-        ".hpbar i"
-      );
+    const hp=enemy.element.querySelector(".hpbar i");
 
     if(hp){
-
-      hp.style.width=
-        Math.max(
-          0,
-          enemy.hp/
-          enemy.maxHP*
-          100
-        )+"%";
-
+      hp.style.width=Math.max(0,enemy.hp/enemy.maxHP*100)+"%";
     }
-
   }
-
 }
 
-/* =========================
-   MERMİ HAREKETİ
-========================= */
+/* ===== MERMİ HAREKETİ ===== */
 
 function updateProjectiles(dt){
-
-  for(
-    const projectile
-    of [...projectiles]
-  ){
-
-    if(
-      !projectile.target ||
-      !enemies.includes(
-        projectile.target
-      )
-    ){
-
-      projectile.element.remove();
-
-      projectiles=
-        projectiles.filter(
-          p=>p!==projectile
-        );
-
+  for(const p of [...projectiles]){
+    if(!p.target || !enemies.includes(p.target)){
+      p.element.remove();
+      projectiles=projectiles.filter(x=>x!==p);
       continue;
-
     }
 
-    const dx=
-      projectile.target.x-
-      projectile.x;
+    const dx=p.target.x-p.x;
+    const dy=p.target.y-p.y;
+    const d=Math.hypot(dx,dy)||1;
 
-    const dy=
-      projectile.target.y-
-      projectile.y;
+    let speed=.045;
 
-    const d=
-      Math.hypot(dx,dy)||1;
-
-    const speed=
-      projectile.type==="cannon"
-        ?.024
-        :.045;
+    if(p.type==="cannon")speed=.024;
+    if(p.type==="towerArrow")speed=.055;
 
     if(d<1.7){
+      const x=p.target.x;
+      const y=p.target.y;
 
-      const x=
-        projectile.target.x;
-
-      const y=
-        projectile.target.y;
-
-      if(
-        projectile.type==="cannon"
-      ){
-
-        createExplosion(
-          x,
-          y,
-          projectile.damage,
-          projectile.level
-        );
-
+      if(p.type==="cannon"){
+        createExplosion(x,y,p.damage,p.level);
       }else{
-
-        damageEnemy(
-          projectile.target,
-          projectile.damage
-        );
-
+        damageEnemy(p.target,p.damage);
       }
 
-      projectile.element.remove();
-
-      projectiles=
-        projectiles.filter(
-          p=>p!==projectile
-        );
-
+      p.element.remove();
+      projectiles=projectiles.filter(x=>x!==p);
       continue;
-
     }
 
-    projectile.x+=
-      dx/d*
-      speed*
-      dt;
+    p.x+=dx/d*speed*dt;
+    p.y+=dy/d*speed*dt;
 
-    projectile.y+=
-      dy/d*
-      speed*
-      dt;
+    p.element.style.left=p.x+"%";
+    p.element.style.top=p.y+"%";
 
-    projectile.element.style.left=
-      projectile.x+"%";
-
-    projectile.element.style.top=
-      projectile.y+"%";
-
-    if(
-      projectile.type==="arrow"
-    ){
-
-      projectile.element.style.transform=
-        `translate(-50%,-50%)
-         rotate(
-           ${Math.atan2(dy,dx)*180/Math.PI}deg
-         )`;
-
+    if(p.type==="arrow" || p.type==="towerArrow"){
+      p.element.style.transform=
+        `translate(-50%,-50%) rotate(${Math.atan2(dy,dx)*180/Math.PI}deg)`;
     }
-
   }
-
 }
 
-/* =========================
-   DALGA SONU
-========================= */
+/* ===== DALGA SONU ===== */
 
 function checkWaveEnd(){
-
-  if(
-    !waveActive ||
-    enemiesToSpawn>0 ||
-    enemies.length>0
-  ){
-    return;
-  }
+  if(!waveActive || enemiesToSpawn>0 || enemies.length>0)return;
 
   waveActive=false;
 
-  units.forEach(unit=>{
-    unit.element.remove();
-  });
-
+  units.forEach(unit=>unit.element.remove());
   units=[];
 
-  projectiles.forEach(
-    projectile=>{
-      projectile.element.remove();
-    }
-  );
-
+  projectiles.forEach(p=>p.element.remove());
   projectiles=[];
 
-  document
-    .querySelectorAll(".prod i")
-    .forEach(element=>{
-      element.style.width="0%";
-    });
+  document.querySelectorAll(".prod i").forEach(e=>e.style.width="0%");
 
   $("waveButton").disabled=false;
-
-  $("upgradePanel").style.display=
-    "block";
-
+  $("upgradePanel").style.display="block";
 }
 
-/* =========================
-   DALGA ÖDÜLÜ
-========================= */
+/* ===== GELİŞTİRME ===== */
 
-document
-  .querySelectorAll("[data-up]")
-  .forEach(button=>{
+document.querySelectorAll("[data-up]").forEach(button=>{
+  button.onclick=()=>{
+    const type=button.dataset.up;
 
-    button.onclick=()=>{
+    if(type==="damage")damageBonus*=1.20;
+    if(type==="production")productionBonus*=1.15;
+    if(type==="wall")wallHP=Math.min(1500,wallHP+100);
+    if(type==="money")money+=120;
 
-      const type=
-        button.dataset.up;
+    $("upgradePanel").style.display="none";
+    sync();
+  };
+});
 
-      if(type==="damage"){
-
-        damageBonus*=1.20;
-
-      }
-
-      if(type==="production"){
-
-        productionBonus*=1.15;
-
-      }
-
-      if(type==="wall"){
-
-        wallHP=
-          Math.min(
-            1500,
-            wallHP+100
-          );
-
-      }
-
-      if(type==="money"){
-
-        money+=120;
-
-      }
-
-      $("upgradePanel").style.display=
-        "none";
-
-      sync();
-
-    };
-
-  });
-
-/* =========================
-   ANA OYUN DÖNGÜSÜ
-========================= */
+/* ===== OYUN DÖNGÜSÜ ===== */
 
 function loop(realTime){
+  const realDT=Math.min(40,realTime-realLastFrame);
+  realLastFrame=realTime;
 
-  const realDT=
-    Math.min(
-      40,
-      realTime-
-      realLastFrame
-    );
-
-  realLastFrame=
-    realTime;
-
-  /*
-    TÜM OYUN ZAMANI
-    x1 / x2 / x3 İLE
-    AYNI ORANDA İLERLER.
-  */
-
-  const dt=
-    realDT*
-    gameSpeed;
-
+  const dt=realDT*gameSpeed;
   gameTime+=dt;
 
   if(
     waveActive &&
     enemiesToSpawn>0 &&
-    gameTime-
-    lastSpawnGameTime>=700
+    gameTime-lastSpawnGameTime>=700
   ){
-
     spawnEnemy();
-
     enemiesToSpawn--;
-
-    lastSpawnGameTime=
-      gameTime;
-
+    lastSpawnGameTime=gameTime;
   }
 
   updateBuildings();
-
   updateUnits(dt);
 
+  /* SUR KULE OKÇULARI */
+  updateTowerArchers();
+
   updateEnemies(dt);
-
   updateProjectiles(dt);
-
   checkWaveEnd();
 
   requestAnimationFrame(loop);
-
 }
 
-/* =========================
-   BAŞLAT
-========================= */
+/* ===== BAŞLAT ===== */
 
 renderSlots();
+renderTowerArchers();
 sync();
 
 requestAnimationFrame(loop);
 
 </script>
-
 </body>
 </html>
