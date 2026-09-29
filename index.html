@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Sur Savunması V8</title>
+<title>Sur Savunması V8.1</title>
 
 <style>
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent
+  -webkit-tap-highlight-color:transparent;
 }
 
 html,body{
@@ -34,7 +34,9 @@ html,body{
     linear-gradient(#86bfe0 0 19%,#b8d98d 19% 54%,#c9ad72 54% 100%);
 }
 
-/* ---------- UZAK MANZARA ---------- */
+/* =========================
+   ARKA PLAN
+========================= */
 
 .mountains{
   position:absolute;
@@ -58,8 +60,19 @@ html,body{
 }
 
 .m1{left:-75px}
-.m2{left:105px;width:220px;height:170px;background:linear-gradient(135deg,#91aa7c,#6d8869)}
-.m3{right:-80px;width:210px;height:155px}
+
+.m2{
+  left:105px;
+  width:220px;
+  height:170px;
+  background:linear-gradient(135deg,#91aa7c,#6d8869);
+}
+
+.m3{
+  right:-80px;
+  width:210px;
+  height:155px;
+}
 
 .mountain:after{
   content:"";
@@ -73,23 +86,6 @@ html,body{
   border-radius:8px 0 0;
 }
 
-.farTrees{
-  position:absolute;
-  z-index:1;
-  top:25%;
-  left:0;
-  right:0;
-  height:29%;
-  overflow:hidden;
-  pointer-events:none;
-}
-
-.farTrees span{
-  position:absolute;
-  font-size:40px;
-  filter:drop-shadow(0 4px 2px #0002);
-}
-
 .road{
   position:absolute;
   z-index:1;
@@ -101,8 +97,6 @@ html,body{
   clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);
   opacity:.9;
 }
-
-/* ---------- ÇİM / TAŞ DETAYLARI ---------- */
 
 .grassDetail{
   position:absolute;
@@ -119,11 +113,63 @@ html,body{
     radial-gradient(ellipse at 31% 40%,#668c50 0 2px,transparent 3px);
 }
 
-/* ---------- SUR ---------- */
+.farTrees{
+  position:absolute;
+  z-index:2;
+  top:25%;
+  left:0;
+  right:0;
+  height:29%;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.tree{
+  position:absolute;
+  width:32px;
+  height:50px;
+}
+
+.tree:before{
+  content:"";
+  position:absolute;
+  left:13px;
+  bottom:0;
+  width:7px;
+  height:18px;
+  border-radius:3px;
+  background:#65462d;
+}
+
+.tree:after{
+  content:"";
+  position:absolute;
+  left:1px;
+  top:0;
+  width:30px;
+  height:36px;
+  border-radius:50% 50% 45% 45%;
+  background:
+    radial-gradient(circle at 35% 28%,#6fa95b 0 20%,transparent 21%),
+    radial-gradient(circle at 65% 28%,#568f48 0 23%,transparent 24%),
+    radial-gradient(circle at 50% 58%,#427a3d 0 42%,transparent 43%);
+  filter:drop-shadow(0 4px 2px #0003);
+}
+
+.t1{left:2%;top:3%}
+.t2{left:10%;top:34%;transform:scale(.8)}
+.t3{right:2%;top:7%}
+.t4{right:11%;top:42%;transform:scale(.85)}
+.t5{left:2%;top:70%;transform:scale(.7)}
+.t6{right:1%;top:75%;transform:scale(.72)}
+
+/* =========================
+   SUR
+========================= */
 
 .wall{
   position:absolute;
-  z-index:6;
+  z-index:7;
   top:53%;
   left:-2%;
   width:104%;
@@ -158,6 +204,50 @@ html,body{
     );
 }
 
+.wallTower{
+  position:absolute;
+  bottom:-7px;
+  width:54px;
+  height:100px;
+  background:#aaa99d;
+  border:5px solid #66645e;
+  z-index:2;
+}
+
+.wallTower.left{
+  left:3%;
+}
+
+.wallTower.right{
+  right:3%;
+}
+
+.wallTower:before{
+  content:"";
+  position:absolute;
+  top:-15px;
+  left:-5px;
+  width:54px;
+  height:19px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #aaa99d 0 13px,
+      transparent 13px 20px
+    );
+}
+
+.wallTower:after{
+  content:"";
+  position:absolute;
+  left:17px;
+  top:28px;
+  width:10px;
+  height:18px;
+  background:#4c5354;
+  border-radius:8px 8px 0 0;
+}
+
 .gate{
   position:absolute;
   left:50%;
@@ -188,7 +278,9 @@ html,body{
   background:#503323;
 }
 
-/* ---------- KALE İÇİ ---------- */
+/* =========================
+   KALE ALANI
+========================= */
 
 .courtyard{
   position:absolute;
@@ -241,7 +333,7 @@ html,body{
     );
 }
 
-.towerL,.towerR{
+.castleTower{
   position:absolute;
   bottom:0;
   width:32px;
@@ -250,10 +342,10 @@ html,body{
   border:4px solid #5d5d58;
 }
 
-.towerL{left:0}
-.towerR{right:0}
+.castleTower.left{left:0}
+.castleTower.right{right:0}
 
-.towerL:before,.towerR:before{
+.castleTower:before{
   content:"";
   position:absolute;
   left:-4px;
@@ -280,11 +372,13 @@ html,body{
   border-radius:14px 14px 0 0;
 }
 
-/* ---------- HUD ---------- */
+/* =========================
+   HUD
+========================= */
 
 .hud{
   position:absolute;
-  z-index:30;
+  z-index:40;
   top:max(8px,env(safe-area-inset-top));
   left:8px;
   right:8px;
@@ -305,11 +399,13 @@ html,body{
   box-shadow:0 4px 8px #0003,inset 0 1px #ffffff30;
 }
 
-/* ---------- YAPI SLOTLARI ---------- */
+/* =========================
+   SLOTLAR / BİNALAR
+========================= */
 
 .slot{
   position:absolute;
-  z-index:12;
+  z-index:13;
   width:70px;
   height:70px;
   display:grid;
@@ -339,12 +435,20 @@ html,body{
   box-shadow:none!important;
 }
 
+.building.selected .mini{
+  filter:
+    drop-shadow(0 0 6px #ffe66d)
+    drop-shadow(0 0 10px #ffe66d);
+  transform:scale(1.08);
+}
+
 .mini{
   position:relative;
   width:68px;
   height:64px;
   display:block;
   filter:drop-shadow(0 5px 2px #0004);
+  transition:.15s;
 }
 
 .mini .base{
@@ -433,23 +537,444 @@ html,body{
   background:#f4c953;
 }
 
-/* ---------- KARAKTERLER ---------- */
+/* =========================
+   İNSAN ASKERLER
+========================= */
 
-.enemy,.unit,.proj{
+.unit{
+  position:absolute;
+  z-index:12;
+  width:32px;
+  height:46px;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+
+.soldier{
+  position:absolute;
+  left:2px;
+  top:1px;
+  width:28px;
+  height:42px;
+  transform-origin:50% 90%;
+  animation:soldierBob .34s ease-in-out infinite alternate;
+  filter:drop-shadow(0 3px 2px #0005);
+}
+
+/* gölge */
+
+.soldier:after{
+  content:"";
+  position:absolute;
+  z-index:-2;
+  left:3px;
+  bottom:-4px;
+  width:23px;
+  height:6px;
+  border-radius:50%;
+  background:#0004;
+}
+
+/* kafa */
+
+.soldier .head{
+  position:absolute;
+  z-index:5;
+  left:9px;
+  top:2px;
+  width:11px;
+  height:12px;
+  border-radius:50%;
+  background:#dca574;
+  border:1px solid #704b34;
+}
+
+/* burun */
+
+.soldier .head:after{
+  content:"";
+  position:absolute;
+  right:-2px;
+  top:5px;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:#bd815c;
+}
+
+/* miğfer */
+
+.soldier .helmet{
+  position:absolute;
+  z-index:7;
+  left:7px;
+  top:-1px;
+  width:15px;
+  height:9px;
+  border-radius:9px 9px 3px 3px;
+  background:linear-gradient(#89949b,#5d686f);
+  border:1px solid #3e474c;
+}
+
+.soldier .helmet:after{
+  content:"";
+  position:absolute;
+  left:-2px;
+  right:-3px;
+  bottom:-2px;
+  height:3px;
+  border-radius:2px;
+  background:#485157;
+}
+
+/* gövde */
+
+.soldier .torso{
+  position:absolute;
+  z-index:4;
+  left:7px;
+  top:12px;
+  width:15px;
+  height:17px;
+  border-radius:5px 5px 3px 3px;
+  background:
+    linear-gradient(
+      90deg,
+      #435b6e,
+      #718a9d 48%,
+      #3b5162
+    );
+  border:1px solid #30414e;
+}
+
+.soldier .torso:before{
+  content:"";
+  position:absolute;
+  left:6px;
+  top:0;
+  width:2px;
+  height:14px;
+  background:#b6c0c5aa;
+}
+
+.soldier .torso:after{
+  content:"";
+  position:absolute;
+  left:-1px;
+  right:-1px;
+  bottom:1px;
+  height:3px;
+  background:#604229;
+}
+
+/* kollar */
+
+.soldier .arm{
+  position:absolute;
+  z-index:3;
+  top:14px;
+  width:5px;
+  height:17px;
+  border-radius:4px;
+  background:
+    linear-gradient(
+      #506a7d 0 55%,
+      #d69e6d 56%
+    );
+  transform-origin:50% 2px;
+}
+
+.soldier .armL{
+  left:4px;
+  animation:armLeft .34s ease-in-out infinite alternate;
+}
+
+.soldier .armR{
+  right:3px;
+  animation:armRight .34s ease-in-out infinite alternate;
+}
+
+/* bacak */
+
+.soldier .leg{
+  position:absolute;
+  z-index:2;
+  top:27px;
+  width:6px;
+  height:14px;
+  border-radius:3px;
+  background:#4b4036;
+  transform-origin:50% 1px;
+}
+
+.soldier .legL{
+  left:7px;
+  animation:legLeft .34s ease-in-out infinite alternate;
+}
+
+.soldier .legR{
+  right:6px;
+  animation:legRight .34s ease-in-out infinite alternate;
+}
+
+.soldier .leg:after{
+  content:"";
+  position:absolute;
+  bottom:-2px;
+  left:-1px;
+  width:8px;
+  height:4px;
+  border-radius:3px;
+  background:#292724;
+}
+
+/* savaşçı kalkan */
+
+.warriorHuman .shield{
+  position:absolute;
+  z-index:8;
+  left:-3px;
+  top:14px;
+  width:14px;
+  height:18px;
+  border:2px solid #493626;
+  border-radius:7px 7px 9px 9px;
+  background:
+    linear-gradient(
+      90deg,
+      #a83f38 0 47%,
+      #d4a23e 48% 52%,
+      #8c302e 53%
+    );
+  transform:rotate(-9deg);
+}
+
+.warriorHuman .shield:after{
+  content:"";
+  position:absolute;
+  left:4px;
+  top:5px;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:#e4c674;
+}
+
+/* kılıç */
+
+.warriorHuman .sword{
+  position:absolute;
+  z-index:9;
+  right:-5px;
+  top:7px;
+  width:4px;
+  height:25px;
+  border-radius:3px 3px 1px 1px;
+  background:
+    linear-gradient(
+      90deg,
+      #79858c,
+      #f3f6f3,
+      #78848b
+    );
+  border:1px solid #455058;
+  transform:rotate(-30deg);
+  transform-origin:50% 90%;
+}
+
+.warriorHuman .sword:before{
+  content:"";
+  position:absolute;
+  left:-4px;
+  bottom:3px;
+  width:11px;
+  height:3px;
+  border-radius:2px;
+  background:#9c743d;
+}
+
+.warriorHuman .sword:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:3px;
+  height:7px;
+  background:#614027;
+}
+
+/* =========================
+   OKÇU
+========================= */
+
+.archerHuman .helmet{
+  background:linear-gradient(#66875b,#3f633d);
+  border-color:#304a2f;
+}
+
+.archerHuman .helmet:before{
+  content:"";
+  position:absolute;
+  left:4px;
+  top:-6px;
+  width:7px;
+  height:8px;
+  border-radius:70% 0;
+  background:#8f4938;
+  transform:rotate(-25deg);
+}
+
+.archerHuman .torso{
+  background:
+    linear-gradient(
+      90deg,
+      #365837,
+      #66845a 50%,
+      #304d32
+    );
+  border-color:#29442d;
+}
+
+.archerHuman .arm{
+  background:
+    linear-gradient(
+      #466b43 0 55%,
+      #d69e6d 56%
+    );
+}
+
+.archerHuman .leg{
+  background:#443d32;
+}
+
+/* sadak */
+
+.archerHuman .quiver{
+  position:absolute;
+  z-index:1;
+  left:3px;
+  top:10px;
+  width:7px;
+  height:23px;
+  border:1px solid #50351f;
+  border-radius:3px 3px 6px 6px;
+  background:#7b512d;
+  transform:rotate(17deg);
+}
+
+.archerHuman .quiver:before,
+.archerHuman .quiver:after{
+  content:"";
+  position:absolute;
+  top:-8px;
+  width:2px;
+  height:12px;
+  background:#ddd0a9;
+}
+
+.archerHuman .quiver:before{
+  left:1px;
+  transform:rotate(-7deg);
+}
+
+.archerHuman .quiver:after{
+  right:1px;
+  transform:rotate(8deg);
+}
+
+/* yay */
+
+.archerHuman .bow{
+  position:absolute;
+  z-index:8;
+  right:-8px;
+  top:9px;
+  width:17px;
+  height:28px;
+  border-right:3px solid #76502d;
+  border-radius:0 100% 100% 0;
+  transform:rotate(-8deg);
+  transform-origin:50% 50%;
+}
+
+.archerHuman .bow:after{
+  content:"";
+  position:absolute;
+  right:11px;
+  top:1px;
+  width:1px;
+  height:25px;
+  background:#eee8d9;
+  transform:rotate(-10deg);
+}
+
+/* =========================
+   YÜRÜME ANİMASYONLARI
+========================= */
+
+@keyframes soldierBob{
+  from{transform:translateY(0)}
+  to{transform:translateY(-2px)}
+}
+
+@keyframes legLeft{
+  from{transform:rotate(25deg)}
+  to{transform:rotate(-25deg)}
+}
+
+@keyframes legRight{
+  from{transform:rotate(-25deg)}
+  to{transform:rotate(25deg)}
+}
+
+@keyframes armLeft{
+  from{transform:rotate(-20deg)}
+  to{transform:rotate(20deg)}
+}
+
+@keyframes armRight{
+  from{transform:rotate(20deg)}
+  to{transform:rotate(-20deg)}
+}
+
+/* saldırı */
+
+.unit.meleeAttack .sword{
+  animation:swordAttack .18s ease-out 2 alternate;
+}
+
+@keyframes swordAttack{
+  from{transform:rotate(-35deg)}
+  to{transform:rotate(58deg)}
+}
+
+.unit.bowAttack .bow{
+  animation:bowAttack .20s ease-out 2 alternate;
+}
+
+@keyframes bowAttack{
+  from{
+    transform:rotate(-8deg) scaleX(1);
+  }
+  to{
+    transform:rotate(-3deg) scaleX(.72);
+  }
+}
+
+/* =========================
+   DÜŞMAN / MERMİ
+========================= */
+
+.enemy,
+.proj{
   position:absolute;
   transform:translate(-50%,-50%);
   pointer-events:none;
 }
 
 .enemy{
-  z-index:10;
-  font-size:28px;
-  filter:drop-shadow(0 3px 2px #0005);
-}
-
-.unit{
   z-index:11;
-  font-size:26px;
+  font-size:28px;
   filter:drop-shadow(0 3px 2px #0005);
 }
 
@@ -479,21 +1004,13 @@ html,body{
   background:#56d260;
 }
 
-.slash{
-  animation:slash .18s alternate 2;
-}
-
-@keyframes slash{
-  to{
-    transform:translate(-50%,-50%) rotate(22deg) scale(1.28);
-  }
-}
-
-/* ---------- ALT BUTONLAR ---------- */
+/* =========================
+   KONTROLLER
+========================= */
 
 .controls{
   position:absolute;
-  z-index:30;
+  z-index:40;
   left:6px;
   right:6px;
   bottom:max(7px,env(safe-area-inset-bottom));
@@ -529,12 +1046,14 @@ button:disabled{
   transform:none;
 }
 
-/* ---------- PANELLER ---------- */
+/* =========================
+   PANELLER
+========================= */
 
 .panel{
   display:none;
   position:absolute;
-  z-index:50;
+  z-index:60;
   left:6%;
   right:6%;
   top:17%;
@@ -567,17 +1086,30 @@ button:disabled{
   opacity:.8;
 }
 
-/* küçük ekran */
 @media(max-height:650px){
-  .slot{width:62px;height:62px}
-  .mini{transform:scale(.9)}
-  .wall{height:67px}
-  .castle{bottom:10%;transform:translateX(-50%) scale(.88)}
+  .slot{
+    width:62px;
+    height:62px;
+  }
+
+  .mini{
+    transform:scale(.9);
+  }
+
+  .wall{
+    height:67px;
+  }
+
+  .castle{
+    bottom:10%;
+    transform:translateX(-50%) scale(.88);
+  }
 }
 </style>
 </head>
 
 <body>
+
 <div id="g">
 
   <div class="mountains">
@@ -590,64 +1122,111 @@ button:disabled{
   <div class="grassDetail"></div>
 
   <div class="farTrees">
-    <span style="left:-10px;top:0">🌲</span>
-    <span style="left:32px;top:45px">🌳</span>
-    <span style="left:5px;top:115px">🌲</span>
-
-    <span style="right:-8px;top:8px">🌲</span>
-    <span style="right:32px;top:62px">🌳</span>
-    <span style="right:4px;top:128px">🌲</span>
+    <div class="tree t1"></div>
+    <div class="tree t2"></div>
+    <div class="tree t3"></div>
+    <div class="tree t4"></div>
+    <div class="tree t5"></div>
+    <div class="tree t6"></div>
   </div>
 
   <div class="wall">
+    <div class="wallTower left"></div>
     <div class="gate"></div>
+    <div class="wallTower right"></div>
   </div>
 
   <div class="courtyard"></div>
 
   <div class="castle">
-    <div class="towerL"></div>
+    <div class="castleTower left"></div>
+
     <div class="keep">
       <div class="keepDoor"></div>
     </div>
-    <div class="towerR"></div>
+
+    <div class="castleTower right"></div>
   </div>
 
   <div class="hud">
-    <span class="pill">🪙 <b id="money">300</b></span>
-    <span class="pill">❤️ <b id="wallhp">1000</b></span>
-    <span class="pill">🌊 <b id="wave">0</b></span>
+    <span class="pill">
+      🪙 <b id="money">300</b>
+    </span>
+
+    <span class="pill">
+      ❤️ <b id="wallhp">1000</b>
+    </span>
+
+    <span class="pill">
+      🌊 <b id="wave">0</b>
+    </span>
   </div>
 
   <div class="controls">
-    <button id="waveBtn">⚔️ Dalga Başlat</button>
-    <button id="slotBtn">➕ Slot — <span id="slotPrice">100</span>🪙</button>
-    <button id="speedBtn">⏩ x1</button>
+    <button id="waveBtn">
+      ⚔️ Dalga Başlat
+    </button>
+
+    <button id="slotBtn">
+      ➕ Slot —
+      <span id="slotPrice">100</span>🪙
+    </button>
+
+    <button id="speedBtn">
+      ⏩ x1
+    </button>
   </div>
 
   <div id="panel" class="panel">
+
     <h3>🏗️ Yapı seç</h3>
+
     <div id="choices" class="choices"></div>
+
     <div class="note">
       Aynı tür ve seviyedeki iki yapıya sırayla dokun.
       Yapılar Lv.5'e kadar birleşebilir.
     </div>
-    <button onclick="closePanel()">Kapat</button>
+
+    <button onclick="closePanel()">
+      Kapat
+    </button>
+
   </div>
 
   <div id="upgrade" class="panel">
+
     <h3>🏆 Dalga Tamamlandı</h3>
+
     <div class="choices">
-      <button onclick="upgrade('dmg')">⚔️ Hasar +20%</button>
-      <button onclick="upgrade('rate')">⏱️ Hız +15%</button>
-      <button onclick="upgrade('wall')">❤️ Sur +100</button>
-      <button onclick="upgrade('coin')">🪙 +100</button>
+
+      <button onclick="upgrade('dmg')">
+        ⚔️ Hasar +20%
+      </button>
+
+      <button onclick="upgrade('rate')">
+        ⏱️ Hız +15%
+      </button>
+
+      <button onclick="upgrade('wall')">
+        ❤️ Sur +100
+      </button>
+
+      <button onclick="upgrade('coin')">
+        🪙 +100
+      </button>
+
     </div>
+
   </div>
 
 <script>
-const G = document.getElementById('g');
-const $ = id => document.getElementById(id);
+
+const G =
+  document.getElementById('g');
+
+const $ =
+  id => document.getElementById(id);
 
 let money = 300;
 let wall = 1000;
@@ -672,15 +1251,23 @@ let lastSpawn = 0;
 let lastT = performance.now();
 
 const slots = [
+
   {x:17,y:69,o:1},
+
   {x:38,y:74,o:1},
+
   {x:62,y:74,o:1},
+
   {x:83,y:69,o:0},
+
   {x:27,y:85,o:0},
+
   {x:73,y:85,o:0}
+
 ];
 
 const D = {
+
   barracks:{
     n:'Kışla',
     i:'🛡️',
@@ -723,13 +1310,25 @@ const D = {
     d:25,
     def:1
   }
+
 };
 
 function sync(){
-  $('money').textContent = Math.floor(money);
-  $('wallhp').textContent = Math.max(0,Math.floor(wall));
-  $('wave').textContent = wave;
-  $('slotPrice').textContent = slotPrice;
+
+  $('money').textContent =
+    Math.floor(money);
+
+  $('wallhp').textContent =
+    Math.max(
+      0,
+      Math.floor(wall)
+    );
+
+  $('wave').textContent =
+    wave;
+
+  $('slotPrice').textContent =
+    slotPrice;
 
   $('slotBtn').disabled =
     money < slotPrice ||
@@ -739,19 +1338,28 @@ function sync(){
 }
 
 function choices(){
-  const c = $('choices');
+
+  const c =
+    $('choices');
 
   c.innerHTML = '';
 
-  for(const [k,d] of Object.entries(D)){
-    const b = document.createElement('button');
+  for(
+    const [k,d]
+    of Object.entries(D)
+  ){
+
+    const b =
+      document.createElement('button');
 
     b.innerHTML =
       `${d.i} ${d.n}<br>${d.c}🪙`;
 
-    b.disabled = money < d.c;
+    b.disabled =
+      money < d.c;
 
-    b.onclick = () => build(k);
+    b.onclick =
+      () => build(k);
 
     c.appendChild(b);
   }
@@ -759,12 +1367,16 @@ function choices(){
 
 function buildingHTML(b){
 
-  let mark =
-    b.t === 'barracks' ? '⚔️' :
-    b.t === 'archer' ? '🏹' :
-    b.t === 'mage' ? '🔮' :
-    b.t === 'tower' ? '🏹' :
-    '☄️';
+  const mark =
+    b.t === 'barracks'
+    ? '⚔️'
+    : b.t === 'archer'
+    ? '🏹'
+    : b.t === 'mage'
+    ? '🔮'
+    : b.t === 'tower'
+    ? '🏹'
+    : '☄️';
 
   return `
     <span class="mini ${b.t}">
@@ -790,16 +1402,23 @@ function render(){
 
   document
     .querySelectorAll('.slot')
-    .forEach(x => x.remove());
+    .forEach(
+      x => x.remove()
+    );
 
   slots.forEach((sl,i) => {
 
-    if(!sl.o) return;
+    if(!sl.o)
+      return;
 
-    const e = document.createElement('div');
+    const e =
+      document.createElement('div');
 
-    e.className = 'slot';
-    e.dataset.slot = i;
+    e.className =
+      'slot';
+
+    e.dataset.slot =
+      i;
 
     e.style.left =
       `calc(${sl.x}% - 35px)`;
@@ -808,21 +1427,35 @@ function render(){
       `calc(${sl.y}% - 35px)`;
 
     const b =
-      buildings.find(q => q.s === i);
+      buildings.find(
+        q => q.s === i
+      );
 
     if(b){
 
-      e.classList.add('building');
+      e.classList.add(
+        'building'
+      );
 
-      e.innerHTML = buildingHTML(b);
+      if(sel === b){
+        e.classList.add(
+          'selected'
+        );
+      }
 
-      e.onclick = () => tap(b);
+      e.innerHTML =
+        buildingHTML(b);
+
+      e.onclick =
+        () => tap(b);
 
     }else{
 
-      e.innerHTML = '＋<br>Yapı';
+      e.innerHTML =
+        '＋<br>Yapı';
 
-      e.onclick = () => openPanel(i);
+      e.onclick =
+        () => openPanel(i);
     }
 
     G.appendChild(e);
@@ -833,38 +1466,50 @@ function openPanel(i){
 
   buildSlot = i;
 
-  $('panel').style.display = 'block';
+  $('panel').style.display =
+    'block';
 
   choices();
 }
 
 function closePanel(){
 
-  $('panel').style.display = 'none';
+  $('panel').style.display =
+    'none';
 
   buildSlot = null;
 }
 
 function build(t){
 
-  const d = D[t];
+  const d =
+    D[t];
 
   if(
     buildSlot == null ||
     money < d.c
-  ) return;
+  ){
+    return;
+  }
 
   money -= d.c;
 
   buildings.push({
+
     s:buildSlot,
+
     t:t,
+
     l:1,
+
     last:performance.now()
+
   });
 
   closePanel();
+
   render();
+
   sync();
 }
 
@@ -874,12 +1519,16 @@ function tap(b){
 
     sel = b;
 
+    render();
+
     return;
   }
 
   if(sel === b){
 
     sel = null;
+
+    render();
 
     return;
   }
@@ -893,27 +1542,38 @@ function tap(b){
     b.l++;
 
     buildings =
-      buildings.filter(x => x !== sel);
+      buildings.filter(
+        x => x !== sel
+      );
 
     sel = null;
 
     render();
 
+    sync();
+
   }else{
 
     sel = b;
+
+    render();
   }
 }
 
-$('slotBtn').onclick = () => {
+$('slotBtn').onclick =
+() => {
 
   const s =
-    slots.find(x => !x.o);
+    slots.find(
+      x => !x.o
+    );
 
   if(
     !s ||
     money < slotPrice
-  ) return;
+  ){
+    return;
+  }
 
   money -= slotPrice;
 
@@ -922,30 +1582,36 @@ $('slotBtn').onclick = () => {
   slotPrice += 50;
 
   render();
+
   sync();
 };
 
-$('speedBtn').onclick = () => {
+$('speedBtn').onclick =
+() => {
 
   speed =
-    speed === 1 ? 2 :
-    speed === 2 ? 3 :
-    1;
+    speed === 1
+    ? 2
+    : speed === 2
+    ? 3
+    : 1;
 
   $('speedBtn').textContent =
     '⏩ x' + speed;
 };
 
-$('waveBtn').onclick = () => {
+$('waveBtn').onclick =
+() => {
 
-  if(active) return;
+  if(active)
+    return;
 
   wave++;
 
   active = true;
 
   spawnLeft =
-    5 + wave * 2;
+    5 + wave*2;
 
   const now =
     performance.now();
@@ -954,47 +1620,72 @@ $('waveBtn').onclick = () => {
     b => b.last = now
   );
 
-  $('waveBtn').disabled = true;
+  $('waveBtn').disabled =
+    true;
 
   sync();
 };
+
+/* =========================
+   DÜŞMAN
+========================= */
 
 function spawnEnemy(){
 
   const e = {
 
-    x:25 + Math.random()*50,
+    x:
+      25 +
+      Math.random()*50,
 
     y:7,
 
-    hp:30 + wave*10,
+    hp:
+      30 +
+      wave*10,
 
-    max:30 + wave*10,
+    max:
+      30 +
+      wave*10,
 
-    v:.0062 + wave*.00022,
+    v:
+      .0062 +
+      wave*.00022,
 
     last:0,
 
     engageX:
-      42 + Math.random()*16,
+      42 +
+      Math.random()*16,
 
     el:
-      document.createElement('div')
+      document.createElement(
+        'div'
+      )
+
   };
 
-  e.el.className = 'enemy';
+  e.el.className =
+    'enemy';
 
   e.el.innerHTML =
     '👹<div class="hp"><i></i></div>';
 
-  G.appendChild(e.el);
+  G.appendChild(
+    e.el
+  );
 
   enemies.push(e);
 }
 
+/* =========================
+   İNSAN ASKER ÜRETİMİ
+========================= */
+
 function spawnUnit(b){
 
-  const s = slots[b.s];
+  const s =
+    slots[b.s];
 
   const u = {
 
@@ -1002,56 +1693,134 @@ function spawnUnit(b){
       s.x +
       (Math.random()-.5)*3,
 
-    y:s.y-3,
+    y:
+      s.y-3,
 
     d:
       D[b.t].d *
       b.l *
       dmgMul,
 
-    t:b.t,
+    t:
+      b.t,
 
     last:0,
 
     hp:
-      24 + 8*b.l,
+      24 +
+      8*b.l,
 
     wander:
       (Math.random()-.5)*.003,
 
     el:
-      document.createElement('div')
+      document.createElement(
+        'div'
+      )
+
   };
 
-  u.el.className = 'unit';
+  u.el.className =
+    'unit';
 
-  u.el.textContent =
+  if(
     b.t === 'barracks'
-    ? '🛡️⚔️'
-    : '🏹';
+  ){
 
-  G.appendChild(u.el);
+    u.el.innerHTML = `
+      <span class="soldier warriorHuman">
+
+        <i class="helmet"></i>
+
+        <i class="head"></i>
+
+        <i class="torso"></i>
+
+        <i class="arm armL"></i>
+
+        <i class="arm armR"></i>
+
+        <i class="leg legL"></i>
+
+        <i class="leg legR"></i>
+
+        <i class="shield"></i>
+
+        <i class="sword"></i>
+
+      </span>
+    `;
+
+  }else{
+
+    u.el.innerHTML = `
+      <span class="soldier archerHuman">
+
+        <i class="helmet"></i>
+
+        <i class="head"></i>
+
+        <i class="torso"></i>
+
+        <i class="arm armL"></i>
+
+        <i class="arm armR"></i>
+
+        <i class="leg legL"></i>
+
+        <i class="leg legR"></i>
+
+        <i class="quiver"></i>
+
+        <i class="bow"></i>
+
+      </span>
+    `;
+  }
+
+  G.appendChild(
+    u.el
+  );
 
   units.push(u);
 }
 
-function shoot(x,y,e,d,kind){
+/* =========================
+   ATIŞ
+========================= */
 
-  if(!e) return;
+function shoot(
+  x,
+  y,
+  e,
+  d,
+  kind
+){
+
+  if(!e)
+    return;
 
   const p = {
 
     x:x,
+
     y:y,
+
     e:e,
+
     d:d,
+
     kind:kind,
 
     el:
-      document.createElement('div')
+      document.createElement(
+        'div'
+      )
+
   };
 
-  p.el.className = 'proj';
+  p.el.className =
+    'proj';
 
   p.el.textContent =
     kind === 'arrow'
@@ -1060,7 +1829,9 @@ function shoot(x,y,e,d,kind){
     ? '✦'
     : '●';
 
-  G.appendChild(p.el);
+  G.appendChild(
+    p.el
+  );
 
   projectiles.push(p);
 }
@@ -1076,9 +1847,13 @@ function dist(a,b){
 function near(x,y){
 
   let z = null;
-  let bd = Infinity;
 
-  for(const e of enemies){
+  let bd =
+    Infinity;
+
+  for(
+    const e of enemies
+  ){
 
     const d =
       (e.x-x)**2 +
@@ -1097,24 +1872,35 @@ function near(x,y){
 
 function hit(e,d){
 
-  if(!e || !enemies.includes(e))
+  if(
+    !e ||
+    !enemies.includes(e)
+  ){
     return;
+  }
 
   e.hp -= d;
 
   if(e.hp <= 0){
 
     money +=
-      8 + wave*2;
+      8 +
+      wave*2;
 
     e.el.remove();
 
     enemies =
-      enemies.filter(x => x !== e);
+      enemies.filter(
+        x => x !== e
+      );
 
     sync();
   }
 }
+
+/* =========================
+   ANA OYUN DÖNGÜSÜ
+========================= */
 
 function loop(t){
 
@@ -1131,7 +1917,8 @@ function loop(t){
   if(
     active &&
     spawnLeft > 0 &&
-    t-lastSpawn > 650/speed
+    t-lastSpawn >
+    650/speed
   ){
 
     spawnEnemy();
@@ -1141,31 +1928,46 @@ function loop(t){
     lastSpawn = t;
   }
 
-  /* DÜŞMAN AI */
+  /* =========================
+     DÜŞMAN HAREKETİ
+  ========================= */
 
-  for(const e of [...enemies]){
+  for(
+    const e of [...enemies]
+  ){
 
-    let defender = null;
-    let bd = Infinity;
+    let defender =
+      null;
 
-    for(const u of units){
+    let bd =
+      Infinity;
+
+    for(
+      const u of units
+    ){
 
       const dd =
         dist(e,u);
 
       if(dd < bd){
 
-        bd = dd;
-        defender = u;
+        bd =
+          dd;
+
+        defender =
+          u;
       }
     }
 
-    if(units.length){
+    if(
+      units.length
+    ){
 
       const front =
         units.reduce(
           (p,u) =>
-            !p || u.y < p.y
+            !p ||
+            u.y < p.y
             ? u
             : p,
           null
@@ -1182,7 +1984,7 @@ function loop(t){
         : e.engageX;
 
       const ty =
-        target.y - 2.8;
+        target.y-2.8;
 
       const dx =
         tx-e.x;
@@ -1191,7 +1993,10 @@ function loop(t){
         ty-e.y;
 
       const di =
-        Math.hypot(dx,dy) || 1;
+        Math.hypot(
+          dx,
+          dy
+        ) || 1;
 
       if(
         bd <= 3.8 &&
@@ -1203,37 +2008,24 @@ function loop(t){
           900/rateMul
         ){
 
-          e.last = t;
+          e.last =
+            t;
 
           defender.hp =
-            (defender.hp || 24) -
-            (4 + wave*.6);
+            (defender.hp || 24)
+            -
+            (4+wave*.6);
 
-          defender.el
-            .classList
-            .add('slash');
-
-          setTimeout(() => {
-
-            if(
-              defender &&
-              defender.el
-            ){
-
-              defender.el
-                .classList
-                .remove('slash');
-            }
-
-          },180);
-
-          if(defender.hp <= 0){
+          if(
+            defender.hp <= 0
+          ){
 
             defender.el.remove();
 
             units =
               units.filter(
-                x => x !== defender
+                x =>
+                  x !== defender
               );
           }
         }
@@ -1254,7 +2046,8 @@ function loop(t){
     }else{
 
       const dx =
-        e.engageX-e.x;
+        e.engageX -
+        e.x;
 
       e.x +=
         Math.sign(dx) *
@@ -1270,7 +2063,10 @@ function loop(t){
     e.x =
       Math.max(
         18,
-        Math.min(82,e.x)
+        Math.min(
+          82,
+          e.x
+        )
       );
 
     if(
@@ -1278,7 +2074,8 @@ function loop(t){
       units.length === 0
     ){
 
-      wall -= 35;
+      wall -=
+        35;
 
       e.el.remove();
 
@@ -1289,53 +2086,73 @@ function loop(t){
 
       sync();
 
-      if(wall <= 0){
+      if(
+        wall <= 0
+      ){
 
-        active = false;
+        active =
+          false;
 
-        $('waveBtn').disabled = true;
+        $('waveBtn').disabled =
+          true;
 
-        setTimeout(() => {
-          alert(
-            'Sur yıkıldı! Sayfayı yenileyerek tekrar başlayabilirsin.'
-          );
-        },100);
+        setTimeout(
+          () => {
+
+            alert(
+              'Sur yıkıldı! Sayfayı yenileyerek tekrar başlayabilirsin.'
+            );
+
+          },
+          100
+        );
       }
 
     }else{
 
       e.el.style.left =
-        e.x + '%';
+        e.x+'%';
 
       e.el.style.top =
-        e.y + '%';
+        e.y+'%';
 
       const hp =
-        e.el.querySelector('.hp i');
+        e.el.querySelector(
+          '.hp i'
+        );
 
       if(hp){
 
         hp.style.width =
           Math.max(
             0,
-            100*e.hp/e.max
-          ) + '%';
+            100 *
+            e.hp /
+            e.max
+          )+'%';
       }
     }
   }
 
-  /* YAPILAR */
+  /* =========================
+     BİNALAR
+  ========================= */
 
   if(active){
 
-    for(const b of buildings){
+    for(
+      const b of buildings
+    ){
 
       const d =
         D[b.t];
 
       const rate =
         d.r /
-        (1+(b.l-1)*.22) /
+        (
+          1+
+          (b.l-1)*.22
+        ) /
         rateMul;
 
       const se =
@@ -1364,7 +2181,7 @@ function loop(t){
                 (rate/speed) *
                 100
               )
-            ) + '%';
+            )+'%';
         }
       }
 
@@ -1373,15 +2190,21 @@ function loop(t){
         rate/speed
       ){
 
-        b.last = t;
+        b.last =
+          t;
 
-        if(d.def){
+        if(
+          d.def
+        ){
 
           const s =
             slots[b.s];
 
           const e =
-            near(s.x,s.y);
+            near(
+              s.x,
+              s.y
+            );
 
           if(
             e &&
@@ -1414,12 +2237,19 @@ function loop(t){
     }
   }
 
-  /* ASKER AI */
+  /* =========================
+     İNSAN ASKER AI
+  ========================= */
 
-  for(const u of [...units]){
+  for(
+    const u of [...units]
+  ){
 
     const e =
-      near(u.x,u.y);
+      near(
+        u.x,
+        u.y
+      );
 
     if(!e){
 
@@ -1439,30 +2269,43 @@ function loop(t){
       e.y-u.y;
 
     const di =
-      Math.hypot(dx,dy) || 1;
+      Math.hypot(
+        dx,
+        dy
+      ) || 1;
+
+    /* KILIÇLI ASKER */
 
     if(
       u.t === 'barracks'
     ){
 
-      if(di < 3.2){
+      if(
+        di < 3.2
+      ){
 
         if(
           t-u.last >
           650/rateMul
         ){
 
-          u.last = t;
+          u.last =
+            t;
 
-          u.el.classList
-            .remove('slash');
+          u.el.classList.remove(
+            'meleeAttack'
+          );
 
           void u.el.offsetWidth;
 
-          u.el.classList
-            .add('slash');
+          u.el.classList.add(
+            'meleeAttack'
+          );
 
-          hit(e,u.d);
+          hit(
+            e,
+            u.d
+          );
         }
 
       }else{
@@ -1479,11 +2322,18 @@ function loop(t){
           dt;
       }
 
-    }else{
+    }
 
-      const range = 25;
+    /* OKÇU */
 
-      if(di > range){
+    else{
+
+      const range =
+        25;
+
+      if(
+        di > range
+      ){
 
         u.x +=
           dx/di *
@@ -1496,8 +2346,11 @@ function loop(t){
           .0075 *
           dt;
 
-      }else if(
-        di < range-7
+      }
+
+      else if(
+        di <
+        range-7
       ){
 
         u.x -=
@@ -1510,12 +2363,25 @@ function loop(t){
           .005 *
           dt;
 
-      }else if(
+      }
+
+      else if(
         t-u.last >
         900/rateMul
       ){
 
-        u.last = t;
+        u.last =
+          t;
+
+        u.el.classList.remove(
+          'bowAttack'
+        );
+
+        void u.el.offsetWidth;
+
+        u.el.classList.add(
+          'bowAttack'
+        );
 
         shoot(
           u.x,
@@ -1534,7 +2400,9 @@ function loop(t){
       u.y+'%';
   }
 
-  /* MERMİLER */
+  /* =========================
+     MERMİLER
+  ========================= */
 
   for(
     const p of [...projectiles]
@@ -1542,7 +2410,9 @@ function loop(t){
 
     if(
       !p.e ||
-      !enemies.includes(p.e)
+      !enemies.includes(
+        p.e
+      )
     ){
 
       p.el.remove();
@@ -1562,11 +2432,19 @@ function loop(t){
       p.e.y-p.y;
 
     const di =
-      Math.hypot(dx,dy) || 1;
+      Math.hypot(
+        dx,
+        dy
+      ) || 1;
 
-    if(di < 2){
+    if(
+      di < 2
+    ){
 
-      hit(p.e,p.d);
+      hit(
+        p.e,
+        p.d
+      );
 
       p.el.remove();
 
@@ -1583,10 +2461,14 @@ function loop(t){
         : .032;
 
       p.x +=
-        dx/di*v*dt;
+        dx/di *
+        v *
+        dt;
 
       p.y +=
-        dy/di*v*dt;
+        dy/di *
+        v *
+        dt;
 
       p.el.style.left =
         p.x+'%';
@@ -1596,7 +2478,9 @@ function loop(t){
     }
   }
 
-  /* DALGA BİTİŞ */
+  /* =========================
+     DALGA BİTİŞİ
+  ========================= */
 
   if(
     active &&
@@ -1604,50 +2488,84 @@ function loop(t){
     enemies.length === 0
   ){
 
-    active = false;
+    active =
+      false;
 
     document
-      .querySelectorAll('.prod i')
+      .querySelectorAll(
+        '.prod i'
+      )
       .forEach(
-        x => x.style.width='0%'
+        x =>
+          x.style.width='0%'
       );
 
-    for(const u of units)
+    for(
+      const u of units
+    ){
       u.el.remove();
+    }
 
     units = [];
 
-    for(const p of projectiles)
+    for(
+      const p of projectiles
+    ){
       p.el.remove();
+    }
 
     projectiles = [];
 
-    $('waveBtn').disabled = false;
+    $('waveBtn').disabled =
+      false;
 
     $('upgrade').style.display =
       'block';
   }
 
-  requestAnimationFrame(loop);
+  requestAnimationFrame(
+    loop
+  );
 }
+
+/* =========================
+   DALGA ÖDÜLÜ
+========================= */
 
 function upgrade(k){
 
-  if(k === 'dmg')
-    dmgMul *= 1.2;
+  if(
+    k === 'dmg'
+  ){
+    dmgMul *=
+      1.2;
+  }
 
-  if(k === 'rate')
-    rateMul *= 1.15;
+  if(
+    k === 'rate'
+  ){
+    rateMul *=
+      1.15;
+  }
 
-  if(k === 'wall')
+  if(
+    k === 'wall'
+  ){
+
     wall =
       Math.min(
         1500,
         wall+100
       );
+  }
 
-  if(k === 'coin')
-    money += 100;
+  if(
+    k === 'coin'
+  ){
+
+    money +=
+      100;
+  }
 
   $('upgrade').style.display =
     'none';
@@ -1656,10 +2574,16 @@ function upgrade(k){
 }
 
 render();
+
 sync();
-requestAnimationFrame(loop);
+
+requestAnimationFrame(
+  loop
+);
+
 </script>
 
 </div>
+
 </body>
 </html>
